@@ -1,14 +1,10 @@
-package dev.sertis.betsjsf;
+package dev.sertis.betsjsf.bean;
 
-import jakarta.faces.bean.ManagedBean;
-import jakarta.faces.bean.RequestScoped;
 
-@ManagedBean
-@RequestScoped
 public class Bean {
     private String mensaje = "Hola desde el Managed Bean";
     public String getMensaje() {
-        return mensaje;
+        return "Hola desde el Managed Bean";
     }
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
