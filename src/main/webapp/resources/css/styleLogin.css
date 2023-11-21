@@ -1,0 +1,189 @@
+*{
+    font-family: sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+img{
+    width: 5%;
+}
+
+body, p{
+    font-size: 1.6rem;
+    line-height: 1.5;
+    font-weight: 400;
+    color: rgba(0,0,0,0.9);
+}
+
+a{
+    text-decoration: none;
+    font-weight: 600;
+    background-color: transparent;
+    border: 0;
+    color: #0073b1;
+}
+
+#app-container{
+    display: flex;
+    min-height: 100vh;
+    background-color: #fff;
+    flex-direction: column;
+}
+
+#header{
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-sizing: border-box;
+}
+
+.logo{
+    display: block;
+    margin: 32px 0 0 56px;
+}
+
+.app-content{
+    display: flex;
+    flex: 1;
+    float: none;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.card-layout{
+    width: 352px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    padding: 24px;
+    border-radius: 8px;
+    margin: 0 auto;
+    background: #fff;
+}
+
+.header-content-heading{
+    font-size: 3.2rem;
+    line-height: 1.25;
+    font-weight: 600;
+    color: rgba(0,0,0,0.9);
+    padding: 0 0 4px 0;
+}
+
+.header-content-subheading{
+    font-size: 1.4rem;
+    line-height: 1.42857;
+    font-weight: 400;
+    color: rgba(0,0,0,0.9);
+}
+
+.login-form{
+    margin: auto;
+    position: relative;
+}
+
+.form-input{
+    margin-top: 24px;
+    position: relative;
+    background-color: #fff;
+}
+
+.form-input input{
+    font-size: 1.8rem;
+    line-height: 1.33333;
+    font-weight: 400;
+    color: rgba(0,0,0,0.9);
+    position: relative;
+    z-index: 1;
+    height: 52px;
+    padding: 28px 12px 6px;
+    border-radius: 4px !important;
+}
+
+.form-input label{
+    font-size: 1.8rem;
+    line-height: 1.33333;
+    font-weight: 400;
+    color: rgba(0,0,0,0.6);
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 14px 0 0 12px;
+    margin: 0;
+    transition: .2s all;
+    box-sizing: border-box;
+}
+
+input{
+    font-size: 1.4rem;
+    line-height: 1.42857;
+    font-weight: 400;
+    vertical-align: middle;
+    transition-duration: 334ms;
+    transition-property: border-color, box-shadow;
+    box-shadow: none;
+    border-radius: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    padding: 0 10px;
+    width: 100%;
+    outline: 0;
+    height: 32px;
+    box-sizing: border-box;
+    background-color: transparent;
+    color: rgba(0,0,0,0.9);
+}
+
+.label-shrink {
+    transform: translateY(-10px);
+    font-size: 70%;
+}
+
+#form-actions{
+    display: flex;
+    flex-direction: row;
+    padding-top: 16px;
+}
+
+.btn-primary{
+    flex: 1;
+    margin-top: 14px;
+    background: #0a66c2 !important;
+    border: 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1.6rem;
+    font-weight: 600;
+    height: 52px;
+    line-height: 52px;
+    overflow: hidden;
+    outline-width: 2px;
+    padding: 0 24px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition-duration: 167ms;
+    transition-property: background-color,box-shadow,color;
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    vertical-align: middle;
+    z-index: 0;
+    border-radius: 28px !important;
+}
+
+#join-now{
+    display: inline-block;
+    cursor: pointer;
+    font-weight: 600;
+    padding: 0 8px;
+    text-decoration: none;
+    color: #0a66c2;
+    border-radius: 28px !important;
+}

@@ -7,21 +7,20 @@
         version="2.0">
 
     <managed-bean>
-        <managed-bean-name>helloBean</managed-bean-name>
-        <managed-bean-class>dev.sertis.betsjsf.bean.HelloBean</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>
-    <managed-bean>
         <managed-bean-name>login</managed-bean-name>
-        <managed-bean-class>dev.sertis.betsjsf.bean.login</managed-bean-class>
+        <managed-bean-class>dev.sertis.betsjsf.bean.Login</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
 
     <navigation-rule>
-        <from-view-id>/hello.xhtml</from-view-id>
+        <from-view-id>/login.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>welcome</from-outcome>
-            <to-view-id>/welcome.xhtml</to-view-id>
+            <from-outcome>user</from-outcome>
+            <to-view-id>/user.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>admin</from-outcome>
+            <to-view-id>/admin.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 </faces-config>

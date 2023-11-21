@@ -23,7 +23,11 @@ public class Login {
         try {
             User user = facade.getUser(dni);
             if (user.checkCredentials(passwd)){
-                return "ok";
+                if (user.isAdmin()){
+                    return "admin";
+                } else {
+                    return "user";
+                }
             } else {
                 return "error";
             }
