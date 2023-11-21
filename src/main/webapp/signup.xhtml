@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+<f:view>
+    <h:head>
+        <title>Bets: Sign up</title>
+        <h:outputStylesheet library="css" name="styleLogin.css"/>
+        <link rel="stylesheet" type="text/css" href="resources/css/styleLogin.css"/>
+    </h:head>
+    <h:body style="padding-top: 0">
+        <div id="app-container">
+            <div id="header">
+                <div style="height: 50px"></div>
+            </div>
+            <div id="app-content">
+                <div class="card-layout">
+                    <div id="organic-div">
+                        <div class="header-content">
+                            <h1 class="header-content-heading">Sign up</h1>
+                            <p>Welcome to Bets, please sign up</p>
+                        </div>
+                        <h:form styleClass="form">
+                            <div class="form-input">
+                                <h:inputText id="dni" required="true"  value="#{signUp.dni}"/>
+                                <label for="dni">DNI</label>
+                            </div>
+                            <div class="form-input" style="margin-top: 24px;">
+                                <h:inputSecret id="passwd" required="true"  value="#{signUp.passwd}"/>
+                                <label for="passwd">Password</label>
+                            </div>
+                            <div class="form-input">
+                                <h:inputText id="username" required="true"  value="#{signUp.username}"/>
+                                <label for="username">Nombre de usuario</label>
+                            </div>
+                            <div class="form-input">
+                                <h:inputText id="name" required="true"  value="#{signUp.name}"/>
+                                <label for="name">Nombre</label>
+                            </div>
+                            <div class="form-input">
+                                <h:inputText id="lastname" required="true"  value="#{signUp.lastname}"/>
+                                <label for="lastname">Apellido</label>
+                            </div>
+                            <div class="form-checkbox">
+                                <h:selectBooleanCheckbox id="admin" styleClass="admin-checkbox" required="true"  value="#{signUp.admin}"/>
+                                <label for="admin">Admin</label>
+                            </div>
+                            <div class="form-actions">
+                                <h:commandButton value="Sign up" action="#{signUp.signUp()}" styleClass="btn-primary"/>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <h:outputScript library="js" name="login.js"/>
+    </h:body>
+</f:view>
+</html>

@@ -84,7 +84,7 @@ a{
     color: rgba(0,0,0,0.9);
 }
 
-.login-form{
+.form{
     margin: auto;
     position: relative;
 }
@@ -92,7 +92,22 @@ a{
 .form-input{
     margin-top: 24px;
     position: relative;
-    background-color: #fff;
+}
+
+.form-checkbox{
+    margin-left: auto;
+    margin-top: 24px;
+    margin-bottom: 10px;
+    display: inline-flex;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    height: 1.8rem;
+    & label {
+        font-size: 1.8rem;
+        font-weight: 400;
+        margin-left: 8px;
+    }
 }
 
 .form-input input{
