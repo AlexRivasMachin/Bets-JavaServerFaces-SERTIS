@@ -11,6 +11,11 @@
         <managed-bean-class>dev.sertis.betsjsf.bean.HelloBean</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>login</managed-bean-name>
+        <managed-bean-class>dev.sertis.betsjsf.bean.login</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
 
     <navigation-rule>
         <from-view-id>/hello.xhtml</from-view-id>
