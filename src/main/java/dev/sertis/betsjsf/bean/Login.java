@@ -11,7 +11,7 @@ public class Login {
 
     private String passwd;
 
-    private BLFacade facade = new BLFacadeLocalImplementation();
+    private final BLFacade facade = new BLFacadeLocalImplementation();
 
     public Login() {
     }

@@ -7,14 +7,15 @@
       xmlns:f="http://java.sun.com/jsf/core">
 <f:view>
     <h:head>
-        <title>Login</title>
+        <title>Bets: Log in</title>
         <h:outputStylesheet library="css" name="styleLogin.css"/>
         <link rel="stylesheet" type="text/css" href="resources/css/styleLogin.css"/>
     </h:head>
     <h:body style="padding-top: 0">
         <div id="app-container">
             <div id="header">
-                <h:graphicImage library="images" name="logo.png" styleClass="logo"/>
+                <!--<h:graphicImage library="images" name="logo.png" styleClass="logo"/>-->
+                <div style="height: 50px"></div>
             </div>
             <div id="app-content">
                 <div class="card-layout">
@@ -23,13 +24,13 @@
                             <h1 class="header-content-heading">Sign in</h1>
                             <p>Welcome to Bets</p>
                         </div>
-                        <h:form styleClass="login-form">
+                        <h:form styleClass="form">
                             <div class="form-input">
-                                <h:inputText id="dni" value="#{login.dni}" label="DNI"/>
+                                <h:inputText id="dni" required="true" value="#{login.dni}"/>
                                 <label for="dni">DNI</label>
                             </div>
                             <div class="form-input" style="margin-top: 24px;">
-                                <h:inputSecret id="passwd" value="#{login.passwd}" styleClass="inputBox"/>
+                                <h:inputSecret id="passwd" required="true"  value="#{login.passwd}"/>
                                 <label for="passwd">Password</label>
                             </div>
                             <div class="form-actions">
@@ -38,7 +39,7 @@
                         </h:form>
                         <div style="margin-top: 20px; text-align: center">
                             New to Bets?
-                            <h:link id="join-now" value="Join now" outcome="logout"/>
+                            <h:link id="join-now" value="Join now" outcome="signup"/>
                         </div>
                     </div>
                 </div>
