@@ -25,19 +25,20 @@
                         </div>
                         <h:form styleClass="form">
                             <div class="form-input">
-                                <h:inputText id="dni" required="true" value="#{login.dni}">
-                                    <f:validateRegex pattern="^[0-9]{8}[A-HJ-NP-TV-Z]$"/>
+                                <h:inputText id="dni" required="true" value="#{login.dni}" validatorMessage="Dni invalido" requiredMessage="DNI is required">
+                                    <f:validateRegex  pattern="^[0-9]{8}[A-HJ-NP-TV-Z]$" />
                                 </h:inputText>
                                 <label for="dni">DNI</label>
                                 <h:message for="dni" styleClass="error-message"/>
                             </div>
                             <div class="form-input" style="margin-top: 24px;">
-                                <h:inputSecret id="passwd" required="true"  value="#{login.passwd}"/>
+                                <h:inputSecret id="passwd" required="true" value="#{login.passwd}" requiredMessage="Contraseña requerida"/>
                                 <label for="passwd">Contraseña</label>
                                 <h:message for="passwd" styleClass="error-message"/>
                             </div>
                             <div class="form-actions">
-                                <h:commandButton value="Iniciar sesióón" action="#{login.checkCredentials()}" styleClass="btn-primary"/>
+                                <h:commandButton id="action-btn" value="Iniciar sesión" action="#{login.checkCredentials()}" styleClass="btn-primary"/>
+                                <h:message for="action-btn" styleClass="error-message"/>
                             </div>
                         </h:form>
                         <div style="margin-top: 20px; text-align: center">

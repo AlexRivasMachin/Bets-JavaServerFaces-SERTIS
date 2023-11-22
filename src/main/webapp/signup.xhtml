@@ -25,37 +25,40 @@
                         </div>
                         <h:form styleClass="form">
                             <div class="form-input">
-                                <h:inputText id="dni" required="true"  value="#{signUp.dni}"/>
+                                <h:inputText id="dni" value="#{signUp.dni}" required="true" validatorMessage="Dni invalido" requiredMessage="DNI requerido">
+                                    <f:validateRegex pattern="^[0-9]{8}[A-HJ-NP-TV-Z]$"/>
+                                </h:inputText>
                                 <label for="dni">DNI</label>
                                 <h:message for="dni" styleClass="error-message"/>
                             </div>
                             <div class="form-input" style="margin-top: 24px;">
-                                <h:inputSecret id="passwd" required="true"  value="#{signUp.passwd}"/>
+                                <h:inputSecret id="passwd" value="#{signUp.passwd}" required="true" requiredMessage="Contraseña requerida"/>
                                 <label for="passwd">Contraseña</label>
                                 <h:message for="passwd" styleClass="error-message"/>
                             </div>
                             <div class="form-input">
-                                <h:inputText id="username" required="true"  value="#{signUp.username}"/>
+                                <h:inputText id="username" value="#{signUp.username}" required="true" requiredMessage="Nombre de usuario requerido"/>
                                 <label for="username">Nombre de usuario</label>
                                 <h:message for="username" styleClass="error-message"/>
                             </div>
                             <div class="form-input">
-                                <h:inputText id="name" required="true"  value="#{signUp.name}"/>
+                                <h:inputText id="name" value="#{signUp.name}" required="true" requiredMessage="Nombre requerido"/>
                                 <label for="name">Nombre</label>
                                 <h:message for="name" styleClass="error-message"/>
                             </div>
                             <div class="form-input">
-                                <h:inputText id="lastname" required="true"  value="#{signUp.lastname}"/>
+                                <h:inputText id="lastname" value="#{signUp.lastname}" required="true" requiredMessage="Apellido requerido"/>
                                 <label for="lastname">Apellido</label>
                                 <h:message for="lastname" styleClass="error-message"/>
                             </div>
                             <div class="form-checkbox">
-                                <h:selectBooleanCheckbox id="admin" styleClass="admin-checkbox" required="true"  value="#{signUp.admin}"/>
+                                <h:selectBooleanCheckbox id="admin" styleClass="admin-checkbox" value="#{signUp.admin}"/>
                                 <label for="admin">Admin</label>
                                 <h:message for="admin" styleClass="error-message"/>
                             </div>
                             <div class="form-actions">
-                                <h:commandButton value="Unirse" action="#{signUp.signUp()}" styleClass="btn-primary"/>
+                                <h:commandButton id="action-btn" value="Unirse" action="#{signUp.signUp()}" styleClass="btn-primary"/>
+                                <h:message for="action-btn" styleClass="error-message"/>
                             </div>
                         </h:form>
                         <div style="margin-top: 20px; text-align: center">
