@@ -1,19 +1,19 @@
 package dev.sertis.betsjsf.bean;
 
 import businessLogic.BLFacade;
-import businessLogic.BLFacadeLocalImplementation;
 import domain.User;
 import exceptions.UserDoesntExist;
 
-public class Login {
+public class LoginBean {
 
     private String dni;
 
     private String passwd;
 
-    private final BLFacade facade = new BLFacadeLocalImplementation();
+    private final BLFacade facade;
 
-    public Login() {
+    public LoginBean() {
+        this.facade = BLFacadeBean.getFacade();
     }
 
     public String checkCredentials(){

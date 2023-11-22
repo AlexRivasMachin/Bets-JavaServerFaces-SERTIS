@@ -1,10 +1,9 @@
 package dev.sertis.betsjsf.bean;
 
 import businessLogic.BLFacade;
-import businessLogic.BLFacadeLocalImplementation;
 import domain.User;
 
-public class SignUp {
+public class SignUpBean {
 
     private String dni;
 
@@ -18,9 +17,10 @@ public class SignUp {
 
     private boolean isAdmin;
 
-    private final BLFacade facade = new BLFacadeLocalImplementation();
+    private final BLFacade facade;
 
-    public SignUp() {
+    public SignUpBean() {
+        facade = BLFacadeBean.getFacade();
     }
 
     public String signUp(){
