@@ -20,8 +20,8 @@
                 <div class="card-layout">
                     <div id="organic-div">
                         <div class="header-content">
-                            <h1 class="header-content-heading">Sign in</h1>
-                            <p>Welcome to Bets</p>
+                            <h1 class="header-content-heading">Iniciar sesión</h1>
+                            <p>Bienvenido a Bets</p>
                         </div>
                         <h:form styleClass="form">
                             <div class="form-input">
@@ -33,16 +33,16 @@
                             </div>
                             <div class="form-input" style="margin-top: 24px;">
                                 <h:inputSecret id="passwd" required="true"  value="#{login.passwd}"/>
-                                <label for="passwd">Password</label>
+                                <label for="passwd">Contraseña</label>
                                 <h:message for="passwd" styleClass="error-message"/>
                             </div>
                             <div class="form-actions">
-                                <h:commandButton value="Sign in" action="#{login.checkCredentials()}" styleClass="btn-primary"/>
+                                <h:commandButton value="Iniciar sesióón" action="#{login.checkCredentials()}" styleClass="btn-primary"/>
                             </div>
                         </h:form>
                         <div style="margin-top: 20px; text-align: center">
-                            New to Bets?
-                            <h:link id="join-now" value="Join now" outcome="signup"/>
+                            ¿Eres nuevo en Bets?
+                            <h:link id="join-now" value="Unirse ahora" outcome="signup"/>
                         </div>
                     </div>
                 </div>

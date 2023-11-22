@@ -7,7 +7,7 @@
       xmlns:f="http://java.sun.com/jsf/core">
 <f:view>
     <h:head>
-        <title>Bets: Sign up</title>
+        <title>Bets: Registrarse</title>
         <h:outputStylesheet library="css" name="styleLogin.css"/>
         <link rel="stylesheet" type="text/css" href="resources/css/styleLogin.css"/>
     </h:head>
@@ -20,8 +20,8 @@
                 <div class="card-layout">
                     <div id="organic-div">
                         <div class="header-content">
-                            <h1 class="header-content-heading">Sign up</h1>
-                            <p>Welcome to Bets, please sign up</p>
+                            <h1 class="header-content-heading">Unirse</h1>
+                            <p>Bienvenido a Bets</p>
                         </div>
                         <h:form styleClass="form">
                             <div class="form-input">
@@ -31,7 +31,7 @@
                             </div>
                             <div class="form-input" style="margin-top: 24px;">
                                 <h:inputSecret id="passwd" required="true"  value="#{signUp.passwd}"/>
-                                <label for="passwd">Password</label>
+                                <label for="passwd">Contraseña</label>
                                 <h:message for="passwd" styleClass="error-message"/>
                             </div>
                             <div class="form-input">
@@ -55,12 +55,12 @@
                                 <h:message for="admin" styleClass="error-message"/>
                             </div>
                             <div class="form-actions">
-                                <h:commandButton value="Sign up" action="#{signUp.signUp()}" styleClass="btn-primary"/>
+                                <h:commandButton value="Unirse" action="#{signUp.signUp()}" styleClass="btn-primary"/>
                             </div>
                         </h:form>
                         <div style="margin-top: 20px; text-align: center">
-                            Already have an account?
-                            <h:link id="join-now" value="Sign in" outcome="login"/>
+                            ¿Ya estás en Bets?
+                            <h:link id="join-now" value="Iniciar sesión" outcome="login"/>
                         </div>
                     </div>
                 </div>
