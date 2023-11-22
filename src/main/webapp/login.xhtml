@@ -9,9 +9,8 @@
     <h:head>
         <title>Bets: Log in</title>
         <h:outputStylesheet library="css" name="styleLogin.css"/>
-        <link rel="stylesheet" type="text/css" href="resources/css/styleLogin.css"/>
     </h:head>
-    <h:body style="padding-top: 0">
+    <h:body style="padding-top: 0" onload="ifInputHasValueShrinkLabel()">
         <div id="app-container">
             <div id="header">
                 <!--<h:graphicImage library="images" name="logo.png" styleClass="logo"/>-->
@@ -26,12 +25,16 @@
                         </div>
                         <h:form styleClass="form">
                             <div class="form-input">
-                                <h:inputText id="dni" required="true" value="#{login.dni}"/>
+                                <h:inputText id="dni" required="true" value="#{login.dni}">
+                                    <f:validateRegex pattern="^[0-9]{8}[A-HJ-NP-TV-Z]$"/>
+                                </h:inputText>
                                 <label for="dni">DNI</label>
+                                <h:message for="dni" styleClass="error-message"/>
                             </div>
                             <div class="form-input" style="margin-top: 24px;">
                                 <h:inputSecret id="passwd" required="true"  value="#{login.passwd}"/>
                                 <label for="passwd">Password</label>
+                                <h:message for="passwd" styleClass="error-message"/>
                             </div>
                             <div class="form-actions">
                                 <h:commandButton value="Sign in" action="#{login.checkCredentials()}" styleClass="btn-primary"/>

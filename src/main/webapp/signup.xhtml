@@ -11,7 +11,7 @@
         <h:outputStylesheet library="css" name="styleLogin.css"/>
         <link rel="stylesheet" type="text/css" href="resources/css/styleLogin.css"/>
     </h:head>
-    <h:body style="padding-top: 0">
+    <h:body style="padding-top: 0" onload="ifInputHasValueShrinkLabel()">
         <div id="app-container">
             <div id="header">
                 <div style="height: 50px"></div>
@@ -27,31 +27,41 @@
                             <div class="form-input">
                                 <h:inputText id="dni" required="true"  value="#{signUp.dni}"/>
                                 <label for="dni">DNI</label>
+                                <h:message for="dni" styleClass="error-message"/>
                             </div>
                             <div class="form-input" style="margin-top: 24px;">
                                 <h:inputSecret id="passwd" required="true"  value="#{signUp.passwd}"/>
                                 <label for="passwd">Password</label>
+                                <h:message for="passwd" styleClass="error-message"/>
                             </div>
                             <div class="form-input">
                                 <h:inputText id="username" required="true"  value="#{signUp.username}"/>
                                 <label for="username">Nombre de usuario</label>
+                                <h:message for="username" styleClass="error-message"/>
                             </div>
                             <div class="form-input">
                                 <h:inputText id="name" required="true"  value="#{signUp.name}"/>
                                 <label for="name">Nombre</label>
+                                <h:message for="name" styleClass="error-message"/>
                             </div>
                             <div class="form-input">
                                 <h:inputText id="lastname" required="true"  value="#{signUp.lastname}"/>
                                 <label for="lastname">Apellido</label>
+                                <h:message for="lastname" styleClass="error-message"/>
                             </div>
                             <div class="form-checkbox">
                                 <h:selectBooleanCheckbox id="admin" styleClass="admin-checkbox" required="true"  value="#{signUp.admin}"/>
                                 <label for="admin">Admin</label>
+                                <h:message for="admin" styleClass="error-message"/>
                             </div>
                             <div class="form-actions">
                                 <h:commandButton value="Sign up" action="#{signUp.signUp()}" styleClass="btn-primary"/>
                             </div>
                         </h:form>
+                        <div style="margin-top: 20px; text-align: center">
+                            Already have an account?
+                            <h:link id="join-now" value="Sign in" outcome="login"/>
+                        </div>
                     </div>
                 </div>
             </div>
