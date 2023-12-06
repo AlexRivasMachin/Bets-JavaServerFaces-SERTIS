@@ -1,3 +1,36 @@
-
-
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition>
+    <f:view>
+        <h:head>
+            <title> Apuestas Realizdas </title>
+            <h:outputStylesheet library="css" name="añadirSaldoComponente.css"/>
+            <link rel="stylesheet" type="text/css" href="resources/css/añadirSaldoComponente.css"/>
+        </h:head>
+        <h:body>
+            <div class="grid">
+                <div class="row">
+                        <h3>Saldo Actual:</h3>
+                        <p id="saldo">0.00</p>
+                </div>
+                <div class="row">
+                    <h3>Dinero a añadir</h3>
+                    <input></input>
+                    <button>Añadir</button>
+                    <p></p>
+                </div>
+                <div class="row">
+                    <h3>Retirar dinero</h3>
+                    <input></input>
+                    <button>Retirar</button>
+                    <p></p>
+                </div>
+            </div>
+        </h:body>
+    </f:view>
+</ui:composition>
+</html>
