@@ -1,0 +1,28 @@
+nav{
+    background-color: #29a7ad;
+}
+
+ul{
+    justify-content: center;
+    display: flex;
+    list-style-type: none;
+    background-color: #ffffff;
+}
+
+.buttonNav{
+    padding-right: 20px;
+    padding-left: 20px;
+    background-color: #ffffff;
+}
+
+.prueba{
+    color: #336699;
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.h3CrearEvento, h5CrearEvento{
+    display: inline;
+    margin-right: 20px;
+}

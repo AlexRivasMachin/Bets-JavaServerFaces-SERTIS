@@ -36,3 +36,8 @@ button:hover{
     right: 0;
     padding: 10px 20px;
 }
+ul {
+    display: flex;
+    gap: 200px;
+    padding: 0; /* Para quitar el espacio predeterminado en los bordes de la lista */
+}
