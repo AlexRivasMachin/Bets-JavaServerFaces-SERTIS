@@ -6,45 +6,46 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core">
 <f:view>
-<h:head>
-    <title>UserHome</title>
-    <h:outputStylesheet library="css" name="HomeStyle.css"/>
-</h:head>
-<h:body>
-    <div class="nav">
-        <div class="botones">
-            <h:button value="Salir"/>
-        </div>
-        <div class="userInfo">
-            <h3>Usuario: #{userBean.username}</h3>
-            <h3>Saldo: #{userBean.saldo}</h3>
-            <h:form>
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>UserHome</title>
+        <h:outputStylesheet library="css" name="stylesHome.css"/>
+    </h:head>
+    <h:body>
+        <div class="nav">
+            <div class="botones">
+                <h:button value="Salir"/>
                 <h:commandButton value="Cerrar Sesión" action="#{userBean.logout}" />
-            </h:form>
+            </div>
+            <div class="userInfo">
+                <h3>Usuario: </h3>
+                <h3>Saldo:</h3>
+            </div>
+            <div class="menu">
+                <h:commandButton value="Eventos" action="#{userBean.showEventos}" />
+                <h:commandButton value="Apuestas Realizadas" action="#{userBean.showApuestas}" />
+                <h:commandButton value="Añadir Saldo" action="#{userBean.showAñadirSaldo}" />
+                <h:commandButton value="Datos Personales" action="#{userBean.showDatosPersonales}" />
+            </div>
         </div>
-        <div class="menu">
-            <h:commandButton value="Eventos" action="#{userBean.showEventos}" />
-            <h:commandButton value="Apuestas Realizadas" action="#{userBean.showApuestas}" />
-            <h:commandButton value="Añadir Saldo" action="#{userBean.showAñadirSaldo}" />
-            <h:commandButton value="Datos Personales" action="#{userBean.showDatosPersonales}" />
+        <div id="componenteContainer">
+            <ui:fragment rendered="#{userBean.mostrarEventos}">
+                <ui:include src="#{userBean.componentContent}" />
+            </ui:fragment>
+
+            <ui:fragment rendered="#{userBean.mostrarApuestas}">
+                <ui:include src="#{userBean.componentContent}" />
+            </ui:fragment>
+
+            <ui:fragment rendered="#{userBean.mostrarAñadirSaldo}">
+                <ui:include src="#{userBean.componentContent}" />
+            </ui:fragment>
+
+            <ui:fragment rendered="#{userBean.mostrarDatosPersonales}">
+                <ui:include src="#{userBean.componentContent}" />
+            </ui:fragment>
+
         </div>
-
-        <ui:fragment rendered="#{userBean.mostrarEventos}">
-            <ui:include src="userNormalComponentes/eventosComponente.xhtml"/>
-        </ui:fragment>
-
-        <ui:fragment rendered="#{userBean.mostrarApuestas}">
-            <ui:include src="userNormalComponentes/apuestasRealizadasComponente.xhtml"/>
-        </ui:fragment>
-
-        <ui:fragment rendered="#{userBean.mostrarAñadirSaldo}">
-            <ui:include src="userNormalComponentes/añadirSaldoComponente.xhtml"/>
-        </ui:fragment>
-
-        <ui:fragment rendered="#{userBean.mostrarDatosPersonales}">
-            <ui:include src="userNormalComponentes/datosPersonalesComponente.xhtml"/>
-        </ui:fragment>
-    </div>
-</h:body>
+    </h:body>
 </f:view>
 </html>
