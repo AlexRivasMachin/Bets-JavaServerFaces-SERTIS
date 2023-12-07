@@ -1,5 +1,6 @@
 package dev.sertis.betsjsf.bean;
 
+import javax.annotation.PostConstruct;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -12,14 +13,22 @@ public class UserBean {
     private boolean mostrarApuestas = false;
     private boolean mostrarAñadirSaldo = false;
     private boolean mostrarDatosPersonales = false;
+    private boolean eventosButtonEnabled = true;
+    private boolean apuestasButtonEnabled = true;
+    private boolean añadirSaldoButtonEnabled = true;
+    private boolean datosPersonalesButtonEnabled = true;
     private String componentContent;
 
     public UserBean() {
         username = "UsuarioX";
         saldo = 100.0;
-        resetFlagsExcept("mostrarEventos");
-        componentContent = "Contenido por defecto";
     }
+
+    @PostConstruct
+    public void init() {
+        showEventos();
+    }
+
 
     public String logout() {
         return "/login.xhtml?faces-redirect=true";
@@ -28,30 +37,41 @@ public class UserBean {
     public String showEventos() {
         mostrarEventos = true;
         resetFlagsExcept("mostrarEventos");
-        System.out.println("showEventos");
-        //componentContent = "userNormalComponentes/eventosComponente.xhtml";
+        eventosButtonEnabled = false;
+        componentContent = "userNormalComponentes/eventosComponente.xhtml";
         return null;
     }
 
     public String showApuestas() {
         mostrarApuestas = true;
         resetFlagsExcept("mostrarApuestas");
-        //componentContent = "userNormalComponentes/apuestasRealizadas.xhtml";
+        apuestasButtonEnabled = false;
+        componentContent = "userNormalComponentes/apuestasRealizadas.xhtml";
         return null;
     }
 
     public String showAñadirSaldo() {
         mostrarAñadirSaldo = true;
         resetFlagsExcept("mostrarAñadirSaldo");
-        //componentContent = "userNormalComponentes/añadirSaldoComponente.xhtml";
+        añadirSaldoButtonEnabled = false;
+        componentContent = "userNormalComponentes/añadirSaldoComponente.xhtml";
         return null;
     }
 
     public String showDatosPersonales() {
         mostrarDatosPersonales = true;
+        datosPersonalesButtonEnabled = false;
         resetFlagsExcept("mostrarDatosPersonales");
-        //componentContent = "userNormalComponentes/datosPersonalesComponente.xhtml";
+        componentContent = "userNormalComponentes/datosPersonalesComponente.xhtml";
         return null;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public double getSaldo() {
+        return saldo;
     }
 
     private void resetFlagsExcept(String flagToKeep) {
