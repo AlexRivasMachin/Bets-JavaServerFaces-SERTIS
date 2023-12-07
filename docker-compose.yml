@@ -1,0 +1,15 @@
+version: '3'
+volumes:
+  data:
+services:
+  db:
+    image: mariadb
+    environment:
+      MARIADB_DATABASE: eventos
+      MARIADB_USER: root
+      MARIADB_ROOT_PASSWORD: password # si ponemos el user root su contraseña es esta
+      MARIADB_PASSWORD: admin
+    volumes:
+      - data:/var/lib/mysql
+    ports:
+      - "3306:3306"

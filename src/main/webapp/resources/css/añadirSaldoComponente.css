@@ -1,0 +1,19 @@
+input{
+    max-height: 30px;
+}
+
+button{
+    max-height: 30px;
+}
+.grid{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 40px;
+    padding: 10px;
+}

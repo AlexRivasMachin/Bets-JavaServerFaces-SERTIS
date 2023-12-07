@@ -2,31 +2,55 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
-<h:head>
-    <title>UserHome</title>
-    <h:outputStylesheet library="css" name="styleHome.css"/>
-    <link rel="stylesheet" href="resources/css/styleHome.css"></link>
-</h:head>
-<h:body>
-    <div class="nav">
-        <div class="botones">
-            <h:button>Salir</h:button>
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+<f:view>
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>UserHome</title>
+        <h:outputStylesheet library="css" name="stylesHome.css"/>
+    </h:head>
+    <h:body>
+
+        <div class="nav">
+
+            <div class="botones">
+                <h:button value="Salir"/>
+                <h:commandButton value="Cerrar Sesión" action="#{userBean.logout}" />
+            </div>
+
+            <div class="userInfo">
+                <h3>Usuario: #{userBean.username}</h3>
+                <h3>Saldo: #{userBean.saldo} </h3>
+            </div>
+
+            <div class="menu">
+                <h:commandButton value="Eventos" action="#{userBean.showEventos}" />
+                <h:commandButton value="Apuestas Realizadas" action="#{userBean.showApuestas}" />
+                <h:commandButton value="Añadir Saldo" action="#{userBean.showAñadirSaldo}" />
+                <h:commandButton value="Datos Personales" action="#{userBean.showDatosPersonales}" />
+            </div>
         </div>
-        <div class="userInfo">
-            <h3>Usuario: #{userBean.user.username}</h3>
-            <h3>Saldo: #{userBean.user.saldo}</h3>
-            <h:form>
-                <h:commandButton value="Cerrar Sesión" action="#{userBean.logout}"/>
-            </h:form>
+
+        <div id="componenteContainer">
+            <h:commandButton value="Eventos" action="#{userBean.showEventos}">
+                <f:ajax render="componenteContainer" />
+            </h:commandButton>
+
+            <h:commandButton value="Apuestas Realizadas" action="#{userBean.showApuestas}">
+                <f:ajax render="componenteContainer" />
+            </h:commandButton>
+
+            <h:commandButton value="Añadir Saldo" action="#{userBean.showAñadirSaldo}">
+                <f:ajax render="componenteContainer" />
+            </h:commandButton>
+
+            <h:commandButton value="Datos Personales" action="#{userBean.showDatosPersonales}">
+                <f:ajax render="componenteContainer" />
+            </h:commandButton>
         </div>
-        <div>
-            <h:button href="#eventos"><strong>Eventos</strong></h:button>
-            <h:button href="#apuestas"><strong>Apuestas Realizadas</strong> </h:button>
-            <h:button href="#saldo"> <strong>Añadir Saldo</strong> </h:button>
-            <h:button href="#datos"><strong>Datos Personales</strong> </h:button>
-        </div>
-    </div>
-</h:body>
+
+    </h:body>
+</f:view>
 </html>

@@ -202,3 +202,12 @@ input{
     color: #0a66c2;
     border-radius: 28px !important;
 }
+
+.error-message{
+    font-size: 1.4rem;
+    line-height: 1.42857;
+    margin: 8px 0 0 0;
+    text-align: left;
+    color: #d11124;
+    font-weight: 500;
+}

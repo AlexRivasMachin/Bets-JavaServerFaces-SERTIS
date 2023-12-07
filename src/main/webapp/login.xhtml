@@ -9,9 +9,8 @@
     <h:head>
         <title>Bets: Log in</title>
         <h:outputStylesheet library="css" name="styleLogin.css"/>
-        <link rel="stylesheet" type="text/css" href="resources/css/styleLogin.css"/>
     </h:head>
-    <h:body style="padding-top: 0">
+    <h:body style="padding-top: 0" onload="ifInputHasValueShrinkLabel()">
         <div id="app-container">
             <div id="header">
                 <!--<h:graphicImage library="images" name="logo.png" styleClass="logo"/>-->
@@ -21,25 +20,30 @@
                 <div class="card-layout">
                     <div id="organic-div">
                         <div class="header-content">
-                            <h1 class="header-content-heading">Sign in</h1>
-                            <p>Welcome to Bets</p>
+                            <h1 class="header-content-heading">Iniciar sesión</h1>
+                            <p>Bienvenido a Bets</p>
                         </div>
                         <h:form styleClass="form">
                             <div class="form-input">
-                                <h:inputText id="dni" required="true" value="#{login.dni}"/>
+                                <h:inputText id="dni" required="true" value="#{login.dni}" validatorMessage="Dni invalido" requiredMessage="DNI is required">
+                                    <f:validateRegex  pattern="^[0-9]{8}[A-HJ-NP-TV-Z]$" />
+                                </h:inputText>
                                 <label for="dni">DNI</label>
+                                <h:message for="dni" styleClass="error-message"/>
                             </div>
                             <div class="form-input" style="margin-top: 24px;">
-                                <h:inputSecret id="passwd" required="true"  value="#{login.passwd}"/>
-                                <label for="passwd">Password</label>
+                                <h:inputSecret id="passwd" required="true" value="#{login.passwd}" requiredMessage="Contraseña requerida"/>
+                                <label for="passwd">Contraseña</label>
+                                <h:message for="passwd" styleClass="error-message"/>
                             </div>
                             <div class="form-actions">
-                                <h:commandButton value="Sign in" action="#{login.checkCredentials()}" styleClass="btn-primary"/>
+                                <h:commandButton id="action-btn" value="Iniciar sesión" action="#{login.checkCredentials()}" styleClass="btn-primary"/>
+                                <h:message for="action-btn" styleClass="error-message"/>
                             </div>
                         </h:form>
                         <div style="margin-top: 20px; text-align: center">
-                            New to Bets?
-                            <h:link id="join-now" value="Join now" outcome="signup"/>
+                            ¿Eres nuevo en Bets?
+                            <h:link id="join-now" value="Unirse ahora" outcome="signup"/>
                         </div>
                     </div>
                 </div>
