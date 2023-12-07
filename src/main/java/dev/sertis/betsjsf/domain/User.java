@@ -94,20 +94,4 @@ public class User {
         this.userPlacedBets = userPlacedBets;
     }
 
-    public void addBet(Bet b) {
-        if(userPlacedBets ==null) userPlacedBets = new HashSet<>();
-        userPlacedBets.add(b);
-    }
-
-    public Bet doesBetExists(Integer forecastNumber) {
-        if(this.getUserPlacedBets() == null) {
-            return null; }
-        for (Bet b:this.getUserPlacedBets()){
-            if(b.getAssociatedForecast().getForecastId().equals(forecastNumber)) {
-                return b;
-            }
-        }
-        return null;
-    }
-
 }

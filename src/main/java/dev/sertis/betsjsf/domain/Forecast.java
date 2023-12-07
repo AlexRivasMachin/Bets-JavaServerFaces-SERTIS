@@ -9,7 +9,7 @@ import java.util.Set;
 public class Forecast {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer forecastId;
+    private Long forecastId;
     private String forecastDescription;
     private float potentialGain;
     @ManyToOne(targetEntity = Question.class, cascade = CascadeType.ALL)
@@ -20,11 +20,11 @@ public class Forecast {
     public Forecast() {
     }
 
-    public Integer getForecastId() {
+    public Long getForecastId() {
         return forecastId;
     }
 
-    public void setForecastId(Integer forecastId) {
+    public void setForecastId(Long forecastId) {
         this.forecastId = forecastId;
     }
 
