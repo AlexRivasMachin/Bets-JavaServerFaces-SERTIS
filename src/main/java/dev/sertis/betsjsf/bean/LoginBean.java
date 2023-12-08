@@ -21,7 +21,7 @@ public class LoginBean {
             return "error";
         }
         try {
-            User user = userDAO.findByDNI(dni);
+            User user = userDAO.getUserByDNI(dni);
             if (isPasswordCorrect(user, passwd)){
                 if (user.isAdmin()){
                     return "admin";
