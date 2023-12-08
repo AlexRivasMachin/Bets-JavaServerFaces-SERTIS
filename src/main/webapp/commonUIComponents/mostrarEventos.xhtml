@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition>
+   <f:view>
+      <h:head>
+
+      </h:head>
+      <h:body>
+         <h1>Eventos</h1>
+         <p:calendar id="calendar" value="#{eventsBean.eventDate}" navigator="true" mode="inline">
+            <p:ajax event="dateSelect" listener="#{eventsBean.handleDateSelect}" update="eventsTable"/>
+         </p:calendar>
+         <p:dataTable id="eventsTable" var="event" value="#{eventsBean.events}">
+            <p:column id="eventate" headerText="Fecha">
+               <f:facet name="header"/>
+               #{event.eventDate}
+            </p:column>
+            <p:column id="eventDescription" headerText="Description">
+                <f:facet name="header"/>
+               #{event.eventDescription}
+            </p:column>
+         </p:dataTable>
+      </h:body>
+   </f:view>
+</ui:composition>
+</html>

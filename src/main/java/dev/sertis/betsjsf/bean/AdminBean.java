@@ -22,7 +22,7 @@ public class AdminBean {
         setComponentPath("adminUIComponents/adminCrearEvento.xhtml");
     }
     public void changeComponentToEventsList(){
-        setComponentPath("adminUIComponents/adminListaDeEventos.xhtml");
+        setComponentPath("commonUIComponents/mostrarEventos.xhtml");
     }
 
     private void setComponentPath(String path){

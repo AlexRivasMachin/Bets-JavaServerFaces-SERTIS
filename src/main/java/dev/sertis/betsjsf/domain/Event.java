@@ -1,22 +1,29 @@
 package dev.sertis.betsjsf.domain;
 
 import jakarta.persistence.*;
-import java.sql.Date;
+
+import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
-public class Event  {
+public class Event implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long eventId;
     private String eventDescription;
-    private Date eventDate;
+    private LocalDate eventDate;
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Question> questionsForThisEvent;
 
     public Event() {
+    }
+
+    public Event(String eventDescription, LocalDate eventDate) {
+        this.eventDescription = eventDescription;
+        this.eventDate = eventDate;
     }
 
     public Long getEventId() {
@@ -35,11 +42,11 @@ public class Event  {
         this.eventDescription = eventDescription;
     }
 
-    public Date getEventDate() {
+    public LocalDate getEventDate() {
         return eventDate;
     }
 
-    public void setEventDate(Date eventDate) {
+    public void setEventDate(LocalDate eventDate) {
         this.eventDate = eventDate;
     }
 
