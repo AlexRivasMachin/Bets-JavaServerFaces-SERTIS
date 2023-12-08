@@ -1,10 +1,5 @@
 package dev.sertis.betsjsf.bean;
 
-import javax.annotation.PostConstruct;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-
 public class UserBean {
 
     private String username;
@@ -22,13 +17,8 @@ public class UserBean {
     public UserBean() {
         username = "UsuarioX";
         saldo = 100.0;
-    }
-
-    @PostConstruct
-    public void init() {
         showEventos();
     }
-
 
     public String logout() {
         return "/login.xhtml?faces-redirect=true";
