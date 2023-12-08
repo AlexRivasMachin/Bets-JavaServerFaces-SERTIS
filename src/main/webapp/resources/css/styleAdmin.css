@@ -27,7 +27,21 @@ ul{
     margin-right: 20px;
 }
 
-.preview{
+#preview{
     display: flex;
-    gap: 20px;
+    gap: 50px;
+    margin-top: 50px;
 }
+
+.imagenesEquipo{
+    width: 100px;
+    height: 100px;
+}
+.infoEvento{
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.labelsPreview{
+    displaly:block;
+}
+

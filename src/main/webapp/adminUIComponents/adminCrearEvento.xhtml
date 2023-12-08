@@ -13,9 +13,8 @@
             <h3 class="h3CrearEvento">Event Date</h3>
             <h5 class="h5CrearEvento">(Selecciona una fecha posterior a la de hoy)</h5>
             <p:calendar id="fecha" value="#{admin.fecha}" navigator="true" mode="inline">
-                <p:ajax event="dateSelect" listener="#{admin.onDateSelect}" update="mensajes"></p:ajax>
+                <p:ajax event="dateSelect" listener="#{admin.onDateSelect}" update="infoFecha"></p:ajax>
             </p:calendar>
-            <h:messages id="mensajes" style="color:blue"/>
 
             <p:outputLabel value="Para mostrar el logo de los equipos, separe los nombres de los equipos con un guión (-)"/>
 
@@ -24,11 +23,14 @@
                 <f:ajax event="keyup" listener="#{admin.checkSiSeHanIntroducidoEquiposYActualizarSusImagenes}" render="infoEvento infoFecha imgLocal imgVisitante"/>
             </p:inputText>
 
-
-            <h:graphicImage id="imgLocal" value="#{admin.imgLocal}"/>
-            <p:outputLabel id="infoEvento" value="#{admin.evento}"/>
-            <p:outputLabel id="infoFecha" value="#{admin.fecha}"/>
-            <h:graphicImage id="imgVisitante" value="#{admin.imgVisitante}"/>
+            <div id="preview">
+                <h:graphicImage styleClass="imagenesEquipo" id="imgLocal" value="#{admin.imgLocal}"/>
+                <div id="labelsPreview">
+                    <p:outputLabel styleClass="infoEvento" id="infoEvento" value="#{admin.evento}"/>
+                    <p:outputLabel styleClass="infoEvento" id="infoFecha" value="#{admin.fecha}"/>
+                </div>
+                <h:graphicImage styleClass="imagenesEquipo" id="imgVisitante" value="#{admin.imgVisitante}"/>
+            </div>
         </h:form>
     </h:body>
 </f:view>

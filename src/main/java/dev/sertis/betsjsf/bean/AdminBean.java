@@ -70,8 +70,12 @@ public class AdminBean {
         System.out.println(String.format("evento: %s", evento));
 
         if(evento != null && evento.contains("-")){
-            imgLocal = getUrlIcono(evento.split("-")[0]);
+            String pruebas = evento.substring(0, evento.indexOf("-"));
+            imgLocal = getUrlIcono(pruebas);
             imgVisitante = getUrlIcono(evento.split("-")[1]);
+        }else{
+            imgLocal = "/resources/icons/laliga/unknown.png";
+            imgVisitante = "/resources/icons/laliga/unknown.png";
         }
     }
 

@@ -1,4 +1,4 @@
-/**package dev.sertis.betsjsf;
+package dev.sertis.betsjsf;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -17,4 +17,3 @@ public class HibernateUtil {
         return sessionFactory;
     }
 }
-**/

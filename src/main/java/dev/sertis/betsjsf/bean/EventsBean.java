@@ -32,8 +32,8 @@ public class EventsBean implements Serializable {
         this.events = eventDAO.getEventsByDate(this.eventDate);
     }
 
-    public void handleDateSelect(SelectEvent<LocalDate> event) {
-        LocalDate selectedDate = event.getObject();
+    public void handleDateSelect(SelectEvent event) {
+        LocalDate selectedDate = (LocalDate) event.getObject();
 
         if (selectedDate != null) {
             System.out.println("Date selected: " + selectedDate);
