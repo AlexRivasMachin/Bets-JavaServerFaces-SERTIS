@@ -9,15 +9,15 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <title>UserHome</title>
-        <h:outputStylesheet library="css" name="stylesHome.css"/>
+        <h:outputStylesheet library="css" name="styleHome.css"/>
     </h:head>
     <h:body>
 
         <div class="nav">
 
             <div class="botones">
-                <h:button value="Salir"/>
-                <h:commandButton value="Cerrar Sesión" action="#{userBean.logout}" />
+                <h:button styleClass="botoness" value="Salir"/>
+                <h:commandButton styleClass="botoness" value="Cerrar Sesión" action="#{userBean.logout}" />
             </div>
 
             <div class="userInfo">
@@ -26,10 +26,10 @@
             </div>
             <h:form>
                 <div class="menu">
-                    <h:commandButton value="Eventos" action="#{userBean.showEventos}" />
-                    <h:commandButton value="Apuestas Realizadas" action="#{userBean.showApuestas}" />
-                    <h:commandButton value="Añadir Saldo" action="#{userBean.showAñadirSaldo}" />
-                    <h:commandButton value="Datos Personales" action="#{userBean.showDatosPersonales}" />
+                    <h:commandButton styleClass="menuButton" value="Eventos" action="#{userBean.showEventos}" />
+                    <h:commandButton styleClass="menuButton" value="Apuestas Realizadas" action="#{userBean.showApuestas}" />
+                    <h:commandButton styleClass="menuButton" value="Añadir Saldo" action="#{userBean.showAñadirSaldo}" />
+                    <h:commandButton styleClass="menuButton" value="Datos Personales" action="#{userBean.showDatosPersonales}" />
                 </div>
             </h:form>
         </div>
