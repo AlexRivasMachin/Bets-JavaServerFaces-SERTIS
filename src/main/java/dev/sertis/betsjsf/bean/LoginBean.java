@@ -1,39 +1,45 @@
 package dev.sertis.betsjsf.bean;
 
-import businessLogic.BLFacade;
-import domain.User;
-import exceptions.UserDoesntExist;
+import dev.sertis.betsjsf.dao.UserDAO;
+import dev.sertis.betsjsf.dao.UserDAOImpl;
+import dev.sertis.betsjsf.domain.User;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 public class LoginBean {
-
     private String dni;
-
     private String passwd;
-
-    private final BLFacade facade;
+    private final UserDAO userDAO;
 
     public LoginBean() {
-        this.facade = BLFacadeBean.getFacade();
+        this.userDAO = new UserDAOImpl();
     }
 
-    public String checkCredentials(){
+    public String processLogin(){
         if (dni==null || dni.isEmpty() || passwd==null || passwd.isEmpty()){
             return "error";
         }
         try {
-            User user = facade.getUser(dni);
-            if (user.checkCredentials(passwd)){
+            User user = userDAO.findByDNI(dni);
+            if (isPasswordCorrect(user, passwd)){
                 if (user.isAdmin()){
                     return "admin";
                 } else {
                     return "user";
                 }
             } else {
+                FacesContext.getCurrentInstance().addMessage("login-form",
+                        new FacesMessage("Contraseña incorrecta"));
                 return "error";
             }
-        } catch (UserDoesntExist e) {
+        } catch (Exception e) {
             return "error";
         }
+    }
+
+    private boolean isPasswordCorrect(User user, String passwd){
+        return user.getPasswd().equals(passwd);
     }
 
     public String getDni() {
