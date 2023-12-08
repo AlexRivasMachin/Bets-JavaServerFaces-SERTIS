@@ -46,7 +46,7 @@ public class UserBean {
         mostrarApuestas = true;
         resetFlagsExcept("mostrarApuestas");
         apuestasButtonEnabled = false;
-        componentContent = "userNormalComponentes/apuestasRealizadas.xhtml";
+        componentContent = "userNormalComponentes/apuestasRealizadasComponente.xhtml";
         return null;
     }
 

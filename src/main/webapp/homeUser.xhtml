@@ -24,31 +24,18 @@
                 <h3>Usuario: #{userBean.username}</h3>
                 <h3>Saldo: #{userBean.saldo} </h3>
             </div>
-
-            <div class="menu">
-                <h:commandButton value="Eventos" action="#{userBean.showEventos}" />
-                <h:commandButton value="Apuestas Realizadas" action="#{userBean.showApuestas}" />
-                <h:commandButton value="Añadir Saldo" action="#{userBean.showAñadirSaldo}" />
-                <h:commandButton value="Datos Personales" action="#{userBean.showDatosPersonales}" />
-            </div>
+            <h:form>
+                <div class="menu">
+                    <h:commandButton value="Eventos" action="#{userBean.showEventos}" />
+                    <h:commandButton value="Apuestas Realizadas" action="#{userBean.showApuestas}" />
+                    <h:commandButton value="Añadir Saldo" action="#{userBean.showAñadirSaldo}" />
+                    <h:commandButton value="Datos Personales" action="#{userBean.showDatosPersonales}" />
+                </div>
+            </h:form>
         </div>
 
         <div id="componenteContainer">
-            <h:commandButton value="Eventos" action="#{userBean.showEventos}">
-                <f:ajax render="componenteContainer" />
-            </h:commandButton>
-
-            <h:commandButton value="Apuestas Realizadas" action="#{userBean.showApuestas}">
-                <f:ajax render="componenteContainer" />
-            </h:commandButton>
-
-            <h:commandButton value="Añadir Saldo" action="#{userBean.showAñadirSaldo}">
-                <f:ajax render="componenteContainer" />
-            </h:commandButton>
-
-            <h:commandButton value="Datos Personales" action="#{userBean.showDatosPersonales}">
-                <f:ajax render="componenteContainer" />
-            </h:commandButton>
+            <ui:include src="#{userBean.componentContent}" />
         </div>
 
     </h:body>
