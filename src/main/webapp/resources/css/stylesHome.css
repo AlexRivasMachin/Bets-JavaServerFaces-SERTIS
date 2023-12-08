@@ -84,3 +84,7 @@ button:hover{
     margin: 0px 0px;
     cursor: pointer;
 }
+
+#componenteContainer{
+    color: black;
+}
