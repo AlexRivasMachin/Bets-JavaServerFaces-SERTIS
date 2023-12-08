@@ -1,26 +1,24 @@
 package dev.sertis.betsjsf.bean;
 
-import businessLogic.BLFacade;
-import domain.User;
+import dev.sertis.betsjsf.dao.UserDAO;
+import dev.sertis.betsjsf.dao.UserDAOImpl;
+import dev.sertis.betsjsf.domain.User;
+import org.hibernate.exception.ConstraintViolationException;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 public class SignUpBean {
-
     private String dni;
-
     private String name;
-
     private String lastname;
-
     private String passwd;
-
     private String username;
-
     private boolean isAdmin;
-
-    private final BLFacade facade;
+    private final UserDAO userDAO;
 
     public SignUpBean() {
-        facade = BLFacadeBean.getFacade();
+        userDAO = new UserDAOImpl();
     }
 
     public String signUp(){
@@ -28,10 +26,12 @@ public class SignUpBean {
             return "error";
         }
         try {
-            User user = new User(username, passwd, dni, name, lastname, isAdmin);
-            facade.createUser(user);
+            User user = new User(dni, name, lastname, 0, passwd, username, isAdmin);
+            userDAO.save(user);
             return "success";
-        } catch (Exception e) {
+        } catch (ConstraintViolationException e) {
+            FacesContext.getCurrentInstance().addMessage("singup-form",
+                    new FacesMessage("Ya existe un usuario con ese DNI"));
             return "error";
         }
     }

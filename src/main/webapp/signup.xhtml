@@ -23,7 +23,7 @@
                             <h1 class="header-content-heading">Unirse</h1>
                             <p>Bienvenido a Bets</p>
                         </div>
-                        <h:form styleClass="form">
+                        <h:form id="singup-form" styleClass="form">
                             <div class="form-input">
                                 <h:inputText id="dni" value="#{signUp.dni}" required="true" validatorMessage="Dni invalido" requiredMessage="DNI requerido">
                                     <f:validateRegex pattern="^[0-9]{8}[A-HJ-NP-TV-Z]$"/>
@@ -60,6 +60,7 @@
                                 <h:commandButton id="action-btn" value="Unirse" action="#{signUp.signUp()}" styleClass="btn-primary"/>
                                 <h:message for="action-btn" styleClass="error-message"/>
                             </div>
+                            <h:message for="singup-form" styleClass="error-message"/>
                         </h:form>
                         <div style="margin-top: 20px; text-align: center">
                             ¿Ya estás en Bets?

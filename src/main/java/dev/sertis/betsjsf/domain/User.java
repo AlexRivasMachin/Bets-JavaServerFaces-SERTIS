@@ -22,6 +22,16 @@ public class User {
     public User() {
     }
 
+    public User(String dni, String name, String lastName, float currentBalance, String passwd, String username, boolean isAdmin) {
+        this.dni = dni;
+        this.name = name;
+        this.lastName = lastName;
+        this.currentBalance = currentBalance;
+        this.passwd = passwd;
+        this.username = username;
+        this.isAdmin = isAdmin;
+    }
+
     public String getDni() {
         return dni;
     }
