@@ -36,4 +36,9 @@
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
 
+    <!-- Session timeout configuration -->
+    <session-config>
+        <session-timeout>60</session-timeout> <!-- Este valor está en minutos, puedes ajustarlo según tus necesidades -->
+    </session-config>
+
 </web-app>
