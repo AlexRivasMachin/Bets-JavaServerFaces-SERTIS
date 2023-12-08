@@ -23,7 +23,7 @@
                             <h1 class="header-content-heading">Iniciar sesión</h1>
                             <p>Bienvenido a Bets</p>
                         </div>
-                        <h:form styleClass="form">
+                        <h:form id="login-form" styleClass="form">
                             <div class="form-input">
                                 <h:inputText id="dni" required="true" value="#{login.dni}" validatorMessage="Dni invalido" requiredMessage="DNI is required">
                                     <f:validateRegex  pattern="^[0-9]{8}[A-HJ-NP-TV-Z]$" />
@@ -37,9 +37,10 @@
                                 <h:message for="passwd" styleClass="error-message"/>
                             </div>
                             <div class="form-actions">
-                                <h:commandButton id="action-btn" value="Iniciar sesión" action="#{login.checkCredentials()}" styleClass="btn-primary"/>
+                                <h:commandButton id="action-btn" value="Iniciar sesión" action="#{login.processLogin()}" styleClass="btn-primary"/>
                                 <h:message for="action-btn" styleClass="error-message"/>
                             </div>
+                            <h:message for="login-form" styleClass="error-message"/>
                         </h:form>
                         <div style="margin-top: 20px; text-align: center">
                             ¿Eres nuevo en Bets?
