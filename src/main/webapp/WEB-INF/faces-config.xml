@@ -21,7 +21,6 @@
         <managed-bean-class>dev.sertis.betsjsf.bean.AdminBean</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
-
     <managed-bean>
         <managed-bean-name>userBean</managed-bean-name>
         <managed-bean-class>dev.sertis.betsjsf.bean.UserBean</managed-bean-class>

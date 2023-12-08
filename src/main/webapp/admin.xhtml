@@ -14,7 +14,6 @@
                 <ul>
                     <li>
                         <h:commandButton action="#{admin.cambiarComponenteCrearEvento()}" value="Crear Evento" styleClass="buttonNav">
-                          <!-- no va el ajax: <f:ajax render=":panelSeccion"/>-->
                         </h:commandButton>
                     </li>
                     <li><h:commandButton action="#{admin.cambiarComponenteAnadirPreguntasYPronosticos}" value="Añadir Preguntas y Pronosticos" styleClass="buttonNav"></h:commandButton></li>
@@ -23,7 +22,7 @@
                 </ul>
             </h:form>
         </nav>
-        <ui:include id="panelSeccion" src="#{admin.getComponentPath()}"></ui:include>
+        <ui:include id="panelSeccion" src="#{admin.getComponentPath()}"/>
     </ui:define>
 </ui:composition>
 </html>

@@ -1,17 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 <ui:composition>
-    <f:view>
-        <h:body>
+<f:view>
+    <h:head><title>Aplicación JavaServer Faces</title></h:head>
+    <h:body>
+        <h:form id="miForm">
             <h3 class="h3CrearEvento">Event Date</h3>
             <h5 class="h5CrearEvento">(Selecciona una fecha posterior a la de hoy)</h5>
+            <p:calendar id="fecha" value="#{admin.fecha}" navigator="true" mode="inline">
+                <p:ajax event="dateSelect" listener="#{admin.onDateSelect}" update="mensajes"></p:ajax>
+            </p:calendar>
+            <h:messages id="mensajes" style="color:blue"/>
 
-        </h:body>
-    </f:view>
+            <p:outputLabel value="Para mostrar el logo de los equipos, separe los nombres de los equipos con un guión (-)"/>
+
+            <h3>Evento:</h3>
+            <p:inputText id="evento" value="#{admin.evento}">
+                <f:ajax event="keyup" listener="#{admin.checkSiSeHanIntroducidoEquiposYActualizarSusImagenes}" render="infoEvento infoFecha imgLocal imgVisitante"/>
+            </p:inputText>
+
+
+            <h:graphicImage id="imgLocal" value="#{admin.imgLocal}"/>
+            <p:outputLabel id="infoEvento" value="#{admin.evento}"/>
+            <p:outputLabel id="infoFecha" value="#{admin.fecha}"/>
+            <h:graphicImage id="imgVisitante" value="#{admin.imgVisitante}"/>
+        </h:form>
+    </h:body>
+</f:view>
 </ui:composition>
 </html>
