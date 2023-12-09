@@ -12,6 +12,7 @@ import java.util.Date;
 public class AdminBean {
     public AdminBean() {
         componentPath = "adminUIComponents/adminCerrarEventos.xhtml";
+        setLasDosImagenesUnknow();
     }
     private String componentPath, evento, imgLocal, imgVisitante;
     private Date fecha;
@@ -74,18 +75,27 @@ public class AdminBean {
             imgLocal = getUrlIcono(pruebas);
             imgVisitante = getUrlIcono(evento.split("-")[1]);
         }else{
-            imgLocal = "/resources/icons/laliga/unknown.png";
-            imgVisitante = "/resources/icons/laliga/unknown.png";
+            setLasDosImagenesUnknow();
         }
     }
 
-    public String getUrlIcono(String nombreEquipo){
+    private void setLasDosImagenesUnknow() {
+        imgLocal = getUrlIcono("unknown");
+        imgVisitante = getUrlIcono("unknown");
+    }
+
+    private String getUrlIcono(String nombreEquipo){
         System.out.println(String.format("nombreEquipo: %s", nombreEquipo));
-        File icono = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath(String.format("/resources/icons/laliga/%s.png", nombreEquipo)));
+        String urlEquipo = getUrlEquipo(nombreEquipo);
+        File icono = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath(urlEquipo));
         if(icono.exists()){
-            return String.format("/resources/icons/laliga/%s.png", nombreEquipo);
+            return urlEquipo;
         }
-        return "/resources/icons/laliga/unknown.png";
+        return getUrlEquipo("unknown");
+    }
+
+    private String getUrlEquipo(String equipo){
+        return String.format("/resources/icons/laliga/%s.png", equipo);
     }
 
 

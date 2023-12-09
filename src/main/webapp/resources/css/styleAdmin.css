@@ -31,6 +31,8 @@ ul{
     display: flex;
     gap: 50px;
     margin-top: 50px;
+    text-align: center;
+    justify-content: center;
 }
 
 .imagenesEquipo{
@@ -42,7 +44,9 @@ ul{
     padding-right: 50px;
 }
 .labelsPreview{
-    displaly:block;
+    align-content: center;
+    align-items: center;
+    text-align: center;
 }
 .buttonEnabled{
     background-color: #29a7ad;
@@ -73,12 +77,16 @@ ul{
     cursor: pointer;
     opacity: 0.5;
 }
+.divCreateEvent{
+    margin-top: 50px;
+    margin-right: 100px;
+    margin-left: 100px;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 .formCrearEvento{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 50px;
-    margin-bottom: 50px;
 }
 
