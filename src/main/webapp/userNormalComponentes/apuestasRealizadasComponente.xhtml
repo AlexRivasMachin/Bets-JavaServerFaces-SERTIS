@@ -8,10 +8,48 @@
     <f:view>
         <h:head>
             <title> Apuestas Realizadas </title>
+            <h:outputStylesheet library="css" name="apuestasRealizadasComponente.css"/>
+            <link rel="stylesheet" type="text/css" href="resources/css/apuestasRealizadasComponente.css"/>
         </h:head>
-        <h:body>z
-
-
+        <h:body>
+            <div class="tablaApuestas">
+                <h:dataTable value="#{userBean.apuestasRealizadas}" var="apuesta" border="1">
+                    <h:column style="width: 10%;">
+                        <f:facet name="header">Fecha</f:facet>
+                        #{userBean.fecha}
+                    </h:column>
+                    <h:column style="width: 20%;">
+                        <f:facet name="header">Evento</f:facet>
+                        #{userBean.evento}
+                    </h:column>
+                    <h:column style="width: 20%;">
+                        <f:facet name="header">Pregunta</f:facet>
+                        #{userBean.pregunta}
+                    </h:column>
+                    <h:column style="width: 20%;">
+                        <f:facet name="header">Pronóstico</f:facet>
+                        #{userBean.pronostico}
+                    </h:column>
+                    <h:column style="width: 10%;">
+                        <f:facet name="header">Ganancia</f:facet>
+                        #{userBean.ganancia}
+                    </h:column>
+                    <h:column style="width: 10%;">
+                        <f:facet name="header">Apostado</f:facet>
+                        #{userBean.apostado}
+                    </h:column>
+                    <h:column style="width: 10%;">
+                        <f:facet name="header">Balance</f:facet>
+                        #{userBean.balance}
+                    </h:column>
+            </h:dataTable>
+            </div>
+            <div class="accionesApuestas">
+                <h:form>
+                    <h:commandButton styleClass="estiloBoton" value="AnularApuesta" action=".xhtml"/>
+                    <h:commandButton styleClass="estiloBoton" value="AnularApuesta" action=".xhtml"/>
+                </h:form>
+            </div>
         </h:body>
     </f:view>
 </ui:composition>
