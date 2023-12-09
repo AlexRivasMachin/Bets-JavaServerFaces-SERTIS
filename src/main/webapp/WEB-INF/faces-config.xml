@@ -27,8 +27,8 @@
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     <managed-bean>
-        <managed-bean-name>eventsBean</managed-bean-name>
-        <managed-bean-class>dev.sertis.betsjsf.bean.EventsBean</managed-bean-class>
+        <managed-bean-name>eventsView</managed-bean-name>
+        <managed-bean-class>dev.sertis.betsjsf.bean.EventsViewBean</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
 
