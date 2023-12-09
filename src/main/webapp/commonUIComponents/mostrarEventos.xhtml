@@ -9,23 +9,27 @@
 <ui:composition>
    <f:view>
       <h:head>
-
+         <title>Mostrar Eventos</title>
       </h:head>
       <h:body>
-         <h1>Eventos</h1>
-         <p:calendar id="calendar" value="#{eventsBean.eventDate}" navigator="true" mode="inline">
-            <p:ajax event="dateSelect" listener="#{eventsBean.handleDateSelect}" update="eventsTable"/>
-         </p:calendar>
-         <p:dataTable id="eventsTable" var="event" value="#{eventsBean.events}">
-            <p:column id="eventate" headerText="Fecha">
-               <f:facet name="header"/>
-               #{event.eventDate}
-            </p:column>
-            <p:column id="eventDescription" headerText="Description">
-                <f:facet name="header"/>
-               #{event.eventDescription}
-            </p:column>
-         </p:dataTable>
+         <h:form id="miForm">
+            <h1>Eventos</h1>
+            <p:calendar id="calendar" value="#{eventsView.eventDate}" navigator="true" mode="inline" style="width: 400px;">
+               <p:ajax event="dateSelect" listener="#{eventsView.onDateSelect}" update="infoFecha"/>
+            </p:calendar>
+            <h3>Fecha Seleccionada:</h3>
+            <p:outputLabel id="infoFecha" value="#{eventsView.eventDate}"/>
+            <p:dataTable id="eventsTable" var="event" value="#{eventsView.events}" style="width: 400px;">
+               <p:column id="eventate" headerText="Fecha">
+                  <f:facet name="header"/>
+                  #{event.eventDate}
+               </p:column>
+               <p:column id="eventDescription" headerText="Description">
+                   <f:facet name="header"/>
+                  #{event.eventDescription}
+               </p:column>
+            </p:dataTable>
+         </h:form>
       </h:body>
    </f:view>
 </ui:composition>

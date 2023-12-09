@@ -1,0 +1,64 @@
+.tablaApuestas {
+	border-collapse: collapse !important;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	width: 80%;
+	margin: 0 auto;
+}
+
+.tablaApuestas th, .tablaApuestas td {
+	border: 1px solid #000000;
+	padding: 8px;
+	text-align: left;
+}
+
+.tablaApuestas th {
+	background-color: #0073b1;
+	color: white;
+	font-weight: bold;
+}
+
+.tablaApuestas th:nth-child(1),
+.tablaApuestas td:nth-child(1){
+	width: 15%;
+}
+.tablaApuestas th:nth-child(5),
+.tablaApuestas td:nth-child(5),
+.tablaApuestas th:nth-child(6),
+.tablaApuestas td:nth-child(6),
+.tablaApuestas th:nth-child(7),
+.tablaApuestas td:nth-child(7) {
+	width: 10%;
+}
+
+.tablaApuestas th:nth-child(2),
+.tablaApuestas td:nth-child(2),
+.tablaApuestas th:nth-child(3),
+.tablaApuestas td:nth-child(3),
+.tablaApuestas th:nth-child(4),
+.tablaApuestas td:nth-child(4) {
+	width: 20%;
+}
+
+.accionesApuestas {
+	text-align: center;
+	justify-content: center;
+}
+
+.estiloBoton {
+	background-color: #0073b1;
+	color: white;
+	font-weight: bold;
+	padding: 8px;
+	border: 1px transparent;
+	border-radius: 5px;
+	margin-left: 5px;
+	margin-right: 10px;
+}
+
+.estiloBoton:hover {
+	background-color: #024e78;
+	transition: ease-in-out 0.3s;
+	cursor: pointer;
+}

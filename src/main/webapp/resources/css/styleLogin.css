@@ -1,8 +1,6 @@
 *{
     font-family: sans-serif;
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
     border: 0;
     background: transparent;
 }
@@ -185,9 +183,6 @@ input{
     position: relative;
     text-align: center;
     text-decoration: none;
-    transition-duration: 167ms;
-    transition-property: background-color,box-shadow,color;
-    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
     vertical-align: middle;
     z-index: 0;
     border-radius: 28px !important;

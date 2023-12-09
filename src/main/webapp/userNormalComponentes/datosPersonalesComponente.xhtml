@@ -8,9 +8,47 @@
     <f:view>
         <h:head>
             <title>Datos Personales Componente</title>
+            <h:outputStylesheet library="css" name="datosPersonalesComponente.css"/>
+            <link rel="stylesheet" type="text/css" href="resources/css/datosPersonalesComponente.css"/>
         </h:head>
         <h:body>
-            <h1>Contenido del Componente de Datos Personales</h1>
+            <div class="datosPersonales">
+
+                <div class="row">
+                    <h3>DNI: #{userBean.dni}</h3>
+                </div>
+
+                <div class="row">
+                    <h3>Nombre: #{userBean.name}</h3>
+                    <h:inputText styleClass="aSinput"></h:inputText>
+                    <h:commandButton styleClass="aSbutton" value="Cambiar Nombre" action="#{userBean.cambiarNombre}"></h:commandButton>
+                </div>
+
+                <div class="row">
+                    <h3>Apellido: #{userBean.apellido}</h3>
+                    <h:inputText styleClass="aSinput"></h:inputText>
+                    <h:commandButton styleClass="aSbutton" value="Cambiar Apellido" action="#{userBean.cambiarApellido}"></h:commandButton>
+                </div>
+
+                <div class="row">
+                    <h3>Usuario: #{userBean.username}</h3>
+                    <h:inputText styleClass="aSinput"></h:inputText>
+                    <h:commandButton styleClass="aSbutton" value="Cambiar Usuario" action="#{userBean.cambiarUsername}"></h:commandButton>
+                </div>
+
+                <div class="row">
+                    <h3>Contraseña: ********</h3>
+                    <h:inputText styleClass="aSinput"></h:inputText>
+                    <h:commandButton styleClass="aSbutton" value="Cambiar Contraseña" action="#{userBean.cambiarContraseña}"></h:commandButton>
+                </div>
+            </div>
+            <div class="tarjetaDeCredito">
+                <div class="row">
+                    <h3>Tarjeta de Credito: #{userBean.tarjetaDeCredito}</h3><br></br>
+                    <h:inputText styleClass="aSinput"></h:inputText>
+                    <h:commandButton styleClass="aSbutton" value="Cambiar Tarjeta" action="#{userBean.cambiarTarjeta}"></h:commandButton>
+                </div>
+            </div>
         </h:body>
 </f:view>
 </ui:composition>
