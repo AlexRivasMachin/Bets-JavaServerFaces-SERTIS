@@ -1,6 +1,9 @@
 package dev.sertis.betsjsf.bean;
 
+import dev.sertis.betsjsf.dao.UserDAO;
+import dev.sertis.betsjsf.dao.UserDAOImpl;
 import dev.sertis.betsjsf.domain.Bet;
+import dev.sertis.betsjsf.domain.User;
 
 import java.util.ArrayList;
 
@@ -18,6 +21,9 @@ public class UserBean {
 
     private String componentContent;
     private ArrayList<Bet> apuestasRealizadas;
+    private User loggedUser;
+    private final UserDAO userDAO;
+
     public UserBean() {
         username = "UsuarioX";
         saldo = 100.0;
@@ -29,7 +35,8 @@ public class UserBean {
         cantidadRetiro = 0.0;
         cantidadDeposito = 0.0;
         apuestasRealizadas = new ArrayList<>();
-
+        userDAO = new UserDAOImpl();
+        loggedUser = LoginBean.getLoggedUser();
         showEventos();
     }
 
@@ -112,6 +119,15 @@ public class UserBean {
 
     public String getContraseña() {return contraseña; }
     public void setContraseña(String nuevaContraseña) {if(!nuevaContraseña.isEmpty()) this.contraseña = nuevaContraseña; }
+
+    public User getLoggedUser() {
+        return loggedUser;
+    }
+
+    public void setLoggedUser(User loggedUser) {
+        this.loggedUser = loggedUser;
+    }
+
     /**
      * DATOS APUESTAS
      **/
