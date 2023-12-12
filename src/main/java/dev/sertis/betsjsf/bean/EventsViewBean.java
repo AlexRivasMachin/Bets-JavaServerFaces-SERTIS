@@ -1,33 +1,22 @@
 package dev.sertis.betsjsf.bean;
 
 import dev.sertis.betsjsf.dao.EventDAO;
-import dev.sertis.betsjsf.dao.EventDAOImpl;
+import dev.sertis.betsjsf.dao.EventDAOHibernate;
 import dev.sertis.betsjsf.domain.Event;
 import org.primefaces.event.SelectEvent;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 public class EventsViewBean implements Serializable {
-    private String eventDescription;
     private LocalDate eventDate;
     private List<Event> events;
 
     private final EventDAO eventDAO;
 
     public EventsViewBean() {
-        eventDAO = new EventDAOImpl();
-        // Inserto dos eventos para que se muestren en la vista
-
-        Event e = new Event("Barsa-Madrid", LocalDate.now());
-        Event e2 = new Event("Alaves-Barca", LocalDate.now());
-        eventDAO.save(e);
-        eventDAO.save(e2);
-
+        eventDAO = new EventDAOHibernate();
         // Cargo la fecha actual para que muestre directamente los eventos de hoy
         this.eventDate = LocalDate.now();
         getEventsByDate();
@@ -37,17 +26,23 @@ public class EventsViewBean implements Serializable {
         this.events = eventDAO.getEventsByDate(this.eventDate);
     }
 
-    public void onDateSelect(SelectEvent event) {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", event.getObject().toString()));
+    public void onDateSelect(SelectEvent<LocalDate> event) {
+        this.eventDate = event.getObject();
+        getEventsByDate();
     }
 
-    public String getEventDescription() {
-        return eventDescription;
+    public String getEventLocalTeamLogo(String description){
+        if (!description.contains("-"))
+            return null;
+        String[] teams = description.split("-");
+        return String.format("/resources/icons/laliga/%s.png", teams[0].trim().toLowerCase());
     }
 
-    public void setEventDescription(String eventDescription) {
-        this.eventDescription = eventDescription;
+    public String getEventVisitorTeamLogo(String description){
+        if (!description.contains("-"))
+            return null;
+        String[] teams = description.split("-");
+        return String.format("/resources/icons/laliga/%s.png", teams[1].trim().toLowerCase());
     }
 
     public LocalDate getEventDate() {

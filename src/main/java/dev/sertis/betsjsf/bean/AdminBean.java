@@ -4,7 +4,7 @@ package dev.sertis.betsjsf.bean;
 import businessLogic.BLFacade;
 import businessLogic.BLFacadeLocalImplementation;
 import dev.sertis.betsjsf.dao.EventDAO;
-import dev.sertis.betsjsf.dao.EventDAOImpl;
+import dev.sertis.betsjsf.dao.EventDAOHibernate;
 import dev.sertis.betsjsf.domain.Event;
 import exceptions.EventAlreadyExist;
 import org.primefaces.event.SelectEvent;
@@ -21,7 +21,7 @@ public class AdminBean {
     public AdminBean() {
         componentPath = "adminUIComponents/adminCerrarEventos.xhtml";
         setLasDosImagenesUnknow();
-        eventDAO = new EventDAOImpl();
+        eventDAO = new EventDAOHibernate();
     }
     private EventDAO eventDAO;
     private String componentPath, descripcionEvento, imgLocal, imgVisitante;

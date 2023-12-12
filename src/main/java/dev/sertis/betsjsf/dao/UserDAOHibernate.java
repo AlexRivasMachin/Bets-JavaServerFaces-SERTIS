@@ -9,11 +9,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class UserDAOImpl implements UserDAO{
+public class UserDAOHibernate implements UserDAO{
 
     private final Session session;
 
-    public UserDAOImpl() {
+    public UserDAOHibernate() {
         session = HibernateUtil.getSessionFactory().openSession();
     }
 

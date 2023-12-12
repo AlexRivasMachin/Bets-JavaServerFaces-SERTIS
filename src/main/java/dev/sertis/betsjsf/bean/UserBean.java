@@ -1,7 +1,7 @@
 package dev.sertis.betsjsf.bean;
 
 import dev.sertis.betsjsf.dao.UserDAO;
-import dev.sertis.betsjsf.dao.UserDAOImpl;
+import dev.sertis.betsjsf.dao.UserDAOHibernate;
 import dev.sertis.betsjsf.domain.Bet;
 import dev.sertis.betsjsf.domain.User;
 
@@ -35,7 +35,7 @@ public class UserBean {
         cantidadRetiro = 0.0;
         cantidadDeposito = 0.0;
         apuestasRealizadas = new ArrayList<>();
-        userDAO = new UserDAOImpl();
+        userDAO = new UserDAOHibernate();
         loggedUser = LoginBean.getLoggedUser();
         showEventos();
     }

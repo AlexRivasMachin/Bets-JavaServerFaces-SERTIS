@@ -1,7 +1,7 @@
 package dev.sertis.betsjsf.bean;
 
 import dev.sertis.betsjsf.dao.UserDAO;
-import dev.sertis.betsjsf.dao.UserDAOImpl;
+import dev.sertis.betsjsf.dao.UserDAOHibernate;
 import dev.sertis.betsjsf.domain.User;
 
 import javax.faces.application.FacesMessage;
@@ -14,7 +14,7 @@ public class LoginBean {
     private final UserDAO userDAO;
 
     public LoginBean() {
-        this.userDAO = new UserDAOImpl();
+        this.userDAO = new UserDAOHibernate();
     }
 
     public String processLogin(){
