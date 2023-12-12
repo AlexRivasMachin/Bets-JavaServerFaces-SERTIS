@@ -1,6 +1,9 @@
 package dev.sertis.betsjsf.bean;
 
+import dev.sertis.betsjsf.dao.UserDAO;
+import dev.sertis.betsjsf.dao.UserDAOImpl;
 import dev.sertis.betsjsf.domain.Bet;
+import dev.sertis.betsjsf.domain.User;
 
 import java.util.ArrayList;
 
@@ -11,9 +14,16 @@ public class UserBean {
     private String name;
     private String apellido;
     private String tarjetaDeCredito;
+    private String contraseña;
     private double saldo;
+    private double cantidadRetiro;
+    private double cantidadDeposito;
+
     private String componentContent;
     private ArrayList<Bet> apuestasRealizadas;
+    private User loggedUser;
+    private final UserDAO userDAO;
+
     public UserBean() {
         username = "UsuarioX";
         saldo = 100.0;
@@ -21,8 +31,12 @@ public class UserBean {
         name = "pepe";
         apellido = "perez";
         tarjetaDeCredito = "1234567891234567";
+        contraseña = "1234";
+        cantidadRetiro = 0.0;
+        cantidadDeposito = 0.0;
         apuestasRealizadas = new ArrayList<>();
-
+        userDAO = new UserDAOImpl();
+        loggedUser = LoginBean.getLoggedUser();
         showEventos();
     }
 
@@ -54,13 +68,65 @@ public class UserBean {
     public String getUsername() {
         return username;
     }
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public double getSaldo() {
         return saldo;
     }
+    public double getCantidadRetiro() {
+        return cantidadRetiro;
+    }
+    public void setCantidadRetiro(double cantidadRetiro) {
+        this.cantidadRetiro = cantidadRetiro;
+    }
+    public double getCantidadDeposito() {
+        return cantidadDeposito;
+    }
+    public void setCantidadDeposito(double cantidadDeposito) {
+        this.cantidadDeposito = cantidadDeposito;
+    }
+    public void setSaldo(double nuevoSaldo) {
+        this.saldo = nuevoSaldo;
+    }
+    public void añadirSaldo() {
+
+        this.saldo += cantidadDeposito;
+    }
+    public void restarSaldo() {
+        if(cantidadRetiro <= saldo) {
+            this.saldo -= cantidadRetiro;
+            cantidadRetiro = 0.0;
+        }
+    }
+
     public String getDni() {return dni; }
+    public void setDni(String nuevoDni) {
+        if(nuevoDni.length() == 9) this.dni = nuevoDni;
+    }
+
     public String getName() {return name; }
+    public void setName(String nuevoNombre) {
+        if (!nuevoNombre.isEmpty()) this.name = nuevoNombre;
+    }
+
     public String getApellido() {return apellido; }
+    public void setApellido(String nuevoApellido) {if(!nuevoApellido.isEmpty()) this.apellido = nuevoApellido; }
+
     public String getTarjetaDeCredito() {return tarjetaDeCredito; }
+    public void setTarjetaDeCredito(String nuevaTarjeta) {if(nuevaTarjeta.length()==16) this.tarjetaDeCredito = nuevaTarjeta; }
+
+    public String getContraseña() {return contraseña; }
+    public void setContraseña(String nuevaContraseña) {if(!nuevaContraseña.isEmpty()) this.contraseña = nuevaContraseña; }
+
+    public User getLoggedUser() {
+        return loggedUser;
+    }
+
+    public void setLoggedUser(User loggedUser) {
+        this.loggedUser = loggedUser;
+    }
 
     /**
      * DATOS APUESTAS

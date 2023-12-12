@@ -10,6 +10,7 @@ import javax.faces.context.FacesContext;
 public class LoginBean {
     private String dni;
     private String passwd;
+    private static User loggedUser;
     private final UserDAO userDAO;
 
     public LoginBean() {
@@ -23,6 +24,7 @@ public class LoginBean {
         try {
             User user = userDAO.getUserByDNI(dni);
             if (isPasswordCorrect(user, passwd)){
+                setLoggedUser(user);
                 if (user.isAdmin()){
                     return "admin";
                 } else {
@@ -56,5 +58,17 @@ public class LoginBean {
 
     public void setPasswd(String passwd) {
         this.passwd = passwd;
+    }
+
+    public static User getLoggedUser(){
+        return loggedUser;
+    }
+
+    public static void setLoggedUser(User loggedUser) {
+        LoginBean.loggedUser = loggedUser;
+    }
+
+    public static boolean isUserLogged(){
+        return loggedUser != null;
     }
 }

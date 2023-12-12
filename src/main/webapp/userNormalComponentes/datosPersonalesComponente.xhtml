@@ -19,36 +19,66 @@
                 </div>
 
                 <div class="row">
-                    <h3>Nombre: #{userBean.name}</h3>
-                    <h:inputText styleClass="aSinput"></h:inputText>
-                    <h:commandButton styleClass="aSbutton" value="Cambiar Nombre" action="#{userBean.cambiarNombre}"></h:commandButton>
+                    <h:form id="nameForm" >
+                        <h4>Nombre: #{userBean.name}</h4>
+                        <h:inputText id="nombreInput" styleClass="aSinput" value="#{userBean.name}" onclick="borrarContenido(this);"/>
+                        <h:commandButton styleClass="aSbutton" value="Cambiar Nombre" action="#{userBean.setName}">
+                            <f:ajax execute="nombreInput" render="nameForm" onevent="reload"/>
+                        </h:commandButton>
+                    </h:form>
                 </div>
 
                 <div class="row">
-                    <h3>Apellido: #{userBean.apellido}</h3>
-                    <h:inputText styleClass="aSinput"></h:inputText>
-                    <h:commandButton styleClass="aSbutton" value="Cambiar Apellido" action="#{userBean.cambiarApellido}"></h:commandButton>
+                    <h:form id="apellidoForm" >
+                        <h4>Apellido: #{userBean.apellido}</h4>
+                        <h:inputText id="apellidoInput" styleClass="aSinput" value="#{userBean.apellido}"  onclick="borrarContenido(this);" />
+                        <h:commandButton styleClass="aSbutton" value="Cambiar Apellido" action="#{userBean.setApellido}">
+                            <f:ajax execute="apellidoInput" render="apellidoForm" onevent="reload"/>
+                        </h:commandButton>
+                    </h:form>
                 </div>
 
                 <div class="row">
-                    <h3>Usuario: #{userBean.username}</h3>
-                    <h:inputText styleClass="aSinput"></h:inputText>
-                    <h:commandButton styleClass="aSbutton" value="Cambiar Usuario" action="#{userBean.cambiarUsername}"></h:commandButton>
+                    <h:form id="usernameForm" >
+                        <h4>username: #{userBean.username}</h4>
+                        <h:inputText id="usernameInput" styleClass="aSinput" value="#{userBean.username}" onclick="borrarContenido(this);"/>
+                        <h:commandButton styleClass="aSbutton" value="Cambiar username" action="#{userBean.setUsername}">
+                            <f:ajax execute="usernameInput" render="usernameForm" onevent="reload"/>
+                        </h:commandButton>
+                    </h:form>
                 </div>
 
                 <div class="row">
-                    <h3>Contraseña: ********</h3>
-                    <h:inputText styleClass="aSinput"></h:inputText>
-                    <h:commandButton styleClass="aSbutton" value="Cambiar Contraseña" action="#{userBean.cambiarContraseña}"></h:commandButton>
+                    <h:form id="contraseñaForm" >
+                        <h4>Contraseña: #{userBean.contraseña}</h4>
+                        <h:inputText id="contraseñaInput" styleClass="aSinput" value="#{userBean.contraseña}" onclick="borrarContenido(this);"/>
+                        <h:commandButton styleClass="aSbutton" value="Cambiar contraseña" action="#{userBean.setContraseña}">
+                            <f:ajax execute="contraseñaInput" render="contraseñaForm" onevent="reload"/>
+                        </h:commandButton>
+                    </h:form>
                 </div>
             </div>
-            <div class="tarjetaDeCredito">
-                <div class="row">
-                    <h3>Tarjeta de Credito: #{userBean.tarjetaDeCredito}</h3><br></br>
-                    <h:inputText styleClass="aSinput"></h:inputText>
-                    <h:commandButton styleClass="aSbutton" value="Cambiar Tarjeta" action="#{userBean.cambiarTarjeta}"></h:commandButton>
-                </div>
+
+            <div class="row">
+                <h:form id="tarjetaForm" >
+                    <h4>Tarjeta de crédito: #{userBean.tarjetaDeCredito}</h4><br></br>
+                    <h:inputText id="tarjetaInput" styleClass="aSinput" value="#{userBean.tarjetaDeCredito}" onclick="borrarContenido(this);"/>
+                    <h:commandButton styleClass="aSbutton" value="Cambiar Tarjeta" action="#{userBean.setTarjetaDeCredito}">
+                        <f:ajax execute="tarjetaInput" render="tarjetaForm" onevent="reload"/>
+                    </h:commandButton>
+                </h:form>
             </div>
+
+
+            <script type="text/javascript">
+                function reload() {
+                        location.reload()
+                }
+                function borrarContenido(input) {
+                    input.value = "";
+                }
+            </script>
+
         </h:body>
 </f:view>
 </ui:composition>
