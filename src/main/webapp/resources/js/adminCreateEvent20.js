@@ -1,10 +1,10 @@
-console.log("adminCreateEvent13.js cargado");
+console.log("adminCreateEvent20.js cargado");
 
 let botonAceptar;
 let calendarioFecha;
 
 $(document).ready(function () {
-    console.log("adminCreateEvent13.js document ready");
+    console.log("adminCreateEvent20.js document ready");
 
     botonAceptar = document.getElementById("miForm:botonAceptar")
     calendarioFecha = PF('calendario');
@@ -16,15 +16,16 @@ function validarFecha(){
 
     let fechaCalendario = calendarioFecha.jqEl.datepicker('getDate');
     let fechaActual = new Date();
+    fechaActual.setDate(fechaActual.getDate() - 1);
 
-
-    if(fechaCalendario < fechaActual){
-        console.log("fecha invalida");
-        disableButton(botonAceptar);
-    }else{
+    if(fechaCalendario > fechaActual){
         console.log("fecha valida");
         enableButton(botonAceptar);
+    }else{
+        console.log("fecha invalida");
+        disableButton(botonAceptar);
     }
+
 }
 
 function enableButton(button){
