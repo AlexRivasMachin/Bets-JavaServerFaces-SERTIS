@@ -1,7 +1,7 @@
 package dev.sertis.betsjsf.bean;
 
 import dev.sertis.betsjsf.dao.UserDAO;
-import dev.sertis.betsjsf.dao.UserDAOImpl;
+import dev.sertis.betsjsf.dao.UserDAOHibernate;
 import dev.sertis.betsjsf.domain.User;
 import org.hibernate.exception.ConstraintViolationException;
 
@@ -18,7 +18,7 @@ public class SignUpBean {
     private final UserDAO userDAO;
 
     public SignUpBean() {
-        userDAO = new UserDAOImpl();
+        userDAO = new UserDAOHibernate();
     }
 
     public String signUp(){

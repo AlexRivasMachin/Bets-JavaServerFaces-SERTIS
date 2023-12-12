@@ -8,11 +8,11 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
-public class EventDAOImpl implements EventDAO, Serializable {
+public class EventDAOHibernate implements EventDAO, Serializable {
 
     private final Session session;
 
-    public EventDAOImpl() {
+    public EventDAOHibernate() {
         session = HibernateUtil.getSessionFactory().openSession();
     }
 
