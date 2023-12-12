@@ -6,37 +6,40 @@ import dev.sertis.betsjsf.domain.Bet;
 import dev.sertis.betsjsf.domain.User;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserBean {
+
+
 
     private String username;
     private String dni;
     private String name;
     private String apellido;
-    private String tarjetaDeCredito;
+    private long tarjetaDeCredito;
     private String contraseña;
     private double saldo;
     private double cantidadRetiro;
     private double cantidadDeposito;
 
     private String componentContent;
-    private ArrayList<Bet> apuestasRealizadas;
+    private List<Bet> apuestasRealizadas;
     private User loggedUser;
     private final UserDAO userDAO;
 
     public UserBean() {
-        username = "UsuarioX";
-        saldo = 100.0;
-        dni = "12345678A";
-        name = "pepe";
-        apellido = "perez";
-        tarjetaDeCredito = "1234567891234567";
-        contraseña = "1234";
+        userDAO = new UserDAOImpl();
+        loggedUser = LoginBean.getLoggedUser();
+        username = loggedUser.getUsername();
+        saldo = loggedUser.getCurrentBalance();
+        dni = loggedUser.getDni();
+        name = loggedUser.getName();
+        apellido = loggedUser.getLastName();
+        //tarjetaDeCredito = loggedUser.getCreditCard();
+        contraseña = loggedUser.getPasswd();
         cantidadRetiro = 0.0;
         cantidadDeposito = 0.0;
         apuestasRealizadas = new ArrayList<>();
-        userDAO = new UserDAOImpl();
-        loggedUser = LoginBean.getLoggedUser();
         showEventos();
     }
 
@@ -46,6 +49,7 @@ public class UserBean {
 
     public String showEventos() {
         componentContent = "userNormalComponentes/eventosComponente.xhtml";
+        //componentContent = "commonUIComponents/mostrarEventos.xhtml";
         return null;
     }
 
@@ -114,8 +118,8 @@ public class UserBean {
     public String getApellido() {return apellido; }
     public void setApellido(String nuevoApellido) {if(!nuevoApellido.isEmpty()) this.apellido = nuevoApellido; }
 
-    public String getTarjetaDeCredito() {return tarjetaDeCredito; }
-    public void setTarjetaDeCredito(String nuevaTarjeta) {if(nuevaTarjeta.length()==16) this.tarjetaDeCredito = nuevaTarjeta; }
+    public long getTarjetaDeCredito() {return tarjetaDeCredito; }
+    public void setTarjetaDeCredito(String nuevaTarjeta) {if(nuevaTarjeta.length()==16) this.tarjetaDeCredito = Long.parseLong(nuevaTarjeta); }
 
     public String getContraseña() {return contraseña; }
     public void setContraseña(String nuevaContraseña) {if(!nuevaContraseña.isEmpty()) this.contraseña = nuevaContraseña; }
@@ -131,7 +135,7 @@ public class UserBean {
     /**
      * DATOS APUESTAS
      **/
-    public ArrayList<Bet> getApuestasRealizadas() {
+    public List<Bet> getApuestasRealizadas() {
         return apuestasRealizadas;
     }
     public String fecha() {
