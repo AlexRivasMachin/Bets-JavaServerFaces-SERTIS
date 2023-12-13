@@ -5,6 +5,7 @@ import dev.sertis.betsjsf.domain.Bet;
 import dev.sertis.betsjsf.domain.User;
 import org.hibernate.Session;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -23,11 +24,11 @@ public class UserDAOHibernate implements UserDAO{
     }
 
     @Override
-    public Set<Bet> getUserPlacedBetsByDNI(String dni) {
+    public List<Bet> getUserPlacedBetsByDNI(String dni) {
         List<Bet> userPlacedBets = session.createQuery("SELECT u.userPlacedBets FROM User u WHERE u.dni = :dni", Bet.class)
                 .setParameter("dni", dni)
                 .getResultList();
-        return new HashSet<>(userPlacedBets);
+        return new ArrayList<>(userPlacedBets);
     }
 
     @Override

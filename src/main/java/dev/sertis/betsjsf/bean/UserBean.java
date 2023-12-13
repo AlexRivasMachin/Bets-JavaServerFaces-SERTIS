@@ -1,12 +1,9 @@
 package dev.sertis.betsjsf.bean;
-
 import dev.sertis.betsjsf.dao.UserDAO;
 import dev.sertis.betsjsf.dao.UserDAOHibernate;
 import dev.sertis.betsjsf.domain.Bet;
 import dev.sertis.betsjsf.domain.User;
-
 import java.util.ArrayList;
-
 public class UserBean {
 
     private String username;
@@ -25,18 +22,11 @@ public class UserBean {
     private final UserDAO userDAO;
 
     public UserBean() {
-        username = "UsuarioX";
-        saldo = 100.0;
-        dni = "12345678A";
-        name = "pepe";
-        apellido = "perez";
-        tarjetaDeCredito = "1234567891234567";
-        contraseña = "1234";
+        userDAO = new UserDAOHibernate();
+        loggedUser = LoginBean.getLoggedUser();
         cantidadRetiro = 0.0;
         cantidadDeposito = 0.0;
         apuestasRealizadas = new ArrayList<>();
-        userDAO = new UserDAOHibernate();
-        loggedUser = LoginBean.getLoggedUser();
         showEventos();
     }
 

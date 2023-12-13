@@ -1,14 +1,8 @@
 package dev.sertis.betsjsf.bean;
-
-
-import businessLogic.BLFacade;
-import businessLogic.BLFacadeLocalImplementation;
 import dev.sertis.betsjsf.dao.EventDAO;
 import dev.sertis.betsjsf.dao.EventDAOHibernate;
 import dev.sertis.betsjsf.domain.Event;
-import exceptions.EventAlreadyExist;
 import org.primefaces.event.SelectEvent;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
