@@ -2,8 +2,8 @@ package dev.sertis.betsjsf.domain;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 public class Question {
@@ -18,7 +18,7 @@ public class Question {
     @ManyToOne(targetEntity = Event.class,cascade = CascadeType.ALL)
     private Event associatedEvent;
     @OneToMany( targetEntity = Forecast.class, cascade = CascadeType.ALL)
-    private Set<Forecast> forecastsForThisQuestion;
+    private List<Forecast> forecastsForThisQuestion;
 
     public Question(){
 
@@ -64,11 +64,11 @@ public class Question {
         this.associatedEvent = associatedEvent;
     }
 
-    public Set<Forecast> getForecastsForThisQuestion() {
+    public List<Forecast> getForecastsForThisQuestion() {
         return forecastsForThisQuestion;
     }
 
-    public void setForecastsForThisQuestion(Set<Forecast> forecastsForThisQuestion) {
+    public void setForecastsForThisQuestion(List<Forecast> forecastsForThisQuestion) {
         this.forecastsForThisQuestion = forecastsForThisQuestion;
     }
 

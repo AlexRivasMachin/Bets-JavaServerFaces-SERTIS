@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 public class Event implements Serializable {
@@ -16,7 +16,7 @@ public class Event implements Serializable {
     private String eventDescription;
     private LocalDate eventDate;
     @OneToMany(cascade = CascadeType.ALL)
-    private Set<Question> questionsForThisEvent;
+    private List<Question> questionsForThisEvent;
 
     public Event() {
     }
@@ -50,11 +50,11 @@ public class Event implements Serializable {
         this.eventDate = eventDate;
     }
 
-    public Set<Question> getQuestionsForThisEvent() {
+    public List<Question> getQuestionsForThisEvent() {
         return questionsForThisEvent;
     }
 
-    public void setQuestionsForThisEvent(Set<Question> questionsForThisEvent) {
+    public void setQuestionsForThisEvent(List<Question> questionsForThisEvent) {
         this.questionsForThisEvent = questionsForThisEvent;
     }
 
