@@ -10,6 +10,6 @@ public interface BetDAO {
 
     void delete(Bet bet);
 
-    Bet getBetById(Integer id);
+    Bet getBetById(Long id);
 
 }

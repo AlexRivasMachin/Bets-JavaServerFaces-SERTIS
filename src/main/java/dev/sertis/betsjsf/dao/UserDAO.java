@@ -17,6 +17,4 @@ public interface UserDAO{
     User getUserByDNI(String dni);
 
     List<Bet> getUserPlacedBetsByDNI(String dni);
-
-    void deleteUserByDni(String dni);
 }
