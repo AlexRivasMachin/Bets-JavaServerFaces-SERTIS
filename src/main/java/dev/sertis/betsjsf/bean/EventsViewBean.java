@@ -16,7 +16,7 @@ public class EventsViewBean implements Serializable {
     private final EventDAO eventDAO;
 
     public EventsViewBean() {
-        eventDAO = new EventDAOHibernate();
+        eventDAO = EventDAOHibernate.getInstance();
         // Cargo la fecha actual para que muestre directamente los eventos de hoy
         this.eventDate = LocalDate.now();
         getEventsByDate();

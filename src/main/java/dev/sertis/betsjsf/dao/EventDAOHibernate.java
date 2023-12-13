@@ -11,9 +11,17 @@ import java.util.List;
 public class EventDAOHibernate implements EventDAO, Serializable {
 
     private final Session session;
+    private static EventDAOHibernate instance;
 
-    public EventDAOHibernate() {
+    private EventDAOHibernate() {
         session = HibernateUtil.getSessionFactory().openSession();
+    }
+
+    public static EventDAOHibernate getInstance() {
+        if (instance == null) {
+            instance = new EventDAOHibernate();
+        }
+        return instance;
     }
 
     @Override

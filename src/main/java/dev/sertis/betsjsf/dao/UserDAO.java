@@ -8,13 +8,15 @@ import java.util.Set;
 
 public interface UserDAO{
 
-    User getUserByDNI(String dni);
-
-    List<Bet> getUserPlacedBetsByDNI(String dni);
-
     void save(User user);
 
     void update(User user);
 
     void delete(User user);
+
+    User getUserByDNI(String dni);
+
+    List<Bet> getUserPlacedBetsByDNI(String dni);
+
+    void deleteUserByDni(String dni);
 }

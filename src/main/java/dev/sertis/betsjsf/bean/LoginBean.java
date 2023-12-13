@@ -14,7 +14,7 @@ public class LoginBean {
     private final UserDAO userDAO;
 
     public LoginBean() {
-        this.userDAO = new UserDAOHibernate();
+        this.userDAO = UserDAOHibernate.getInstance();
     }
 
     public String processLogin(){
