@@ -9,18 +9,19 @@ import java.util.Date;
 import java.util.List;
 import businessLogic.BLFacade;
 public class BLFacadeImplementation implements BLFacade{
+
     @Override
-    public Question saveQuestion(Question question) throws EventFinished, QuestionAlreadyExist {
+    public void saveQuestion(Question question) throws EventFinished, QuestionAlreadyExist {
+
+    }
+
+    @Override
+    public List<Event> getEventsByDate(LocalDate localDate) {
         return null;
     }
 
     @Override
-    public List<Event> getEventsByDate(LocalDate date) {
-        return null;
-    }
-
-    @Override
-    public List<LocalDate> getDatesWithEventsInAMonth(LocalDate date) {
+    public List<LocalDate> getDatesWithEventsInAMonth(LocalDate localDate) {
         return null;
     }
 
@@ -30,32 +31,32 @@ public class BLFacadeImplementation implements BLFacade{
     }
 
     @Override
-    public User saveUser(User user) throws UserAlreadyExist {
+    public void saveUser(User user) throws UserAlreadyExist {
+
+    }
+
+    @Override
+    public void saveEvent(Event event) throws EventAlreadyExist {
+
+    }
+
+    @Override
+    public void saveForecast(Forecast forecast) throws ForecastAlreadyExist, QuestionDoesntExist {
+
+    }
+
+    @Override
+    public User getUserByDni(String s) throws UserDoesntExist {
         return null;
     }
 
     @Override
-    public Event saveEvent(Event event) throws EventAlreadyExist {
+    public Question getQuestionByQuestionNumber(Integer integer) throws QuestionDoesntExist {
         return null;
     }
 
     @Override
-    public Forecast saveForecast(Forecast forecast) throws ForecastAlreadyExist, QuestionDoesntExist {
-        return null;
-    }
-
-    @Override
-    public User getUserByDni(String dni) throws UserDoesntExist {
-        return null;
-    }
-
-    @Override
-    public Question getQuestionByQuestionNumber(Integer questionNumber) throws QuestionDoesntExist {
-        return null;
-    }
-
-    @Override
-    public void assignResultForecastToQuestion(Integer questionNumber, Integer forecastNumber) throws QuestionDoesntExist, ForecastDoesntExist, EventHasntFinished {
+    public void assignResultForecastToQuestion(Integer integer, Integer integer1) throws QuestionDoesntExist, ForecastDoesntExist, EventHasntFinished {
 
     }
 
@@ -65,63 +66,63 @@ public class BLFacadeImplementation implements BLFacade{
     }
 
     @Override
-    public boolean deleteUserByDni(String dni) {
-        return false;
+    public void deleteUserByDni(String s) {
+
     }
 
     @Override
-    public Bet saveBet(Bet bet) throws BetAlreadyExist, UserDoesntExist, ForecastDoesntExist {
+    public void saveBet(Bet bet) throws BetAlreadyExist, UserDoesntExist, ForecastDoesntExist {
+
+    }
+
+    @Override
+    public User modifyUserBalanceByDni(float v, String s) {
         return null;
     }
 
     @Override
-    public User modifyUserBalanceByDni(float balanceModification, String dni) {
+    public Forecast getForecastByForecastNumber(Integer integer) throws ForecastDoesntExist {
         return null;
     }
 
     @Override
-    public Forecast getForecastByForecastNumber(Integer forecastNumber) throws ForecastDoesntExist {
+    public void updateUsersBalanceIfWinners(Integer integer) {
+
+    }
+
+    @Override
+    public void deleteBetByBetNumber(Integer integer) throws BetDoesntExist {
+
+    }
+
+    @Override
+    public Bet changeBetMoney(float v, int i, String s) throws BetDoesntExist, UserDoesntExist {
         return null;
     }
 
     @Override
-    public void updateUsersBalanceIfWinners(Integer resultantForecastNumber) {
-
-    }
-
-    @Override
-    public void deleteBetByBetNumber(Integer betNumber) throws BetDoesntExist {
-
-    }
-
-    @Override
-    public Bet changeBetMoney(float betMoney, int betNumber, String dni) throws BetDoesntExist, UserDoesntExist {
+    public User changeUserUsername(User user, String s) {
         return null;
     }
 
     @Override
-    public void changeUserUsername(User user, String newUsername) {
-
+    public User changeUserLastName(User user, String s) {
+        return null;
     }
 
     @Override
-    public void changeUserLastName(User user, String lastName) {
-
+    public User changeUserName(User user, String s) {
+        return null;
     }
 
     @Override
-    public void changeUserName(User user, String newName) {
-
+    public User changeUserPassword(User user, String s) {
+        return null;
     }
 
     @Override
-    public void changeUserPassword(User user, String newPassword) {
-
-    }
-
-    @Override
-    public void changeUserCreditCard(String user, Long newCard) {
-
+    public User changeUserCreditCard(String s, Long aLong) {
+        return null;
     }
 
     @Override
