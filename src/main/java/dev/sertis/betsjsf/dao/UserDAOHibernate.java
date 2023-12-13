@@ -13,9 +13,17 @@ import java.util.Set;
 public class UserDAOHibernate implements UserDAO{
 
     private final Session session;
+    private static UserDAOHibernate instance;
 
-    public UserDAOHibernate() {
+    private UserDAOHibernate() {
         session = HibernateUtil.getSessionFactory().openSession();
+    }
+
+    public static UserDAOHibernate getInstance() {
+        if (instance == null) {
+            instance = new UserDAOHibernate();
+        }
+        return instance;
     }
 
     @Override
@@ -29,6 +37,11 @@ public class UserDAOHibernate implements UserDAO{
                 .setParameter("dni", dni)
                 .getResultList();
         return new ArrayList<>(userPlacedBets);
+    }
+
+    @Override
+    public void deleteUserByDni(String dni) {
+
     }
 
     @Override

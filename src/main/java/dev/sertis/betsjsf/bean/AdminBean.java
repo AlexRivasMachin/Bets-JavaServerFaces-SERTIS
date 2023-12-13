@@ -15,7 +15,7 @@ public class AdminBean {
     public AdminBean() {
         componentPath = "adminUIComponents/adminCerrarEventos.xhtml";
         setLasDosImagenesUnknow();
-        eventDAO = new EventDAOHibernate();
+        eventDAO = EventDAOHibernate.getInstance();
     }
     private EventDAO eventDAO;
     private String componentPath, descripcionEvento, imgLocal, imgVisitante;

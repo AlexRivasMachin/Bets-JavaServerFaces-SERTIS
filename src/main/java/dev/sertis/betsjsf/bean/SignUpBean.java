@@ -18,7 +18,7 @@ public class SignUpBean {
     private final UserDAO userDAO;
 
     public SignUpBean() {
-        userDAO = new UserDAOHibernate();
+        userDAO = UserDAOHibernate.getInstance();
     }
 
     public String signUp(){
