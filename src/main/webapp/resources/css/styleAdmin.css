@@ -22,12 +22,16 @@ ul{
     text-align: center;
 }
 
+.createEventBody{
+    display: flex;
+}
+
 .h3CrearEvento, h5CrearEvento{
     display: inline;
     margin-right: 20px;
 }
 
-#preview{
+.preview{
     display: flex;
     gap: 50px;
     margin-top: 50px;

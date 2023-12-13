@@ -1,8 +1,6 @@
 package dev.sertis.betsjsf.bean;
 
 
-import businessLogic.BLFacade;
-import businessLogic.BLFacadeLocalImplementation;
 import dev.sertis.betsjsf.dao.EventDAO;
 import dev.sertis.betsjsf.dao.EventDAOImpl;
 import dev.sertis.betsjsf.domain.Event;
@@ -20,11 +18,12 @@ import java.util.Date;
 public class AdminBean {
     public AdminBean() {
         componentPath = "adminUIComponents/adminCerrarEventos.xhtml";
-        setLasDosImagenesUnknow();
         eventDAO = new EventDAOImpl();
+        setTeamImagesAreRendered(false);
     }
     private EventDAO eventDAO;
     private String componentPath, descripcionEvento, imgLocal, imgVisitante;
+    private boolean teamImagesAreRendered;
     private Date fecha;
 
     public String getComponentPath(){
@@ -76,16 +75,27 @@ public class AdminBean {
     public String getImgVisitante(){
         return imgVisitante;
     }
+    public boolean getTeamImagesAreRendered(){
+        return teamImagesAreRendered;
+    }
+    public void setTeamImagesAreRendered(boolean teamImagesAreRendered){
+        this.teamImagesAreRendered = teamImagesAreRendered;
+    }
 
     public void checkSiSeHanIntroducidoEquiposYActualizarSusImagenes(AjaxBehaviorEvent event){
         System.out.println(String.format("evento: %s", descripcionEvento));
 
         if(eventoFormatoCorrecto()){
+
             String pruebas = descripcionEvento.substring(0, descripcionEvento.indexOf("-"));
             imgLocal = getUrlIcono(pruebas);
             imgVisitante = getUrlIcono(descripcionEvento.split("-")[1]);
+
+            if(!getTeamImagesAreRendered()){
+                setTeamImagesAreRendered(true);
+            }
         }else{
-            setLasDosImagenesUnknow();
+            setTeamImagesAreRendered(false);
         }
     }
 
@@ -112,14 +122,11 @@ public class AdminBean {
         return String.format("/resources/icons/laliga/%s.png", equipo);
     }
 
+
     public void onAceptarSelected(){
-        if(eventoFormatoCorrecto()){
-            LocalDate localDate = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            eventDAO.save(new Event(descripcionEvento, localDate));
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Evento creado correctamente"));
-        }else{
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Error: Introduzca un evento válido"));
-        }
+        LocalDate localDate = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        eventDAO.save(new Event(descripcionEvento, localDate));
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Evento creado correctamente"));
     }
 
 

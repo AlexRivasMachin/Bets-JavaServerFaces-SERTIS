@@ -1,12 +1,12 @@
-console.log("adminCreateEvent20.js cargado");
+console.log("adminCreateEvent22.js cargado");
 
 let botonAceptar;
 let calendarioFecha;
 
 $(document).ready(function () {
-    console.log("adminCreateEvent20.js document ready");
+    console.log("adminCreateEvent21.js document ready");
 
-    botonAceptar = document.getElementById("miForm:botonAceptar")
+    botonAceptar = document.getElementById("formBotonAceptar:botonAceptar")
     calendarioFecha = PF('calendario');
 
 });
