@@ -7,7 +7,7 @@ import iterators.ExtendedIterator;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
-
+import businessLogic.BLFacade;
 public class BLFacadeImplementation implements BLFacade{
     @Override
     public Question saveQuestion(Question question) throws EventFinished, QuestionAlreadyExist {
