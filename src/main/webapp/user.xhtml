@@ -16,13 +16,15 @@
         <div class="nav">
 
             <div class="botones">
-                <h:commandButton styleClass="botoness" value="Salir" action="#{userBean.showEventos}"/>
-                <h:commandButton styleClass="botoness" value="Cerrar Sesión" action="#{userBean.logout}" />
+                <h:form>
+                    <h:commandButton styleClass="botoness" value="Salir" action="#{userBean.showEventos}"/>
+                    <h:commandButton styleClass="botoness" value="Cerrar Sesión" action="#{userBean.logout}" />
+                </h:form>
             </div>
 
             <div class="userInfo">
-                <h3>Usuario: #{userBean.username}</h3>
-                <h3>Saldo: #{userBean.saldo} </h3>
+                <h3>Usuario: #{userBean.loggedUser.username}</h3>
+                <h3>Saldo: #{userBean.loggedUser.currentBalance } </h3>
             </div>
             <h:form>
                 <div class="menu">

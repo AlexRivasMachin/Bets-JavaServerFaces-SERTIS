@@ -24,3 +24,4 @@ function updateFormInputs(){
 }
 
 updateFormInputs();
+ifInputHasValueShrinkLabel();

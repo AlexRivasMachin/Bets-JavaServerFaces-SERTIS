@@ -1,12 +1,8 @@
 package dev.sertis.betsjsf.bean;
-
-
 import dev.sertis.betsjsf.dao.EventDAO;
-import dev.sertis.betsjsf.dao.EventDAOImpl;
+import dev.sertis.betsjsf.dao.EventDAOHibernate;
 import dev.sertis.betsjsf.domain.Event;
-import exceptions.EventAlreadyExist;
 import org.primefaces.event.SelectEvent;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
@@ -18,7 +14,8 @@ import java.util.Date;
 public class AdminBean {
     public AdminBean() {
         componentPath = "adminUIComponents/adminCerrarEventos.xhtml";
-        eventDAO = new EventDAOImpl();
+        setLasDosImagenesUnknow();
+        eventDAO = EventDAOHibernate.getInstance();
         setTeamImagesAreRendered(false);
     }
     private EventDAO eventDAO;

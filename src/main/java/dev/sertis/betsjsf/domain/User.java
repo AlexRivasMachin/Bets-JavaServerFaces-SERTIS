@@ -3,6 +3,7 @@ package dev.sertis.betsjsf.domain;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,7 +18,7 @@ public class User {
     private boolean isAdmin;
     private Long creditCard;
     @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-    private Set<Bet> userPlacedBets;
+    private List<Bet> userPlacedBets;
 
     public User() {
     }
@@ -96,11 +97,11 @@ public class User {
         this.creditCard = creditCard;
     }
 
-    public Set<Bet> getUserPlacedBets() {
+    public List<Bet> getUserPlacedBets() {
         return userPlacedBets;
     }
 
-    public void setUserPlacedBets(Set<Bet> userPlacedBets) {
+    public void setUserPlacedBets(List<Bet> userPlacedBets) {
         this.userPlacedBets = userPlacedBets;
     }
 
