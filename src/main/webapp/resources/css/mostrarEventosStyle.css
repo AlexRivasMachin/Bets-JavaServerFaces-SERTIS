@@ -1,0 +1,44 @@
+*{
+    font-family: sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+body, p{
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 200;
+    color: rgba(0, 0, 0, 0.9);
+}
+
+h1{
+    text-align: center;
+    margin: 50px 0 0 0;
+}
+
+#form-events{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin: 10px 10% 50px 10%;
+}
+
+@media (max-width: 600px) {
+    #form-events{
+        flex-direction: column;
+    }
+}
+
+#calendar{
+    width: 300px;
+}
+
+.events-table-style{
+    width: 600px;
+    margin-left: 50px;
+    margin-top: 50px;
+}
