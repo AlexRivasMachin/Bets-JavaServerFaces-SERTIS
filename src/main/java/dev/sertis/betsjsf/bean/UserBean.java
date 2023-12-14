@@ -6,6 +6,15 @@ import dev.sertis.betsjsf.domain.User;
 import java.util.ArrayList;
 public class UserBean {
 
+    public UserBean() {
+        userDAO = UserDAOHibernate.getInstance();
+        loggedUser = LoginBean.getLoggedUser();
+        cantidadRetiro = 0.0;
+        cantidadDeposito = 0.0;
+        apuestasRealizadas = new ArrayList<>();
+        showEventos();
+    }
+
     private String username;
     private String dni;
     private String name;
@@ -21,21 +30,14 @@ public class UserBean {
     private User loggedUser;
     private final UserDAO userDAO;
 
-    public UserBean() {
-        userDAO = new UserDAOHibernate();
-        loggedUser = LoginBean.getLoggedUser();
-        cantidadRetiro = 0.0;
-        cantidadDeposito = 0.0;
-        apuestasRealizadas = new ArrayList<>();
-        showEventos();
-    }
+
 
     public String logout() {
         return "logout";
     }
 
     public String showEventos() {
-        componentContent = "userNormalComponentes/eventosComponente.xhtml";
+        componentContent = "commonUIComponents/mostrarEventos.xhtml";
         return null;
     }
 
@@ -82,12 +84,11 @@ public class UserBean {
     }
     public void añadirSaldo() {
 
-        this.saldo += cantidadDeposito;
+       loggedUser.setCurrentBalance(loggedUser.getCurrentBalance() + cantidadDeposito);
     }
     public void restarSaldo() {
-        if(cantidadRetiro <= saldo) {
-            this.saldo -= cantidadRetiro;
-            cantidadRetiro = 0.0;
+        if(cantidadRetiro <= loggedUser.getCurrentBalance()) {
+            loggedUser.setCurrentBalance(loggedUser.getCurrentBalance() - cantidadRetiro);
         }
     }
 
