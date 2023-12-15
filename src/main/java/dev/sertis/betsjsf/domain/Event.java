@@ -12,7 +12,7 @@ public class Event implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long eventId;
+    private long eventId;
     private String eventDescription;
     private LocalDate eventDate;
     @OneToMany(cascade = CascadeType.ALL)
@@ -26,11 +26,11 @@ public class Event implements Serializable {
         this.eventDate = eventDate;
     }
 
-    public Long getEventId() {
+    public long getEventId() {
         return eventId;
     }
 
-    public void setEventId(Long eventId) {
+    public void setEventId(long eventId) {
         this.eventId = eventId;
     }
 

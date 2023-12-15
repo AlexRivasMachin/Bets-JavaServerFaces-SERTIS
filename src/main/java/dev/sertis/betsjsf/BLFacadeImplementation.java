@@ -72,12 +72,12 @@ public class BLFacadeImplementation implements BLFacade{
     }
 
     @Override
-    public Question getQuestionById(Long id) {
+    public Question getQuestionById(long id) {
         return questionDAO.getQuestionById(id);
     }
 
     @Override
-    public void assignResultForecastToQuestion(Long forecastId, Long questionId) {
+    public void assignResultForecastToQuestion(long forecastId, long questionId) {
 
     }
 
@@ -88,31 +88,31 @@ public class BLFacadeImplementation implements BLFacade{
     }
 
     @Override
-    public User modifyUserBalanceByDni(float balanceModification, String dni) {
+    public User modifyUserBalanceByDni(double balanceModification, String dni) {
         return null;
     }
 
     @Override
-    public Forecast getForecastById(Long forecastId) {
+    public Forecast getForecastById(long forecastId) {
         return forecastDAO.getForecastById(forecastId);
     }
 
     @Override
-    public void updateUsersBalanceIfWinners(Long resultantForecastId) {
+    public void updateUsersBalanceIfWinners(long resultantForecastId) {
 
     }
 
     @Override
-    public void deleteBetById(Long id) {
+    public void deleteBetById(long id) {
         Bet betToDelete = betDAO.getBetById(id);
         betDAO.delete(betToDelete);
     }
 
     @Override
-    public Bet changeBetMoney(float betMoney, Long betId, String dni) {
+    public Bet changeBetMoney(double betMoney, long betId, String dni) {
         Bet bet = betDAO.getBetById(betId);
 
-        final float newAmount = bet.getAmountPlacedOnBet() + betMoney;
+        final double newAmount = bet.getAmountPlacedOnBet() + betMoney;
         bet.setAmountPlacedOnBet(newAmount);
 
         betDAO.update(bet);
@@ -162,7 +162,7 @@ public class BLFacadeImplementation implements BLFacade{
     }
 
     @Override
-    public User changeUserCreditCard(String dni, Long newCard) {
+    public User changeUserCreditCard(String dni, long newCard) {
         User userToModify = userDAO.getUserByDNI(dni);
 
         userToModify.setCreditCard(newCard);

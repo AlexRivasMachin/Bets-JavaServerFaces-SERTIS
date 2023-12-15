@@ -23,21 +23,21 @@ public interface BLFacade {
 
     List<User> getAllUsers();
 
-    Question getQuestionById(Long id);
+    Question getQuestionById(long id);
 
-    void assignResultForecastToQuestion(Long forecastId, Long questionId);
+    void assignResultForecastToQuestion(long forecastId, long questionId);
 
     void deleteUserByDni(String dni);
 
-    User modifyUserBalanceByDni(float balanceModification, String dni);
+    User modifyUserBalanceByDni(double balanceModification, String dni);
 
-    Forecast getForecastById(Long forecastId);
+    Forecast getForecastById(long forecastId);
 
-    void updateUsersBalanceIfWinners(Long resultantForecastId);
+    void updateUsersBalanceIfWinners(long resultantForecastId);
 
-    void deleteBetById(Long id);
+    void deleteBetById(long id);
 
-    Bet changeBetMoney(float betMoney, Long betId, String dni);
+    Bet changeBetMoney(double betMoney, long betId, String dni);
 
     User changeUserUsername(String dni, String newUsername);
 
@@ -47,5 +47,5 @@ public interface BLFacade {
 
     User changeUserPassword(String dni, String newPassword);
 
-    User changeUserCreditCard(String dni, Long newCard);
+    User changeUserCreditCard(String dni, long newCard);
 }

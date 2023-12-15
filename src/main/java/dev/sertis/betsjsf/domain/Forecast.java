@@ -9,9 +9,9 @@ import java.util.Objects;
 public class Forecast {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long forecastId;
+    private long forecastId;
     private String forecastDescription;
-    private float potentialGain;
+    private double potentialGain;
     @ManyToOne(targetEntity = Question.class, cascade = CascadeType.ALL)
     private Question associatedQuestion;
     @OneToMany( targetEntity = Bet.class)
@@ -20,11 +20,11 @@ public class Forecast {
     public Forecast() {
     }
 
-    public Long getForecastId() {
+    public long getForecastId() {
         return forecastId;
     }
 
-    public void setForecastId(Long forecastId) {
+    public void setForecastId(long forecastId) {
         this.forecastId = forecastId;
     }
 
@@ -36,11 +36,11 @@ public class Forecast {
         this.forecastDescription = forecastDescription;
     }
 
-    public float getPotentialGain() {
+    public double getPotentialGain() {
         return potentialGain;
     }
 
-    public void setPotentialGain(float potentialGain) {
+    public void setPotentialGain(double potentialGain) {
         this.potentialGain = potentialGain;
     }
 
