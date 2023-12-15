@@ -2,9 +2,7 @@ package dev.sertis.betsjsf.domain;
 
 import jakarta.persistence.*;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 public class User {
@@ -12,18 +10,18 @@ public class User {
     private String dni;
     private String name;
     private String lastName;
-    private float currentBalance;
+    private double currentBalance;
     private String passwd;
     private String username;
     private boolean isAdmin;
-    private Long creditCard;
+    private long creditCard;
     @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
     private List<Bet> userPlacedBets;
 
     public User() {
     }
 
-    public User(String dni, String name, String lastName, float currentBalance, String passwd, String username, boolean isAdmin) {
+    public User(String dni, String name, String lastName, double currentBalance, String passwd, String username, boolean isAdmin) {
         this.dni = dni;
         this.name = name;
         this.lastName = lastName;
@@ -57,11 +55,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public float getCurrentBalance() {
-        return currentBalance;
+    public double getCurrentBalance() {
+        return this.currentBalance;
     }
 
-    public void setCurrentBalance(float currentBalance) {
+    public void setCurrentBalance(double currentBalance) {
         this.currentBalance = currentBalance;
     }
 
@@ -89,11 +87,11 @@ public class User {
         isAdmin = admin;
     }
 
-    public Long getCreditCard() {
+    public long getCreditCard() {
         return creditCard;
     }
 
-    public void setCreditCard(Long creditCard) {
+    public void setCreditCard(long creditCard) {
         this.creditCard = creditCard;
     }
 

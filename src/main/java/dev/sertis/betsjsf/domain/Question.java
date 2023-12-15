@@ -10,7 +10,7 @@ public class Question {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long questionId;
+    private long questionId;
     private String questionDescription;
     private float minimumBetAmount;
     @OneToOne(cascade = CascadeType.ALL, targetEntity = Forecast.class)
@@ -24,11 +24,11 @@ public class Question {
 
     }
 
-    public Long getQuestionId() {
+    public long getQuestionId() {
         return questionId;
     }
 
-    public void setQuestionId(Long questionId) {
+    public void setQuestionId(long questionId) {
         this.questionId = questionId;
     }
 

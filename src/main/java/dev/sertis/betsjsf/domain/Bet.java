@@ -9,21 +9,21 @@ public class Bet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long betId;
+    private long betId;
     @OneToOne(cascade = {CascadeType.ALL}, targetEntity = User.class)
     private User userWhoPlacedBet;
-    private float amountPlacedOnBet;
+    private double amountPlacedOnBet;
     @OneToOne(cascade = {CascadeType.ALL}, targetEntity = Forecast.class)
     private Forecast associatedForecast;
 
     public Bet() {
     }
 
-    public Long getBetId() {
+    public long getBetId() {
         return betId;
     }
 
-    public void setBetId(Long betId) {
+    public void setBetId(long betId) {
         this.betId = betId;
     }
 
@@ -35,11 +35,11 @@ public class Bet {
         this.userWhoPlacedBet = userWhoPlacedBet;
     }
 
-    public float getAmountPlacedOnBet() {
+    public double getAmountPlacedOnBet() {
         return amountPlacedOnBet;
     }
 
-    public void setAmountPlacedOnBet(float amountPlacedOnBet) {
+    public void setAmountPlacedOnBet(double amountPlacedOnBet) {
         this.amountPlacedOnBet = amountPlacedOnBet;
     }
 

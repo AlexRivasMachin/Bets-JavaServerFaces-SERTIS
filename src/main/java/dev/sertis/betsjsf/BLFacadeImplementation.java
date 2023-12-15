@@ -1,63 +1,69 @@
 package dev.sertis.betsjsf;
 
-import domain.*;
-import exceptions.*;
-import iterators.ExtendedIterator;
+import dev.sertis.betsjsf.dao.*;
+import dev.sertis.betsjsf.domain.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
-import businessLogic.BLFacade;
+
 public class BLFacadeImplementation implements BLFacade{
 
-    @Override
-    public void saveQuestion(Question question) throws EventFinished, QuestionAlreadyExist {
+    private final UserDAO userDAO;
+    private final EventDAO eventDAO;
+    private final QuestionDAO questionDAO;
+    private final ForecastDAO forecastDAO;
+    private final BetDAO betDAO;
+    private static BLFacadeImplementation instance;
 
+    private BLFacadeImplementation() {
+        userDAO = UserDAOHibernate.getInstance();
+        eventDAO = EventDAOHibernate.getInstance();
+        questionDAO = QuestionDAOHibernate.getInstance();
+        forecastDAO = ForecastDAOHibernate.getInstance();
+        betDAO = BetDAOHibernate.getInstance();
+        instance = new BLFacadeImplementation();
+    }
+
+    public static BLFacadeImplementation getInstance() {
+        if (instance == null) {
+            return new BLFacadeImplementation();
+        }
+        return instance;
+    }
+
+    @Override
+    public void saveEvent(Event event) {
+        eventDAO.save(event);
+    }
+
+    @Override
+    public void saveQuestion(Question question) {
+        questionDAO.save(question);
+    }
+
+    @Override
+    public void saveUser(User user) {
+        userDAO.save(user);
+    }
+
+    @Override
+    public void saveForecast(Forecast forecast) {
+        forecastDAO.save(forecast);
+    }
+
+    @Override
+    public void saveBet(Bet bet) {
+        betDAO.save(bet);
     }
 
     @Override
     public List<Event> getEventsByDate(LocalDate localDate) {
-        return null;
+        return eventDAO.getEventsByDate(localDate);
     }
 
     @Override
-    public List<LocalDate> getDatesWithEventsInAMonth(LocalDate localDate) {
-        return null;
-    }
-
-    @Override
-    public void initializeBD() {
-
-    }
-
-    @Override
-    public void saveUser(User user) throws UserAlreadyExist {
-
-    }
-
-    @Override
-    public void saveEvent(Event event) throws EventAlreadyExist {
-
-    }
-
-    @Override
-    public void saveForecast(Forecast forecast) throws ForecastAlreadyExist, QuestionDoesntExist {
-
-    }
-
-    @Override
-    public User getUserByDni(String s) throws UserDoesntExist {
-        return null;
-    }
-
-    @Override
-    public Question getQuestionByQuestionNumber(Integer integer) throws QuestionDoesntExist {
-        return null;
-    }
-
-    @Override
-    public void assignResultForecastToQuestion(Integer integer, Integer integer1) throws QuestionDoesntExist, ForecastDoesntExist, EventHasntFinished {
-
+    public User getUserByDni(String dni) {
+        return userDAO.getUserByDNI(dni);
     }
 
     @Override
@@ -66,67 +72,104 @@ public class BLFacadeImplementation implements BLFacade{
     }
 
     @Override
-    public void deleteUserByDni(String s) {
+    public Question getQuestionById(long id) {
+        return questionDAO.getQuestionById(id);
+    }
+
+    @Override
+    public void assignResultForecastToQuestion(long forecastId, long questionId) {
 
     }
 
     @Override
-    public void saveBet(Bet bet) throws BetAlreadyExist, UserDoesntExist, ForecastDoesntExist {
-
+    public void deleteUserByDni(String dni) {
+        User userToDelete = userDAO.getUserByDNI(dni);
+        userDAO.delete(userToDelete);
     }
 
     @Override
-    public User modifyUserBalanceByDni(float v, String s) {
+    public User modifyUserBalanceByDni(double balanceModification, String dni) {
         return null;
     }
 
     @Override
-    public Forecast getForecastByForecastNumber(Integer integer) throws ForecastDoesntExist {
-        return null;
+    public Forecast getForecastById(long forecastId) {
+        return forecastDAO.getForecastById(forecastId);
     }
 
     @Override
-    public void updateUsersBalanceIfWinners(Integer integer) {
-
-    }
-
-    @Override
-    public void deleteBetByBetNumber(Integer integer) throws BetDoesntExist {
+    public void updateUsersBalanceIfWinners(long resultantForecastId) {
 
     }
 
     @Override
-    public Bet changeBetMoney(float v, int i, String s) throws BetDoesntExist, UserDoesntExist {
-        return null;
+    public void deleteBetById(long id) {
+        Bet betToDelete = betDAO.getBetById(id);
+        betDAO.delete(betToDelete);
     }
 
     @Override
-    public User changeUserUsername(User user, String s) {
-        return null;
+    public Bet changeBetMoney(double betMoney, long betId, String dni) {
+        Bet bet = betDAO.getBetById(betId);
+
+        final double newAmount = bet.getAmountPlacedOnBet() + betMoney;
+        bet.setAmountPlacedOnBet(newAmount);
+
+        betDAO.update(bet);
+
+        this.modifyUserBalanceByDni(- betMoney, dni);
+        return bet;
     }
 
     @Override
-    public User changeUserLastName(User user, String s) {
-        return null;
+    public User changeUserUsername(String dni, String newUsername) {
+        User userToModify = userDAO.getUserByDNI(dni);
+
+        userToModify.setUsername(newUsername);
+        userDAO.update(userToModify);
+
+        return userToModify;
     }
 
     @Override
-    public User changeUserName(User user, String s) {
-        return null;
+    public User changeUserLastName(String dni, String lastName) {
+        User userToModify = userDAO.getUserByDNI(dni);
+
+        userToModify.setLastName(lastName);
+        userDAO.update(userToModify);
+
+        return userToModify;
     }
 
     @Override
-    public User changeUserPassword(User user, String s) {
-        return null;
+    public User changeUserName(String dni, String newName) {
+        User userToModify = userDAO.getUserByDNI(dni);
+
+        userToModify.setName(newName);
+        userDAO.update(userToModify);
+
+        return userToModify;
     }
 
     @Override
-    public User changeUserCreditCard(String s, Long aLong) {
-        return null;
+    public User changeUserPassword(String dni, String newPassword) {
+        User userToModify = userDAO.getUserByDNI(dni);
+
+        userToModify.setPasswd(newPassword);
+        userDAO.update(userToModify);
+
+        return userToModify;
     }
 
     @Override
-    public ExtendedIterator<Event> getEventsIterator(Date date) {
-        return null;
+    public User changeUserCreditCard(String dni, long newCard) {
+        User userToModify = userDAO.getUserByDNI(dni);
+
+        userToModify.setCreditCard(newCard);
+        userDAO.update(userToModify);
+
+        return userToModify;
     }
+
+
 }

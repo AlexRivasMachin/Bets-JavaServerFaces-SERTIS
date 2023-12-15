@@ -40,11 +40,6 @@ public class UserDAOHibernate implements UserDAO{
     }
 
     @Override
-    public void deleteUserByDni(String dni) {
-
-    }
-
-    @Override
     public void save(User user) {
         session.beginTransaction();
         session.persist(user);

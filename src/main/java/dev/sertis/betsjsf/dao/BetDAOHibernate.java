@@ -42,7 +42,7 @@ public class BetDAOHibernate implements BetDAO{
     }
 
     @Override
-    public Bet getBetById(Integer id) {
+    public Bet getBetById(Long id) {
         return session.find(Bet.class, id);
     }
 }
