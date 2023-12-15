@@ -1,4 +1,6 @@
 package dev.sertis.betsjsf.bean;
+import dev.sertis.betsjsf.BLFacade;
+import dev.sertis.betsjsf.BLFacadeImplementation;
 import dev.sertis.betsjsf.dao.UserDAO;
 import dev.sertis.betsjsf.dao.UserDAOHibernate;
 import dev.sertis.betsjsf.domain.Bet;
@@ -6,29 +8,29 @@ import dev.sertis.betsjsf.domain.User;
 import java.util.ArrayList;
 public class UserBean {
 
+    private String apellido;
+
     public UserBean() {
+        blFacade = BLFacadeImplementation.getInstance();
         userDAO = UserDAOHibernate.getInstance();
         loggedUser = LoginBean.getLoggedUser();
         cantidadRetiro = 0.0;
         cantidadDeposito = 0.0;
         apuestasRealizadas = new ArrayList<>();
-        showEventos();
+        //showEventos();
     }
 
-    private String username;
     private String dni;
     private String name;
-    private String apellido;
-    private String tarjetaDeCredito;
-    private String contraseña;
-    private double saldo;
     private double cantidadRetiro;
     private double cantidadDeposito;
-
     private String componentContent;
+    private Long tarjetaDeCredito;
     private ArrayList<Bet> apuestasRealizadas;
     private User loggedUser;
     private final UserDAO userDAO;
+    private final BLFacade blFacade;
+    private String contraseña;
 
 
 
@@ -57,16 +59,6 @@ public class UserBean {
     }
 
     /**DATOS DEL USUARIO**/
-    public String getUsername() {
-        return username;
-    }
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public double getSaldo() {
-        return saldo;
-    }
     public double getCantidadRetiro() {
         return cantidadRetiro;
     }
@@ -79,13 +71,10 @@ public class UserBean {
     public void setCantidadDeposito(double cantidadDeposito) {
         this.cantidadDeposito = cantidadDeposito;
     }
-    public void setSaldo(double nuevoSaldo) {
-        this.saldo = nuevoSaldo;
-    }
     public void añadirSaldo() {
-
        loggedUser.setCurrentBalance(loggedUser.getCurrentBalance() + cantidadDeposito);
     }
+
     public void restarSaldo() {
         if(cantidadRetiro <= loggedUser.getCurrentBalance()) {
             loggedUser.setCurrentBalance(loggedUser.getCurrentBalance() - cantidadRetiro);
@@ -102,26 +91,25 @@ public class UserBean {
         if (!nuevoNombre.isEmpty()) this.name = nuevoNombre;
     }
 
-    public String getApellido() {return apellido; }
     public void setApellido(String nuevoApellido) {if(!nuevoApellido.isEmpty()) this.apellido = nuevoApellido; }
 
-    public String getTarjetaDeCredito() {return tarjetaDeCredito; }
-    public void setTarjetaDeCredito(String nuevaTarjeta) {if(nuevaTarjeta.length()==16) this.tarjetaDeCredito = nuevaTarjeta; }
+    public void setTarjetaDeCredito(Long nuevaTarjeta) {
+        if(nuevaTarjeta.toString().length()==16){
+            this.tarjetaDeCredito = nuevaTarjeta;
+            blFacade.changeUserCreditCard(loggedUser.getDni(), nuevaTarjeta);
+        }
+    }
 
-    public String getContraseña() {return contraseña; }
-    public void setContraseña(String nuevaContraseña) {if(!nuevaContraseña.isEmpty()) this.contraseña = nuevaContraseña; }
-
-    public User getLoggedUser() {
-        return loggedUser;
+    public void setContraseña(String nuevaContraseña) {
+        if(!nuevaContraseña.isEmpty()) this.contraseña = nuevaContraseña;
+        blFacade.changeUserPassword(loggedUser.getDni(), nuevaContraseña);
     }
 
     public void setLoggedUser(User loggedUser) {
         this.loggedUser = loggedUser;
     }
 
-    /**
-     * DATOS APUESTAS
-     **/
+    /** DATOS APUESTAS **/
     public ArrayList<Bet> getApuestasRealizadas() {
         return apuestasRealizadas;
     }
