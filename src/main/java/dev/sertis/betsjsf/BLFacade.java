@@ -48,4 +48,6 @@ public interface BLFacade {
     User changeUserPassword(String dni, String newPassword);
 
     User changeUserCreditCard(String dni, long newCard);
+
+    boolean isUserPassword(String dni, String password);
 }

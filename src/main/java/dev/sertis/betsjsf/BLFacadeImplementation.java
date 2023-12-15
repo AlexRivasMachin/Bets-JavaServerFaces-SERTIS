@@ -171,5 +171,10 @@ public class BLFacadeImplementation implements BLFacade{
         return userToModify;
     }
 
+    @Override
+    public boolean isUserPassword(String dni, String password) {
+        User user = userDAO.getUserByDNI(dni);
+        return user.getPasswd().equals(password);
+    }
 
 }

@@ -1,7 +1,7 @@
 package dev.sertis.betsjsf.bean;
 
-import dev.sertis.betsjsf.dao.UserDAO;
-import dev.sertis.betsjsf.dao.UserDAOHibernate;
+import dev.sertis.betsjsf.BLFacade;
+import dev.sertis.betsjsf.BLFacadeImplementation;
 import dev.sertis.betsjsf.domain.User;
 
 import javax.faces.application.FacesMessage;
@@ -11,10 +11,10 @@ public class LoginBean {
     private String dni;
     private String passwd;
     private static User loggedUser;
-    private final UserDAO userDAO;
+    private final BLFacade blFacade;
 
     public LoginBean() {
-        this.userDAO = UserDAOHibernate.getInstance();
+        this.blFacade = BLFacadeImplementation.getInstance();
     }
 
     public String processLogin(){
@@ -22,8 +22,8 @@ public class LoginBean {
             return "error";
         }
         try {
-            User user = userDAO.getUserByDNI(dni);
-            if (isPasswordCorrect(user, passwd)){
+            User user = blFacade.getUserByDni(dni);
+            if (blFacade.isUserPassword(user.getDni(), passwd)){
                 setLoggedUser(user);
                 if (user.isAdmin()){
                     return "admin";
