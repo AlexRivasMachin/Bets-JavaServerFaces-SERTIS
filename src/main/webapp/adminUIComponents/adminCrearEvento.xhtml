@@ -9,36 +9,44 @@
 <f:view>
     <h:head><title>Aplicación JavaServer Faces</title></h:head>
     <h:body>
-        <h:form styleClass="formCrearEvento" id="miForm">
-            <div class="divCreateEvent">
-                <h3 class="h3CrearEvento">Event Date</h3>
-                <h5 class="h5CrearEvento">(Selecciona una fecha posterior a la de hoy)</h5>
-                <p:calendar widgetVar="calendario" id="fecha" value="#{admin.fecha}" navigator="true" mode="inline">
-                    <p:ajax event="dateSelect" listener="#{admin.onDateSelect}" update="infoFecha" oncomplete="validarFecha()"></p:ajax>
-                </p:calendar>
-            </div>
+        <div class="createEventBody">
+            <h:form id="formCalendario">
+                <div class="divCreateEvent">
+                    <h3 class="h3CrearEvento">Event Date</h3>
+                    <h5 class="h5CrearEvento">(Selecciona una fecha posterior a la de hoy)</h5>
+                    <p:calendar widgetVar="calendario" id="fecha" value="#{admin.fecha}" navigator="true" mode="inline">
+                        <p:ajax event="dateSelect" listener="#{admin.onDateSelect}" update="formPreview:infoFecha" oncomplete="validarFecha()"></p:ajax>
+                    </p:calendar>
+                </div>
+            </h:form>
             <div class="divCreateEvent">
                 <h4>Para mostrar el logo de los equipos, separe los nombres de los equipos con un guión (-)</h4>
                 <h3>Evento:</h3>
-                <p:inputText id="evento" value="#{admin.descripcionEvento}">
-                    <f:ajax event="keyup" listener="#{admin.checkSiSeHanIntroducidoEquiposYActualizarSusImagenes}" render="infoEvento infoFecha imgLocal imgVisitante"/>
-                </p:inputText>
+                <h:form id="formInput">
+                    <p:inputText id="evento" value="#{admin.descripcionEvento}">
+                        <f:ajax event="keyup" listener="#{admin.checkSiSeHanIntroducidoEquiposYActualizarSusImagenes}" render="formPreview"/>
+                    </p:inputText>
+                </h:form>
 
-                <div id="preview">
-                    <h:graphicImage styleClass="imagenesEquipo" id="imgLocal" value="#{admin.imgLocal}"/>
-                    <div class = "labelsPreview">
-                        <p:outputLabel styleClass="infoEvento" id="infoEvento" value="#{admin.descripcionEvento}"/>
-                        <p:outputLabel styleClass="infoEvento" id="infoFecha" value="#{admin.fecha}"/>
+                <h:form id="formPreview">
+                    <div id="preview" class="preview">
+                        <h:graphicImage styleClass="imagenesEquipo" id="imgLocal" rendered="#{admin.teamImagesAreRendered}" alt="" value="#{admin.imgLocal}"/>
+                        <div class = "labelsPreview">
+                            <p:outputLabel styleClass="infoEvento" id="infoEvento" value="#{admin.descripcionEvento}"/>
+                            <p:outputLabel styleClass="infoEvento" id="infoFecha" value="#{admin.fecha}"/>
+                        </div>
+                        <h:graphicImage styleClass="imagenesEquipo" id="imgVisitante" rendered="#{admin.teamImagesAreRendered}" alt="" value="#{admin.imgVisitante}"/>
                     </div>
-                    <h:graphicImage styleClass="imagenesEquipo" id="imgVisitante" value="#{admin.imgVisitante}"/>
-                </div>
-                <h:commandButton id="botonAceptar" value="Aceptar" styleClass="buttonDisabled" action="#{admin.onAceptarSelected}"></h:commandButton>
-
+                </h:form>
+                <h:form id="formBotonAceptar">
+                    <h:commandButton id="botonAceptar" value="Aceptar" styleClass="buttonDisabled" action="#{admin.onAceptarSelected}">
+                        <f:ajax event="click" render="mensajes"/>
+                    </h:commandButton>
+                </h:form>
                 <h:messages id="mensajes"/>
+                <h:outputScript name="js/adminCreateEvent22.js"/>
             </div>
-
-        </h:form>
-        <h:outputScript name="js/adminCreateEvent20.js"/>
+        </div>
     </h:body>
 </f:view>
 </ui:composition>
