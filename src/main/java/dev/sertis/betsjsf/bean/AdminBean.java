@@ -1,5 +1,4 @@
 package dev.sertis.betsjsf.bean;
-import dev.sertis.betsjsf.dao.EventDAO;
 import dev.sertis.betsjsf.dao.EventDAOHibernate;
 import dev.sertis.betsjsf.domain.Event;
 import org.primefaces.event.SelectEvent;
@@ -18,7 +17,7 @@ public class AdminBean {
         eventDAO = EventDAOHibernate.getInstance();
         setTeamImagesAreRendered(false);
     }
-    private EventDAO eventDAO;
+    private EventDAOHibernate eventDAO;
     private String componentPath, descripcionEvento, imgLocal, imgVisitante;
     private boolean teamImagesAreRendered;
     private Date fecha;
@@ -82,11 +81,10 @@ public class AdminBean {
     public void checkSiSeHanIntroducidoEquiposYActualizarSusImagenes(AjaxBehaviorEvent event){
         System.out.println(String.format("evento: %s", descripcionEvento));
 
-        if(eventoFormatoCorrecto()){
+        if(eventoFormatoPartido()){
 
-            String pruebas = descripcionEvento.substring(0, descripcionEvento.indexOf("-"));
-            imgLocal = getUrlIcono(pruebas);
-            imgVisitante = getUrlIcono(descripcionEvento.split("-")[1]);
+            imgLocal = getUrlIcono(descripcionEvento.substring(0, descripcionEvento.indexOf("-")).trim().toLowerCase());
+            imgVisitante = getUrlIcono(descripcionEvento.split("-")[1].trim().toLowerCase());
 
             if(!getTeamImagesAreRendered()){
                 setTeamImagesAreRendered(true);
@@ -96,7 +94,7 @@ public class AdminBean {
         }
     }
 
-    private boolean eventoFormatoCorrecto() {
+    private boolean eventoFormatoPartido() {
         return descripcionEvento != null && descripcionEvento.contains("-");
     }
 
