@@ -15,18 +15,18 @@ public class BLFacadeImplementation implements BLFacade{
     private final BetDAO betDAO;
     private static BLFacadeImplementation instance;
 
+
     private BLFacadeImplementation() {
         userDAO = UserDAOHibernate.getInstance();
         eventDAO = EventDAOHibernate.getInstance();
         questionDAO = QuestionDAOHibernate.getInstance();
         forecastDAO = ForecastDAOHibernate.getInstance();
         betDAO = BetDAOHibernate.getInstance();
-        instance = new BLFacadeImplementation();
     }
 
     public static BLFacadeImplementation getInstance() {
         if (instance == null) {
-            return new BLFacadeImplementation();
+            instance = new BLFacadeImplementation();
         }
         return instance;
     }

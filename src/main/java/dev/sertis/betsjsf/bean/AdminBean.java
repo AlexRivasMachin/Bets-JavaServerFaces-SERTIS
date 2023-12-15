@@ -1,4 +1,6 @@
 package dev.sertis.betsjsf.bean;
+import dev.sertis.betsjsf.BLFacade;
+import dev.sertis.betsjsf.BLFacadeImplementation;
 import dev.sertis.betsjsf.dao.EventDAOHibernate;
 import dev.sertis.betsjsf.domain.Event;
 import org.primefaces.event.SelectEvent;
@@ -13,10 +15,11 @@ import java.util.Date;
 public class AdminBean {
     public AdminBean() {
         componentPath = "adminUIComponents/adminCerrarEventos.xhtml";
-        setLasDosImagenesUnknow();
         eventDAO = EventDAOHibernate.getInstance();
+        BLFacade = BLFacadeImplementation.getInstance();
         setTeamImagesAreRendered(false);
     }
+    private BLFacade BLFacade;
     private EventDAOHibernate eventDAO;
     private String componentPath, descripcionEvento, imgLocal, imgVisitante;
     private boolean teamImagesAreRendered;
@@ -79,8 +82,6 @@ public class AdminBean {
     }
 
     public void checkSiSeHanIntroducidoEquiposYActualizarSusImagenes(AjaxBehaviorEvent event){
-        System.out.println(String.format("evento: %s", descripcionEvento));
-
         if(eventoFormatoPartido()){
 
             imgLocal = getUrlIcono(descripcionEvento.substring(0, descripcionEvento.indexOf("-")).trim().toLowerCase());
@@ -98,15 +99,10 @@ public class AdminBean {
         return descripcionEvento != null && descripcionEvento.contains("-");
     }
 
-    private void setLasDosImagenesUnknow() {
-        imgLocal = getUrlIcono("unknown");
-        imgVisitante = getUrlIcono("unknown");
-    }
-
     private String getUrlIcono(String nombreEquipo){
-        System.out.println(String.format("nombreEquipo: %s", nombreEquipo));
         String urlEquipo = getUrlEquipo(nombreEquipo);
         File icono = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath(urlEquipo));
+
         if(icono.exists()){
             return urlEquipo;
         }
@@ -120,7 +116,8 @@ public class AdminBean {
 
     public void onAceptarSelected(){
         LocalDate localDate = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        eventDAO.save(new Event(descripcionEvento, localDate));
+        BLFacade.saveEvent(new Event(descripcionEvento, localDate));
+
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Evento creado correctamente"));
     }
 
