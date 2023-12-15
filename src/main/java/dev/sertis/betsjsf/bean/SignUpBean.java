@@ -1,7 +1,7 @@
 package dev.sertis.betsjsf.bean;
 
-import dev.sertis.betsjsf.dao.UserDAO;
-import dev.sertis.betsjsf.dao.UserDAOHibernate;
+import dev.sertis.betsjsf.BLFacade;
+import dev.sertis.betsjsf.BLFacadeImplementation;
 import dev.sertis.betsjsf.domain.User;
 import org.hibernate.exception.ConstraintViolationException;
 
@@ -15,10 +15,10 @@ public class SignUpBean {
     private String passwd;
     private String username;
     private boolean isAdmin;
-    private final UserDAO userDAO;
+    private final BLFacade blFacade;
 
     public SignUpBean() {
-        userDAO = UserDAOHibernate.getInstance();
+        blFacade = BLFacadeImplementation.getInstance();
     }
 
     public String signUp(){
@@ -27,7 +27,7 @@ public class SignUpBean {
         }
         try {
             User user = new User(dni, name, lastname, 0, passwd, username, isAdmin);
-            userDAO.save(user);
+            blFacade.saveUser(user);
             return "success";
         } catch (ConstraintViolationException e) {
             FacesContext.getCurrentInstance().addMessage("singup-form",
