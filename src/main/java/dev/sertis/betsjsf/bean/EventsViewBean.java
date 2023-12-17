@@ -12,6 +12,7 @@ import java.util.List;
 public class EventsViewBean implements Serializable {
     private LocalDate eventDate;
     private List<Event> events;
+    private Event selectedEvent;
 
     private final EventDAO eventDAO;
 
@@ -20,6 +21,30 @@ public class EventsViewBean implements Serializable {
         // Cargo la fecha actual para que muestre directamente los eventos de hoy
         this.eventDate = LocalDate.now();
         getEventsByDate();
+    }
+
+    public LocalDate getEventDate() {
+        return eventDate;
+    }
+
+    public void setEventDate(LocalDate eventDate) {
+        this.eventDate = eventDate;
+    }
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
+    }
+
+    public Event getSelectedEvent() {
+        return selectedEvent;
+    }
+
+    public void setSelectedEvent(Event selectedEvent) {
+        this.selectedEvent = selectedEvent;
     }
 
     public void getEventsByDate() {
@@ -45,19 +70,4 @@ public class EventsViewBean implements Serializable {
         return String.format("/resources/icons/laliga/%s.png", teams[1].trim().toLowerCase());
     }
 
-    public LocalDate getEventDate() {
-        return eventDate;
-    }
-
-    public void setEventDate(LocalDate eventDate) {
-        this.eventDate = eventDate;
-    }
-
-    public List<Event> getEvents() {
-        return events;
-    }
-
-    public void setEvents(List<Event> events) {
-        this.events = events;
-    }
 }

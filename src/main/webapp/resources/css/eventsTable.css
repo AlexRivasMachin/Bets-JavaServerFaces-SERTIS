@@ -1,0 +1,51 @@
+#form-events{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin: 10px 10% 50px 10%;
+}
+
+@media (max-width: 600px) {
+    #form-events{
+        flex-direction: column;
+    }
+}
+
+#calendar{
+    width: 300px;
+}
+
+.events-table-style{
+    width: 600px;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.column-event-table{
+    width: 80%;
+}
+
+.colum-view-event-table{
+    width: 20%;
+}
+
+.preview-event-table{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    text-align: center;
+    justify-content: center;
+}
+
+.team-img-event-table{
+    width: 60px;
+    height: 60px;
+}
+
+.event-info-event-table{
+    margin: 10px 0 10px 0;
+    padding-left: 20px;
+    padding-right: 20px;
+}
