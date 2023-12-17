@@ -8,30 +8,26 @@
 <ui:composition>
    <f:view>
       <h:head>
-         <h:outputStylesheet library="css" name="mostrarEventosStyle.css"/>
       </h:head>
       <h:body>
-         <div>
-            <h1>Eventos</h1>
-            <h:form id="form-events">
-               <p:calendar id="calendar" value="#{eventsView.eventDate}" navigator="true" mode="inline">
-                  <p:ajax event="dateSelect" listener="#{eventsView.onDateSelect}" update="events-table"/>
-               </p:calendar>
-               <p:dataTable id="events-table" styleClass="events-table-style" var="event" value="#{eventsView.events}">
-                  <p:column headerText="Eventos del dia #{eventsView.eventDate}">
-                     <f:facet name="header"/>
-                     <div id="preview" class="preview" style="margin-top: 0;">
-                        <h:graphicImage styleClass="imagenesEquipo" id="imgLocal" value="#{eventsView.getEventLocalTeamLogo(event.eventDescription)}"/>
-                        <div class = "labelsPreview">
-                           <p:outputLabel styleClass="infoEvento" id="infoEvento" value="#{event.eventDescription}"/>
-                           <p:outputLabel styleClass="infoEvento" id="infoFecha" value="#{event.eventDate}"/>
-                        </div>
-                        <h:graphicImage styleClass="imagenesEquipo" id="imgVisitante" value="#{eventsView.getEventVisitorTeamLogo(event.eventDescription)}"/>
+         <h1>Eventos</h1>
+         <h:form id="form-events">
+            <p:calendar id="calendar" value="#{eventsView.eventDate}" navigator="true" mode="inline">
+               <p:ajax event="dateSelect" listener="#{eventsView.onDateSelect}" update="events-table"/>
+            </p:calendar>
+            <p:dataTable id="events-table" styleClass="events-table-style" var="event" value="#{eventsView.events}">
+               <p:column headerText="Eventos del dia #{eventsView.eventDate}">
+                  <div id="preview" class="preview" style="margin-top: 0;">
+                     <h:graphicImage styleClass="imagenesEquipo" id="imgLocal" value="#{eventsView.getEventLocalTeamLogo(event.eventDescription)}"/>
+                     <div class = "labelsPreview">
+                        <p:outputLabel styleClass="infoEvento" id="infoEvento" value="#{event.eventDescription}"/>
+                        <p:outputLabel styleClass="infoEvento" id="infoFecha" value="#{event.eventDate}"/>
                      </div>
-                  </p:column>
-               </p:dataTable>
-            </h:form>
-         </div>
+                     <h:graphicImage styleClass="imagenesEquipo" id="imgVisitante" value="#{eventsView.getEventVisitorTeamLogo(event.eventDescription)}"/>
+                  </div>
+               </p:column>
+            </p:dataTable>
+         </h:form>
       </h:body>
    </f:view>
 </ui:composition>
