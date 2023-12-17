@@ -14,7 +14,7 @@ public class User {
     private String passwd;
     private String username;
     private boolean isAdmin;
-    private long creditCard;
+    private Long creditCard;
     @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
     private List<Bet> userPlacedBets;
 
@@ -87,11 +87,11 @@ public class User {
         isAdmin = admin;
     }
 
-    public long getCreditCard() {
+    public Long getCreditCard() {
         return creditCard;
     }
 
-    public void setCreditCard(long creditCard) {
+    public void setCreditCard(Long creditCard) {
         this.creditCard = creditCard;
     }
 

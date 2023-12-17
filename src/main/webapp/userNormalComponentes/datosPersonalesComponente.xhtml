@@ -20,7 +20,7 @@
 
                 <div class="row">
                     <h:form id="nameForm" >
-                        <h4>Nombre: #{userBean.name}</h4>
+                        <h4>Nombre: #{userBean.loggedUser.name}</h4>
                         <h:inputText id="nombreInput" styleClass="aSinput" value="#{userBean.loggedUser.name}" onclick="borrarContenido(this);"/>
                         <h:commandButton styleClass="aSbutton" value="Cambiar Nombre" action="#{userBean.setName}">
                             <f:ajax execute="nombreInput" render="nameForm" onevent="reload"/>

@@ -8,35 +8,28 @@ import dev.sertis.betsjsf.domain.User;
 import java.util.ArrayList;
 public class UserBean {
 
-    private String apellido;
+    private double cantidadRetiro;
+    private double cantidadDeposito;
+    private String componentContent;
+    private ArrayList<Bet> apuestasRealizadas;
+    private User loggedUser;
+    private final UserDAO userDAO;
+    private final BLFacade blFacade;
 
     public UserBean() {
         blFacade = BLFacadeImplementation.getInstance();
         userDAO = UserDAOHibernate.getInstance();
         loggedUser = LoginBean.getLoggedUser();
+        System.out.println(loggedUser.getUsername());
         cantidadRetiro = 0.0;
         cantidadDeposito = 0.0;
         apuestasRealizadas = new ArrayList<>();
         //showEventos();
     }
-
-    private String dni;
-    private String name;
-    private double cantidadRetiro;
-    private double cantidadDeposito;
-    private String componentContent;
-    private Long tarjetaDeCredito;
-    private ArrayList<Bet> apuestasRealizadas;
-    private User loggedUser;
-    private final UserDAO userDAO;
-    private final BLFacade blFacade;
-    private String contraseña;
-
-
-
     public String logout() {
         return "logout";
     }
+
 
     public String showEventos() {
         componentContent = "commonUIComponents/mostrarEventos.xhtml";
@@ -64,49 +57,79 @@ public class UserBean {
     }
     public void setCantidadRetiro(double cantidadRetiro) {
         this.cantidadRetiro = cantidadRetiro;
+        printAllUserInfo();
+
     }
     public double getCantidadDeposito() {
         return cantidadDeposito;
     }
     public void setCantidadDeposito(double cantidadDeposito) {
         this.cantidadDeposito = cantidadDeposito;
+        printAllUserInfo();
     }
     public void añadirSaldo() {
-       loggedUser.setCurrentBalance(loggedUser.getCurrentBalance() + cantidadDeposito);
+        loggedUser.setCurrentBalance(loggedUser.getCurrentBalance() + cantidadDeposito);
+        printAllUserInfo();
+
     }
 
     public void restarSaldo() {
         if(cantidadRetiro <= loggedUser.getCurrentBalance()) {
             loggedUser.setCurrentBalance(loggedUser.getCurrentBalance() - cantidadRetiro);
+            printAllUserInfo();
         }
     }
 
-    public String getDni() {return dni; }
     public void setDni(String nuevoDni) {
-        if(nuevoDni.length() == 9) this.dni = nuevoDni;
+        if(nuevoDni.length() == 9){
+            loggedUser.setDni(nuevoDni);
+            printAllUserInfo();
+        }
     }
 
-    public String getName() {return name; }
     public void setName(String nuevoNombre) {
-        if (!nuevoNombre.isEmpty()) this.name = nuevoNombre;
+        if (!nuevoNombre.isEmpty()){
+            loggedUser.setName(nuevoNombre);
+            printAllUserInfo();
+        }
     }
-
-    public void setApellido(String nuevoApellido) {if(!nuevoApellido.isEmpty()) this.apellido = nuevoApellido; }
+    public void setApellido(String nuevoApellido) {
+        if (!nuevoApellido.isEmpty()){
+            loggedUser.setLastName(nuevoApellido);
+            printAllUserInfo();
+        }
+    }
 
     public void setTarjetaDeCredito(Long nuevaTarjeta) {
         if(nuevaTarjeta.toString().length()==16){
-            this.tarjetaDeCredito = nuevaTarjeta;
             blFacade.changeUserCreditCard(loggedUser.getDni(), nuevaTarjeta);
+            printAllUserInfo();
         }
     }
 
     public void setContraseña(String nuevaContraseña) {
-        if(!nuevaContraseña.isEmpty()) this.contraseña = nuevaContraseña;
-        blFacade.changeUserPassword(loggedUser.getDni(), nuevaContraseña);
+        if(!nuevaContraseña.isEmpty()){
+            loggedUser.setPasswd(nuevaContraseña);
+            blFacade.changeUserPassword(loggedUser.getDni(), nuevaContraseña);
+            printAllUserInfo();
+        }
+    }
+
+    public User getLoggedUser() {
+        return loggedUser;
     }
 
     public void setLoggedUser(User loggedUser) {
         this.loggedUser = loggedUser;
+    }
+
+    public void printAllUserInfo(){
+        System.out.println("DNI: " + loggedUser.getDni());
+        System.out.println("Nombre: " + loggedUser.getName());
+        System.out.println("Apellido: " + loggedUser.getLastName());
+        System.out.println("Saldo: " + loggedUser.getCurrentBalance());
+        System.out.println("Contraseña: " + loggedUser.getPasswd());
+        System.out.println("Tarjeta de credito: " + loggedUser.getCreditCard());
     }
 
     /** DATOS APUESTAS **/
