@@ -1,7 +1,6 @@
 package dev.sertis.betsjsf.bean;
 import dev.sertis.betsjsf.BLFacade;
 import dev.sertis.betsjsf.BLFacadeImplementation;
-import dev.sertis.betsjsf.dao.EventDAOHibernate;
 import dev.sertis.betsjsf.domain.Event;
 import org.primefaces.event.SelectEvent;
 import javax.faces.application.FacesMessage;
@@ -60,7 +59,10 @@ public class AdminBean {
     }
 
     public void onDateSelect(SelectEvent event) {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fecha escogida: "+event.getObject()));
+        escribirMensajeDeFechaEscogida(event.getObject().toString());
+    }
+    private void escribirMensajeDeFechaEscogida(String fecha){
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fecha escogida: " + fecha));
     }
 
     public void setFecha(Date fecha){
@@ -94,15 +96,14 @@ public class AdminBean {
         this.teamImagesAreRendered = teamImagesAreRendered;
     }
 
-    public void checkSiSeHanIntroducidoEquiposYActualizarSusImagenes(AjaxBehaviorEvent event){
+    public void onCaracterDeEventoEscrito(AjaxBehaviorEvent event){
+        actualizarImagenesDeEquipos();
+    }
+
+    private void actualizarImagenesDeEquipos(){
         if(eventoFormatoPartido()){
-
-            imgLocal = getUrlIcono(descripcionEvento.substring(0, descripcionEvento.indexOf("-")).trim().toLowerCase());
-            imgVisitante = getUrlIcono(descripcionEvento.split("-")[1].trim().toLowerCase());
-
-            if(!getTeamImagesAreRendered()){
-                setTeamImagesAreRendered(true);
-            }
+            acutalizarImagenesEquipos();
+            setTeamImagesAreRendered(true);
         }else{
             setTeamImagesAreRendered(false);
         }
@@ -110,6 +111,11 @@ public class AdminBean {
 
     private boolean eventoFormatoPartido() {
         return descripcionEvento != null && descripcionEvento.contains("-");
+    }
+
+    private void acutalizarImagenesEquipos(){
+        imgLocal = getUrlIcono(descripcionEvento.substring(0, descripcionEvento.indexOf("-")).trim().toLowerCase());
+        imgVisitante = getUrlIcono(descripcionEvento.split("-")[1].trim().toLowerCase());
     }
 
     private String getUrlIcono(String nombreEquipo){
@@ -126,12 +132,16 @@ public class AdminBean {
         return String.format("/resources/icons/laliga/%s.png", equipo);
     }
 
-
-    public void onAceptarSelected(){
+    public void onBotonAceptarClicked(){
+        guardarEventoEnBD();
+        escribirMensajeDeEventoGuardado();
+    }
+    private void guardarEventoEnBD(){
         LocalDate localDate = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         BLFacade.saveEvent(new Event(descripcionEvento, localDate));
-
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Evento creado correctamente"));
+    }
+    private void escribirMensajeDeEventoGuardado(){
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Evento guardado correctamente"));
     }
 
 
