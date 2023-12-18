@@ -14,7 +14,7 @@
             <div class="grid">
 
                 <div class="row">
-                        <h3 id="saldo"> Saldo: #{userBean.loggedUser.currentBalance}</h3>
+                        <h3 id="saldo">Futuro Saldo: #{userBean.loggedUser.currentBalance}</h3>
                 </div>
 
                 <h:form id="saldoForm">
@@ -25,7 +25,7 @@
                                 <f:convertNumber pattern="#,##0.00" type="number" integerOnly="false" />
                             </h:inputText>
                             <h:commandButton styleClass="aSbutton" value="Añadir" action="#{userBean.añadirSaldo}">
-                                <f:ajax execute="aSaldoInput" render="saldoForm:saldoOutput"/>
+                                <f:ajax execute="aSaldoInput" render="saldoForm"/>
                             </h:commandButton>
                     </div>
 
@@ -35,7 +35,7 @@
                                 <f:convertNumber pattern="#,##0.00" type="number" integerOnly="false" />
                             </h:inputText>
                             <h:commandButton styleClass="aSbutton" value="Retirar" action="#{userBean.restarSaldo}">
-                                <f:ajax execute="rSaldoInput" render="saldoForm:saldoOutput" />
+                                <f:ajax execute="rSaldoInput" render="saldoForm" />
                             </h:commandButton>
                     </div>
                 </h:form>
