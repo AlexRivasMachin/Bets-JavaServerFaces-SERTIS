@@ -15,7 +15,7 @@ import java.util.Date;
 
 public class AdminBean {
     public AdminBean() {
-        componentPath = "adminUIComponents/adminCerrarEventos.xhtml";
+        componentPath = "adminUIComponents/adminCrearEvento.xhtml";
     }
     private String componentPath, destinoDesdeEventsView;
 
