@@ -47,6 +47,11 @@ public class BLFacadeImplementation implements BLFacade{
     }
 
     @Override
+    public void updateUser(User user) {
+        userDAO.update(user);
+    }
+
+    @Override
     public void saveForecast(Forecast forecast) {
         forecastDAO.save(forecast);
     }
@@ -164,7 +169,6 @@ public class BLFacadeImplementation implements BLFacade{
     @Override
     public User changeUserCreditCard(String dni, long newCard) {
         User userToModify = userDAO.getUserByDNI(dni);
-
         userToModify.setCreditCard(newCard);
         userDAO.update(userToModify);
 
