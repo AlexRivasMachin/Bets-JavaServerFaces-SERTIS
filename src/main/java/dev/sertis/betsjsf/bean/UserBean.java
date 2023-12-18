@@ -5,13 +5,18 @@ import dev.sertis.betsjsf.dao.UserDAO;
 import dev.sertis.betsjsf.dao.UserDAOHibernate;
 import dev.sertis.betsjsf.domain.Bet;
 import dev.sertis.betsjsf.domain.User;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+
 public class UserBean {
 
     private double cantidadRetiro;
     private double cantidadDeposito;
     private String componentContent;
-    private ArrayList<Bet> apuestasRealizadas;
+    private static List<Bet> apuestasRealizadas = new ArrayList();
     private User loggedUser;
     private final UserDAO userDAO;
     private final BLFacade blFacade;
@@ -22,32 +27,37 @@ public class UserBean {
         this.loggedUser = LoginBean.getLoggedUser();
         cantidadRetiro = 0.0;
         cantidadDeposito = 0.0;
-        apuestasRealizadas = new ArrayList<>();
-        //showEventos();
+        this.apuestasRealizadas = loggedUser.getUserPlacedBets();
+        showEventos();
     }
     public String logout() {
         return "logout";
     }
 
 
-    public String showEventos() {
+    public void showEventos() {
         componentContent = "commonUIComponents/mostrarEventos.xhtml";
-        return null;
+        reloadPage();
     }
-
-    public String showApuestas() {
+    public void showApuestas() {
         componentContent = "userNormalComponentes/apuestasRealizadasComponente.xhtml";
-        return null;
+        reloadPage();
     }
-
-    public String showAñadirSaldo() {
+    public void showAñadirSaldo() {
         componentContent = "userNormalComponentes/añadirSaldoComponente.xhtml";
-        return null;
+        reloadPage();
     }
-
-    public String showDatosPersonales() {
+    public void showDatosPersonales() {
         componentContent = "userNormalComponentes/datosPersonalesComponente.xhtml";
-        return null;
+        reloadPage();
+    }
+    public void reloadPage(){
+        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+        try {
+            externalContext.redirect(externalContext.getRequestContextPath() + "/user.xhtml");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**DATOS DEL USUARIO**/
@@ -74,35 +84,6 @@ public class UserBean {
             loggedUser.setCurrentBalance(loggedUser.getCurrentBalance() - cantidadRetiro);
         }
     }
-    public void setName(String nuevoNombre) {
-        if (!nuevoNombre.isEmpty()){
-            setLoggedUser(blFacade.changeUserName(loggedUser.getDni(), nuevoNombre));
-        }
-    }
-    public void setApellido(String nuevoApellido) {
-        if (!nuevoApellido.isEmpty()){
-            setLoggedUser(blFacade.changeUserLastName(loggedUser.getDni(), nuevoApellido));
-        }
-    }
-
-    public void setTarjetaDeCredito(Long nuevaTarjeta) {
-        if(nuevaTarjeta.toString().length()==16){
-            setLoggedUser(blFacade.changeUserCreditCard(loggedUser.getDni(), nuevaTarjeta));
-        }
-    }
-
-    public void setContraseña(String nuevaContraseña) {
-        if(!nuevaContraseña.isEmpty()){
-            setLoggedUser(blFacade.changeUserPassword(loggedUser.getDni(), nuevaContraseña));
-        }
-    }
-
-    public void setUsername(String nuevoUsername){
-        if(!loggedUser.getUsername().isEmpty()){
-            setLoggedUser(blFacade.changeUserUsername(loggedUser.getDni(), nuevoUsername));
-        }
-    }
-
     public void updateUserInfo() {
         blFacade.updateUser(loggedUser);
         setLoggedUser(blFacade.getUserByDni(loggedUser.getDni()));
@@ -114,32 +95,6 @@ public class UserBean {
 
     public void setLoggedUser(User loggedUser) {
         this.loggedUser = loggedUser;
-    }
-
-    /** DATOS APUESTAS **/
-    public ArrayList<Bet> getApuestasRealizadas() {
-        return apuestasRealizadas;
-    }
-    public String fecha() {
-        return "fecha";
-    }
-    public String evento() {
-        return "evento";
-    }
-    public String pregunta() {
-        return "pregunta";
-    }
-    public String pronostico() {
-        return "pronostico";
-    }
-    public String ganancia() {
-        return "1.0";
-    }
-    public String apostado() {
-        return "10.00";
-    }
-    public String balance() {
-        return "20.00";
     }
 
     /**COMPONENTES**/
