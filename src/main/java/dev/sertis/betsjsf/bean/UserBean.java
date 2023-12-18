@@ -17,10 +17,9 @@ public class UserBean {
     private final BLFacade blFacade;
 
     public UserBean() {
-        blFacade = BLFacadeImplementation.getInstance();
-        userDAO = UserDAOHibernate.getInstance();
-        loggedUser = LoginBean.getLoggedUser();
-        System.out.println(loggedUser.getUsername());
+        this.blFacade = BLFacadeImplementation.getInstance();
+        this.userDAO = UserDAOHibernate.getInstance();
+        this.loggedUser = LoginBean.getLoggedUser();
         cantidadRetiro = 0.0;
         cantidadDeposito = 0.0;
         apuestasRealizadas = new ArrayList<>();
@@ -57,7 +56,6 @@ public class UserBean {
     }
     public void setCantidadRetiro(double cantidadRetiro) {
         this.cantidadRetiro = cantidadRetiro;
-        printAllUserInfo();
 
     }
     public double getCantidadDeposito() {
@@ -65,54 +63,49 @@ public class UserBean {
     }
     public void setCantidadDeposito(double cantidadDeposito) {
         this.cantidadDeposito = cantidadDeposito;
-        printAllUserInfo();
     }
     public void añadirSaldo() {
         loggedUser.setCurrentBalance(loggedUser.getCurrentBalance() + cantidadDeposito);
-        printAllUserInfo();
 
     }
 
     public void restarSaldo() {
         if(cantidadRetiro <= loggedUser.getCurrentBalance()) {
             loggedUser.setCurrentBalance(loggedUser.getCurrentBalance() - cantidadRetiro);
-            printAllUserInfo();
         }
     }
-
-    public void setDni(String nuevoDni) {
-        if(nuevoDni.length() == 9){
-            loggedUser.setDni(nuevoDni);
-            printAllUserInfo();
-        }
-    }
-
     public void setName(String nuevoNombre) {
         if (!nuevoNombre.isEmpty()){
-            loggedUser.setName(nuevoNombre);
-            printAllUserInfo();
+            setLoggedUser(blFacade.changeUserName(loggedUser.getDni(), nuevoNombre));
         }
     }
     public void setApellido(String nuevoApellido) {
         if (!nuevoApellido.isEmpty()){
-            loggedUser.setLastName(nuevoApellido);
-            printAllUserInfo();
+            setLoggedUser(blFacade.changeUserLastName(loggedUser.getDni(), nuevoApellido));
         }
     }
 
     public void setTarjetaDeCredito(Long nuevaTarjeta) {
         if(nuevaTarjeta.toString().length()==16){
-            blFacade.changeUserCreditCard(loggedUser.getDni(), nuevaTarjeta);
-            printAllUserInfo();
+            setLoggedUser(blFacade.changeUserCreditCard(loggedUser.getDni(), nuevaTarjeta));
         }
     }
 
     public void setContraseña(String nuevaContraseña) {
         if(!nuevaContraseña.isEmpty()){
-            loggedUser.setPasswd(nuevaContraseña);
-            blFacade.changeUserPassword(loggedUser.getDni(), nuevaContraseña);
-            printAllUserInfo();
+            setLoggedUser(blFacade.changeUserPassword(loggedUser.getDni(), nuevaContraseña));
         }
+    }
+
+    public void setUsername(String nuevoUsername){
+        if(!loggedUser.getUsername().isEmpty()){
+            setLoggedUser(blFacade.changeUserUsername(loggedUser.getDni(), nuevoUsername));
+        }
+    }
+
+    public void updateUserInfo() {
+        blFacade.updateUser(loggedUser);
+        setLoggedUser(blFacade.getUserByDni(loggedUser.getDni()));
     }
 
     public User getLoggedUser() {
@@ -121,15 +114,6 @@ public class UserBean {
 
     public void setLoggedUser(User loggedUser) {
         this.loggedUser = loggedUser;
-    }
-
-    public void printAllUserInfo(){
-        System.out.println("DNI: " + loggedUser.getDni());
-        System.out.println("Nombre: " + loggedUser.getName());
-        System.out.println("Apellido: " + loggedUser.getLastName());
-        System.out.println("Saldo: " + loggedUser.getCurrentBalance());
-        System.out.println("Contraseña: " + loggedUser.getPasswd());
-        System.out.println("Tarjeta de credito: " + loggedUser.getCreditCard());
     }
 
     /** DATOS APUESTAS **/

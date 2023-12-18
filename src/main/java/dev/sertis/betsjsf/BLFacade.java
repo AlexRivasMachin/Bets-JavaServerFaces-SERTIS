@@ -13,6 +13,8 @@ public interface BLFacade {
 
     void saveUser(User user);
 
+    void updateUser(User user);
+
     void saveForecast(Forecast forecast);
 
     void saveBet(Bet bet);
