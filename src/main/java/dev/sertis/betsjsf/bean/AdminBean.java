@@ -18,11 +18,19 @@ public class AdminBean {
         componentPath = "adminUIComponents/adminCerrarEventos.xhtml";
         BLFacade = BLFacadeImplementation.getInstance();
         setTeamImagesAreRendered(false);
+        setMensajeEventoCreadoIsRendered(true);
     }
     private BLFacade BLFacade;
-    private String componentPath, descripcionEvento, imgLocal, imgVisitante;
-    private boolean teamImagesAreRendered;
+    private String componentPath, descripcionEvento, imgLocal, imgVisitante, h3Eventos;
+    private boolean teamImagesAreRendered, mensajeEventoCreadoIsRendered;
     private Date fecha;
+
+    public String logout(){
+        return "logout";
+    }
+    public String exit(){
+        return "exit";
+    }
 
     public String getComponentPath(){
         return componentPath;
@@ -60,6 +68,7 @@ public class AdminBean {
 
     public void onDateSelect(SelectEvent event) {
         escribirMensajeDeFechaEscogida(event.getObject().toString());
+        setMensajeEventoCreadoIsRendered(false);
     }
     private void escribirMensajeDeFechaEscogida(String fecha){
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fecha escogida: " + fecha));
@@ -95,9 +104,17 @@ public class AdminBean {
     public void setTeamImagesAreRendered(boolean teamImagesAreRendered){
         this.teamImagesAreRendered = teamImagesAreRendered;
     }
+    public boolean getMensajeEventoCreadoIsRendered(){
+        return mensajeEventoCreadoIsRendered;
+    }
+    public void setMensajeEventoCreadoIsRendered(boolean mensajeEventoCreadoIsRendered){
+        this.mensajeEventoCreadoIsRendered = mensajeEventoCreadoIsRendered;
+    }
 
     public void onCaracterDeEventoEscrito(AjaxBehaviorEvent event){
         actualizarImagenesDeEquipos();
+        setMensajeEventoCreadoIsRendered(false);
+        System.out.println("Mensaje rendered: " + getMensajeEventoCreadoIsRendered());
     }
 
     private void actualizarImagenesDeEquipos(){
@@ -134,6 +151,7 @@ public class AdminBean {
 
     public void onBotonAceptarClicked(){
         guardarEventoEnBD();
+        setMensajeEventoCreadoIsRendered(true);
         escribirMensajeDeEventoGuardado();
     }
     private void guardarEventoEnBD(){
@@ -143,6 +161,5 @@ public class AdminBean {
     private void escribirMensajeDeEventoGuardado(){
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Evento guardado correctamente"));
     }
-
 
 }
