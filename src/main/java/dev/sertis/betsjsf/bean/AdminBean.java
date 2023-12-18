@@ -5,9 +5,11 @@ import dev.sertis.betsjsf.dao.EventDAOHibernate;
 import dev.sertis.betsjsf.domain.Event;
 import org.primefaces.event.SelectEvent;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -15,12 +17,10 @@ import java.util.Date;
 public class AdminBean {
     public AdminBean() {
         componentPath = "adminUIComponents/adminCerrarEventos.xhtml";
-        eventDAO = EventDAOHibernate.getInstance();
         BLFacade = BLFacadeImplementation.getInstance();
         setTeamImagesAreRendered(false);
     }
     private BLFacade BLFacade;
-    private EventDAOHibernate eventDAO;
     private String componentPath, descripcionEvento, imgLocal, imgVisitante;
     private boolean teamImagesAreRendered;
     private Date fecha;
@@ -31,15 +31,28 @@ public class AdminBean {
 
     public void changeComponentToAddQuestionsAndForecasts(){
         setComponentPath("adminUIComponents/adminAnadirPreguntasYPronosticos.xhtml");
+        reloadPage();
     }
     public void changeComponentToCloseEvents(){
         setComponentPath("adminUIComponents/adminCerrarEventos.xhtml");
+        reloadPage();
     }
     public void changeComponentToCreateEvent(){
         setComponentPath("adminUIComponents/adminCrearEvento.xhtml");
+        reloadPage();
     }
     public void changeComponentToEventsList(){
         setComponentPath("commonUIComponents/mostrarEventos.xhtml");
+        reloadPage();
+    }
+
+    public void reloadPage(){
+        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+        try {
+            externalContext.redirect(externalContext.getRequestContextPath() + "/admin.xhtml");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void setComponentPath(String path){
@@ -120,12 +133,6 @@ public class AdminBean {
 
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Evento creado correctamente"));
     }
-
-
-
-
-
-
 
 
 }
