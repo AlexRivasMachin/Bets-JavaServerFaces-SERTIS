@@ -3,6 +3,7 @@ package dev.sertis.betsjsf.bean;
 import dev.sertis.betsjsf.dao.EventDAO;
 import dev.sertis.betsjsf.dao.EventDAOHibernate;
 import dev.sertis.betsjsf.domain.Event;
+import dev.sertis.betsjsf.domain.User;
 import org.primefaces.event.SelectEvent;
 
 import java.io.Serializable;
@@ -13,12 +14,12 @@ public class EventsViewBean implements Serializable {
     private LocalDate eventDate;
     private List<Event> events;
     private Event selectedEvent;
+    private AdminBean adminBean;
 
     private final EventDAO eventDAO;
 
     public EventsViewBean() {
         eventDAO = EventDAOHibernate.getInstance();
-        // Cargo la fecha actual para que muestre directamente los eventos de hoy
         this.eventDate = LocalDate.now();
         getEventsByDate();
     }
@@ -45,6 +46,10 @@ public class EventsViewBean implements Serializable {
 
     public void setSelectedEvent(Event selectedEvent) {
         this.selectedEvent = selectedEvent;
+        User loggedUser = LoginBean.getLoggedUser();
+        if(loggedUser != null && loggedUser.isAdmin()) {
+            adminBean.changeComponentToAddQuestionsAndForecasts();
+        }
     }
 
     public void getEventsByDate() {
@@ -54,6 +59,10 @@ public class EventsViewBean implements Serializable {
     public void onDateSelect(SelectEvent<LocalDate> event) {
         this.eventDate = event.getObject();
         getEventsByDate();
+    }
+
+    public void setAdminBean(AdminBean adminBean) {
+        this.adminBean = adminBean;
     }
 
     public String getEventLocalTeamLogo(String description){
@@ -69,5 +78,4 @@ public class EventsViewBean implements Serializable {
         String[] teams = description.split("-");
         return String.format("/resources/icons/laliga/%s.png", teams[1].trim().toLowerCase());
     }
-
 }

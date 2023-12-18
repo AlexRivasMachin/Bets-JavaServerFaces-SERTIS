@@ -20,6 +20,12 @@ public class Forecast {
     public Forecast() {
     }
 
+    public Forecast(String forecastDescription, double potentialGain, Question associatedQuestion) {
+        this.forecastDescription = forecastDescription;
+        this.potentialGain = potentialGain;
+        this.associatedQuestion = associatedQuestion;
+    }
+
     public long getForecastId() {
         return forecastId;
     }

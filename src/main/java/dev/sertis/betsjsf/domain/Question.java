@@ -12,16 +12,22 @@ public class Question {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long questionId;
     private String questionDescription;
-    private float minimumBetAmount;
-    @OneToOne(cascade = CascadeType.ALL, targetEntity = Forecast.class)
+    private double minimumBetAmount;
+    @OneToOne(cascade = CascadeType.ALL)
     private Forecast winningForecast;
-    @ManyToOne(targetEntity = Event.class,cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Event associatedEvent;
-    @OneToMany( targetEntity = Forecast.class, cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Forecast> forecastsForThisQuestion;
 
     public Question(){
 
+    }
+
+    public Question(String questionDescription, double minimumBetAmount, Event associatedEvent) {
+        this.questionDescription = questionDescription;
+        this.minimumBetAmount = minimumBetAmount;
+        this.associatedEvent = associatedEvent;
     }
 
     public long getQuestionId() {
@@ -40,11 +46,11 @@ public class Question {
         this.questionDescription = questionDescription;
     }
 
-    public float getMinimumBetAmount() {
+    public double getMinimumBetAmount() {
         return minimumBetAmount;
     }
 
-    public void setMinimumBetAmount(float minimumBetAmount) {
+    public void setMinimumBetAmount(double minimumBetAmount) {
         this.minimumBetAmount = minimumBetAmount;
     }
 
@@ -74,7 +80,7 @@ public class Question {
 
     @Override
     public String toString(){
-        return questionId +";"+ questionDescription +";"+Float.toString(minimumBetAmount);
+        return questionId +";"+ questionDescription +";"+ minimumBetAmount;
     }
 
     @Override
