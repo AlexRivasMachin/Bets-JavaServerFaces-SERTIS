@@ -8,18 +8,23 @@
         Título de la página
     </ui:define>
     <ui:define name="cuerpo">
-        <nav>
+        <nav class="nav">
+
+            <div class="botones">
+                <h:form>
+                    <h:commandButton styleClass="botoness" value="Salir" action="#{admin.exit}"/>
+                    <h:commandButton styleClass="botoness" value="Cerrar Sesión" action="#{admin.logout}" />
+                </h:form>
+            </div>
+
             <h:outputText value="User: admin"/>
             <h:form>
-                <ul>
-                    <li>
-                        <h:commandButton action="#{admin.changeComponentToCreateEvent()}" value="Crear Evento" styleClass="buttonNav">
-                        </h:commandButton>
-                    </li>
-                    <li><h:commandButton action="#{admin.changeComponentToAddQuestionsAndForecasts()}" value="Añadir Preguntas y Pronosticos" styleClass="buttonNav"></h:commandButton></li>
-                    <li><h:commandButton action="#{admin.changeComponentToCloseEvents()}" value="Cerrar Eventos" styleClass="buttonNav"></h:commandButton></li>
-                    <li><h:commandButton action="#{admin.changeComponentToEventsList()}" value="Lista de Eventos" styleClass="buttonNav"></h:commandButton></li>
-                </ul>
+                <div class="menu">
+                    <h:commandButton action="#{admin.changeComponentToCreateEvent()}" value="Crear Evento" styleClass="menuButton"></h:commandButton>
+                    <h:commandButton action="#{admin.changeComponentToAddQuestionsAndForecasts()}" value="Añadir Preguntas y Pronosticos" styleClass="menuButton"></h:commandButton>
+                    <h:commandButton action="#{admin.changeComponentToCloseEvents()}" value="Cerrar Eventos" styleClass="menuButton"></h:commandButton>
+                    <h:commandButton action="#{admin.changeComponentToEventsList()}" value="Lista de Eventos" styleClass="menuButton"></h:commandButton>
+                </div>
             </h:form>
         </nav>
         <ui:include id="panelSeccion" src="#{admin.getComponentPath()}"/>
