@@ -24,7 +24,7 @@
                 <h3>Evento:</h3>
                 <h:form id="formInput">
                     <p:inputText id="evento" value="#{admin.descripcionEvento}">
-                        <f:ajax event="keyup" listener="#{admin.checkSiSeHanIntroducidoEquiposYActualizarSusImagenes}" render="formPreview"/>
+                        <f:ajax event="keyup" listener="#{admin.onCaracterDeEventoEscrito}" render="formPreview"/>
                     </p:inputText>
                 </h:form>
 
@@ -39,12 +39,12 @@
                     </div>
                 </h:form>
                 <h:form id="formBotonAceptar">
-                    <h:commandButton id="botonAceptar" value="Aceptar" styleClass="buttonDisabled" action="#{admin.onAceptarSelected}">
+                    <h:commandButton id="botonAceptar" value="Aceptar" styleClass="buttonDisabled" action="#{admin.onBotonAceptarClicked}">
                         <f:ajax event="click" render="mensajes"/>
                     </h:commandButton>
                 </h:form>
                 <h:messages id="mensajes"/>
-                <h:outputScript name="js/adminCreateEvent22.js"/>
+                <h:outputScript name="js/adminCreateEvent30.js"/>
             </div>
         </div>
     </h:body>

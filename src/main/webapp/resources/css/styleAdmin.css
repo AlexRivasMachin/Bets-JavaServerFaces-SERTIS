@@ -26,6 +26,9 @@ ul{
     display: flex;
 }
 
+.hidden{
+    color: transparent;
+}
 .h3CrearEvento, h5CrearEvento{
     display: inline;
     margin-right: 20px;
