@@ -16,14 +16,8 @@ import java.util.Date;
 public class AdminBean {
     public AdminBean() {
         componentPath = "adminUIComponents/adminCerrarEventos.xhtml";
-        BLFacade = BLFacadeImplementation.getInstance();
-        setTeamImagesAreRendered(false);
-        setMensajeEventoCreadoIsRendered(true);
     }
-    private BLFacade BLFacade;
-    private String componentPath, descripcionEvento, imgLocal, imgVisitante, h3Eventos;
-    private boolean teamImagesAreRendered, mensajeEventoCreadoIsRendered;
-    private Date fecha;
+    private String componentPath;
 
     public String logout(){
         return "logout";
@@ -64,102 +58,6 @@ public class AdminBean {
 
     private void setComponentPath(String path){
         componentPath = path;
-    }
-
-    public void onDateSelect(SelectEvent event) {
-        escribirMensajeDeFechaEscogida(event.getObject().toString());
-        setMensajeEventoCreadoIsRendered(false);
-    }
-    private void escribirMensajeDeFechaEscogida(String fecha){
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fecha escogida: " + fecha));
-    }
-
-    public void setFecha(Date fecha){
-        this.fecha = fecha;
-    }
-    public Date getFecha(){
-        return fecha;
-    }
-    public void setDescripcionEvento(String descripcionEvento){
-        this.descripcionEvento = descripcionEvento;
-    }
-    public String getDescripcionEvento(){
-        return descripcionEvento;
-    }
-    public void setImgLocal(String imgLocal){
-        this.imgLocal = imgLocal;
-    }
-    public String getImgLocal(){
-        return imgLocal;
-    }
-    public void setImgVisitante(String imgVisitante){
-        this.imgVisitante = imgVisitante;
-    }
-    public String getImgVisitante(){
-        return imgVisitante;
-    }
-    public boolean getTeamImagesAreRendered(){
-        return teamImagesAreRendered;
-    }
-    public void setTeamImagesAreRendered(boolean teamImagesAreRendered){
-        this.teamImagesAreRendered = teamImagesAreRendered;
-    }
-    public boolean getMensajeEventoCreadoIsRendered(){
-        return mensajeEventoCreadoIsRendered;
-    }
-    public void setMensajeEventoCreadoIsRendered(boolean mensajeEventoCreadoIsRendered){
-        this.mensajeEventoCreadoIsRendered = mensajeEventoCreadoIsRendered;
-    }
-
-    public void onCaracterDeEventoEscrito(AjaxBehaviorEvent event){
-        actualizarImagenesDeEquipos();
-        setMensajeEventoCreadoIsRendered(false);
-        System.out.println("Mensaje rendered: " + getMensajeEventoCreadoIsRendered());
-    }
-
-    private void actualizarImagenesDeEquipos(){
-        if(eventoFormatoPartido()){
-            acutalizarImagenesEquipos();
-            setTeamImagesAreRendered(true);
-        }else{
-            setTeamImagesAreRendered(false);
-        }
-    }
-
-    private boolean eventoFormatoPartido() {
-        return descripcionEvento != null && descripcionEvento.contains("-");
-    }
-
-    private void acutalizarImagenesEquipos(){
-        imgLocal = getUrlIcono(descripcionEvento.substring(0, descripcionEvento.indexOf("-")).trim().toLowerCase());
-        imgVisitante = getUrlIcono(descripcionEvento.split("-")[1].trim().toLowerCase());
-    }
-
-    private String getUrlIcono(String nombreEquipo){
-        String urlEquipo = getUrlEquipo(nombreEquipo);
-        File icono = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath(urlEquipo));
-
-        if(icono.exists()){
-            return urlEquipo;
-        }
-        return getUrlEquipo("unknown");
-    }
-
-    private String getUrlEquipo(String equipo){
-        return String.format("/resources/icons/laliga/%s.png", equipo);
-    }
-
-    public void onBotonAceptarClicked(){
-        guardarEventoEnBD();
-        setMensajeEventoCreadoIsRendered(true);
-        escribirMensajeDeEventoGuardado();
-    }
-    private void guardarEventoEnBD(){
-        LocalDate localDate = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        BLFacade.saveEvent(new Event(descripcionEvento, localDate));
-    }
-    private void escribirMensajeDeEventoGuardado(){
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Evento guardado correctamente"));
     }
 
 }

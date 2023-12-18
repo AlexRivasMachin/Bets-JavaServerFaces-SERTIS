@@ -22,6 +22,11 @@
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     <managed-bean>
+        <managed-bean-name>createEvent</managed-bean-name>
+        <managed-bean-class>dev.sertis.betsjsf.bean.CreateEventBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
         <managed-bean-name>userBean</managed-bean-name>
         <managed-bean-class>dev.sertis.betsjsf.bean.UserBean</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
@@ -67,6 +72,20 @@
         <from-view-id>/user.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>logout</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/admin.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>logout</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/admin.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>exit</from-outcome>
             <to-view-id>/login.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
