@@ -1,3 +1,14 @@
+*{
+    font-family: sans-serif;
+}
+
+body, p{
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 200;
+    color: rgba(0, 0, 0, 0.9);
+}
+
 nav{
     background-color: #29a7ad;
 }
