@@ -17,7 +17,7 @@ public class AdminBean {
     public AdminBean() {
         componentPath = "adminUIComponents/adminCerrarEventos.xhtml";
     }
-    private String componentPath;
+    private String componentPath, destinoDesdeEventsView;
 
     public String logout(){
         return "logout";
@@ -30,11 +30,26 @@ public class AdminBean {
         return componentPath;
     }
 
+    public void changeComponentFromEventList(){
+        if(destinoDesdeEventsView.equals("addQuestions")) {
+            changeComponentToAddQuestionsAndForecastsAfterEventViewList();
+        } else if(destinoDesdeEventsView.equals("closeEvents")) {
+            changeComponentToCloseEventsAfterEventViewList();
+        }
+    }
     public void changeComponentToAddQuestionsAndForecasts(){
+        changeComponentToEventsList();
+        destinoDesdeEventsView = "addQuestions";
+    }
+    public void changeComponentToAddQuestionsAndForecastsAfterEventViewList(){
         setComponentPath("adminUIComponents/adminAnadirPreguntasYPronosticos.xhtml");
         reloadPage();
     }
     public void changeComponentToCloseEvents(){
+        changeComponentToEventsList();
+        destinoDesdeEventsView = "closeEvents";
+    }
+    public void changeComponentToCloseEventsAfterEventViewList(){
         setComponentPath("adminUIComponents/adminCerrarEventos.xhtml");
         reloadPage();
     }

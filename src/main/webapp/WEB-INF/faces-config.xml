@@ -49,6 +49,15 @@
             <value>#{eventsView}</value>
         </managed-property>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>closeEvent</managed-bean-name>
+        <managed-bean-class>dev.sertis.betsjsf.bean.CloseEventBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+            <property-name>eventsViewBean</property-name>
+            <value>#{eventsView}</value>
+        </managed-property>
+    </managed-bean>
 
     <navigation-rule>
         <from-view-id>/login.xhtml</from-view-id>
