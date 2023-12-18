@@ -29,7 +29,20 @@
     <managed-bean>
         <managed-bean-name>eventsView</managed-bean-name>
         <managed-bean-class>dev.sertis.betsjsf.bean.EventsViewBean</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
+        <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+            <property-name>adminBean</property-name>
+            <value>#{admin}</value>
+        </managed-property>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>questionAndForecasts</managed-bean-name>
+        <managed-bean-class>dev.sertis.betsjsf.bean.QuestionsAndForecastsBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+            <property-name>eventsViewBean</property-name>
+            <value>#{eventsView}</value>
+        </managed-property>
     </managed-bean>
 
     <navigation-rule>

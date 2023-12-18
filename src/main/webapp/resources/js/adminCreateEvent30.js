@@ -1,14 +1,14 @@
-console.log("adminCreateEvent22.js cargado");
+console.log("adminCreateEvent30.js cargado");
 
 let botonAceptar;
 let calendarioFecha;
+let mensajes;
 
 $(document).ready(function () {
     console.log("adminCreateEvent21.js document ready");
 
     botonAceptar = document.getElementById("formBotonAceptar:botonAceptar")
     calendarioFecha = PF('calendario');
-
 });
 
 function validarFecha(){

@@ -37,8 +37,18 @@ public class BLFacadeImplementation implements BLFacade{
     }
 
     @Override
+    public void updateEvent(Event event) {
+        eventDAO.update(event);
+    }
+
+    @Override
     public void saveQuestion(Question question) {
         questionDAO.save(question);
+    }
+
+    @Override
+    public void updateQuestion(Question question) {
+        questionDAO.update(question);
     }
 
     @Override
@@ -59,6 +69,11 @@ public class BLFacadeImplementation implements BLFacade{
     @Override
     public void saveBet(Bet bet) {
         betDAO.save(bet);
+    }
+
+    @Override
+    public Event getEventById(long id) {
+        return eventDAO.getEventById(id);
     }
 
     @Override

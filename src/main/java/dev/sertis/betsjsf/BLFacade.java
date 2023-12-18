@@ -9,7 +9,11 @@ public interface BLFacade {
 
     void saveEvent(Event event);
 
+    void updateEvent(Event event);
+
     void saveQuestion(Question question);
+
+    void updateQuestion(Question question);
 
     void saveUser(User user);
 
@@ -18,6 +22,8 @@ public interface BLFacade {
     void saveForecast(Forecast forecast);
 
     void saveBet(Bet bet);
+
+    Event getEventById(long id);
 
     List<Event> getEventsByDate(LocalDate localDate);
 
