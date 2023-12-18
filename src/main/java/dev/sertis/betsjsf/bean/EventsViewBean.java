@@ -6,6 +6,7 @@ import dev.sertis.betsjsf.domain.Event;
 import dev.sertis.betsjsf.domain.User;
 import org.primefaces.event.SelectEvent;
 
+import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
@@ -48,6 +49,7 @@ public class EventsViewBean implements Serializable {
         this.selectedEvent = selectedEvent;
         User loggedUser = LoginBean.getLoggedUser();
         if(loggedUser != null && loggedUser.isAdmin()) {
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("questionAndForecasts", null);
             adminBean.changeComponentToAddQuestionsAndForecasts();
         }
     }
