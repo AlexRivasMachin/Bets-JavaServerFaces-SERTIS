@@ -19,6 +19,12 @@ public class Bet {
     public Bet() {
     }
 
+    public Bet(User userWhoPlacedBet, double amountPlacedOnBet, Forecast associatedForecast) {
+        this.userWhoPlacedBet = userWhoPlacedBet;
+        this.amountPlacedOnBet = amountPlacedOnBet;
+        this.associatedForecast = associatedForecast;
+    }
+
     public long getBetId() {
         return betId;
     }

@@ -39,6 +39,11 @@ public class UserBean {
         componentContent = "commonUIComponents/mostrarEventos.xhtml";
         reloadPage();
     }
+
+    public void showCrearApuesta(){
+        componentContent = "userNormalComponentes/crearApuestasComponente.xhtml";
+        reloadPage();
+    }
     public void showApuestas() {
         componentContent = "userNormalComponentes/apuestasRealizadasComponente.xhtml";
         reloadPage();

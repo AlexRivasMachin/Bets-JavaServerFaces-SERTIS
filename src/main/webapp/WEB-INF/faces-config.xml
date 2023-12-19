@@ -39,6 +39,10 @@
             <property-name>adminBean</property-name>
             <value>#{admin}</value>
         </managed-property>
+        <managed-property>
+            <property-name>userBean</property-name>
+            <value>#{userBean}</value>
+        </managed-property>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>questionAndForecasts</managed-bean-name>
@@ -52,6 +56,15 @@
     <managed-bean>
         <managed-bean-name>closeEvent</managed-bean-name>
         <managed-bean-class>dev.sertis.betsjsf.bean.CloseEventBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+            <property-name>eventsViewBean</property-name>
+            <value>#{eventsView}</value>
+        </managed-property>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>createBet</managed-bean-name>
+        <managed-bean-class>dev.sertis.betsjsf.bean.CreateBetBean</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
         <managed-property>
             <property-name>eventsViewBean</property-name>

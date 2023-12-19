@@ -63,12 +63,11 @@
                     </div>
                     <p:inputText id="forecast-description-input" value="#{questionAndForecasts.newForecastDescription}"/>
                     <p:inputNumber id="forecast-potentialGain-input" value="#{questionAndForecasts.newPotentialGain}"/>
-                    <p:commandButton value="Crear pregunta" action="#{questionAndForecasts.createForecast()}" update="forecast-table"/>
+                    <p:commandButton value="Crear pronostico" action="#{questionAndForecasts.createForecast()}" update="forecast-table"/>
                     <p:message for="forecast-description-input"/>
                     <p:message for="forecast-potentialGain-input"/>
                 </h:form>
             </div>
-
         </h:body>
     </f:view>
 </ui:composition>

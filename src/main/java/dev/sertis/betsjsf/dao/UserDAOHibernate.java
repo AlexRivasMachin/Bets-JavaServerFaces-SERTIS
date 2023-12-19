@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Set;
 
 public class UserDAOHibernate implements UserDAO{
-
     private final Session session;
     private static UserDAOHibernate instance;
 
@@ -41,22 +40,38 @@ public class UserDAOHibernate implements UserDAO{
 
     @Override
     public void save(User user) {
-        session.beginTransaction();
-        session.persist(user);
-        session.getTransaction().commit();
+        try{
+            session.beginTransaction();
+            session.persist(user);
+            session.getTransaction().commit();
+        }catch (Exception e){
+            session.getTransaction().rollback();
+            e.printStackTrace();
+        }
+
     }
 
     @Override
     public void update(User user) {
-        session.beginTransaction();
-        session.merge(user);
-        session.getTransaction().commit();
+        try{
+            session.beginTransaction();
+            session.merge(user);
+            session.getTransaction().commit();
+        }catch (Exception e) {
+            session.getTransaction().rollback();
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void delete(User user) {
-        session.beginTransaction();
-        session.remove(user);
-        session.getTransaction().commit();
+        try{
+            session.beginTransaction();
+            session.remove(user);
+            session.getTransaction().commit();
+        }catch (Exception e){
+            session.getTransaction().rollback();
+            e.printStackTrace();
+        }
     }
 }

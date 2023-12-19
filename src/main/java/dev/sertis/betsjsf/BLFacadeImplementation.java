@@ -68,8 +68,18 @@ public class BLFacadeImplementation implements BLFacade{
     }
 
     @Override
+    public void updateForecast(Forecast forecast) {
+        forecastDAO.update(forecast);
+    }
+
+    @Override
     public void saveBet(Bet bet) {
         betDAO.save(bet);
+    }
+
+    @Override
+    public void updateBet(Bet bet) {
+        betDAO.update(bet);
     }
 
     @Override
