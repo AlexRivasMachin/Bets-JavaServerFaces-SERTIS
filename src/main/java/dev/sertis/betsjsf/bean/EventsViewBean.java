@@ -71,7 +71,8 @@ public class EventsViewBean implements Serializable {
         if (!description.contains("-"))
             return null;
         String[] teams = description.split("-");
-        return String.format("/resources/icons/laliga/%s.png", teams[0].trim().toLowerCase());
+        String logo = String.format("/resources/icons/laliga/%s.png", teams[0].trim().toLowerCase());
+        return logo;
     }
 
     public String getEventVisitorTeamLogo(String description){

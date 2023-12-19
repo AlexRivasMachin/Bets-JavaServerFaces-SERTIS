@@ -9,11 +9,12 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
-public class AdminBean {
+public class AdminBean implements Serializable {
     public AdminBean() {
         componentPath = "adminUIComponents/adminCrearEvento.xhtml";
     }

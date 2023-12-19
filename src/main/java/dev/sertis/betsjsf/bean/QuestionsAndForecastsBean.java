@@ -38,6 +38,7 @@ public class QuestionsAndForecastsBean implements Serializable {
     }
 
     public void setSelectedQuestion(Question selectedQuestion) {
+        System.out.println("Selected question: " + selectedQuestion.getQuestionDescription());
         this.selectedQuestion = selectedQuestion;
     }
 

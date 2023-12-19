@@ -3,6 +3,8 @@ package dev.sertis.betsjsf.bean;
 import dev.sertis.betsjsf.BLFacade;
 import dev.sertis.betsjsf.BLFacadeImplementation;
 import dev.sertis.betsjsf.domain.Event;
+import dev.sertis.betsjsf.domain.Forecast;
+import dev.sertis.betsjsf.domain.Question;
 
 import java.io.Serializable;
 
@@ -13,24 +15,51 @@ public class CloseEventBean implements Serializable {
     private EventsViewBean eventsViewBean;
     private BLFacade blFacade;
     private Event selectedEvent;
-    private String nombreEvento;
+    private String imgLocal, imgVisitante;
+    private Question selectedQuestion;
 
     public void setEventsViewBean(EventsViewBean eventsViewBean) {
         this.eventsViewBean = eventsViewBean;
 
         this.selectedEvent = eventsViewBean.getSelectedEvent();
         this.selectedEvent = blFacade.getEventById(this.selectedEvent.getEventId());
-        System.out.println("Selected event: " + this.selectedEvent.getEventDescription());
 
-        nombreEvento = this.selectedEvent.getEventDescription();
+        imgLocal = eventsViewBean.getEventLocalTeamLogo(selectedEvent.getEventDescription());
+        imgVisitante = eventsViewBean.getEventVisitorTeamLogo(selectedEvent.getEventDescription());
     }
 
-    public String getNombreDelEvento(){
-        return nombreEvento;
+    public Event getSelectedEvent() {
+        return selectedEvent;
     }
-    public void setNombreDelEvento(String nombreEvento){
-        this.nombreEvento = nombreEvento;
+    public void setSelectedEvent(Event selectedEvent) {
+        this.selectedEvent = selectedEvent;
     }
+    public String getSelectedEventDescription() {
+        return selectedEvent.getEventDescription();
+    }
+    public EventsViewBean getEventsViewBean() {
+        return eventsViewBean;
+    }
+
+    public String getImgLocal() {
+        return imgLocal;
+    }
+    public String getImgVisitante() {
+        return imgVisitante;
+    }
+
+    public Question getSelectedQuestion() {
+        return selectedQuestion;
+    }
+    public void setSelectedQuestion(Question selectedQuestion) {
+        System.out.println("Selected question: " + selectedQuestion.getQuestionDescription());
+        this.selectedQuestion = selectedQuestion;
+    }
+
+    public void closeEvent(Forecast forecast){
+        System.out.println("Ha ganado: " + forecast.getForecastDescription() + "de la pregunta: " + selectedQuestion.getQuestionDescription());
+    }
+
 
 
 }
