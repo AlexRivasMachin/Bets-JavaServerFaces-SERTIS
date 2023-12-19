@@ -50,9 +50,8 @@ public class EventsViewBean implements Serializable {
         User loggedUser = LoginBean.getLoggedUser();
         if(loggedUser != null && loggedUser.isAdmin()) {
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("questionAndForecasts", null);
-            //adminBean.changeComponentFromEventList();
+            adminBean.changeComponentFromEventList();
         }
-        adminBean.changeComponentFromEventList();
     }
 
     public void getEventsByDate() {

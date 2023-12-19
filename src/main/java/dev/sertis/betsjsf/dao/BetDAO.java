@@ -2,8 +2,11 @@ package dev.sertis.betsjsf.dao;
 
 import dev.sertis.betsjsf.domain.Bet;
 
+import java.util.List;
+
 public interface BetDAO {
 
+    List<Bet> getBetsByForecastId(Long forecastID);
     void save(Bet bet);
 
     void update(Bet bet);

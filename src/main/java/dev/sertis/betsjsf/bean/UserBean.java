@@ -16,7 +16,7 @@ public class UserBean {
     private double cantidadRetiro;
     private double cantidadDeposito;
     private String componentContent;
-    private static List<Bet> apuestasRealizadas = new ArrayList();
+    private List<Bet> apuestasRealizadas = new ArrayList();
     private User loggedUser;
     private final UserDAO userDAO;
     private final BLFacade blFacade;
@@ -66,7 +66,6 @@ public class UserBean {
     }
     public void setCantidadRetiro(double cantidadRetiro) {
         this.cantidadRetiro = cantidadRetiro;
-
     }
     public double getCantidadDeposito() {
         return cantidadDeposito;
@@ -74,11 +73,10 @@ public class UserBean {
     public void setCantidadDeposito(double cantidadDeposito) {
         this.cantidadDeposito = cantidadDeposito;
     }
+
     public void añadirSaldo() {
         loggedUser.setCurrentBalance(loggedUser.getCurrentBalance() + cantidadDeposito);
-
     }
-
     public void restarSaldo() {
         if(cantidadRetiro <= loggedUser.getCurrentBalance()) {
             loggedUser.setCurrentBalance(loggedUser.getCurrentBalance() - cantidadRetiro);

@@ -4,6 +4,8 @@ import dev.sertis.betsjsf.HibernateUtil;
 import dev.sertis.betsjsf.domain.Bet;
 import org.hibernate.Session;
 
+import java.util.List;
+
 public class BetDAOHibernate implements BetDAO{
 
     private final Session session;
@@ -18,6 +20,12 @@ public class BetDAOHibernate implements BetDAO{
             instance = new BetDAOHibernate();
         }
         return instance;
+    }
+
+    public List<Bet> getBetsByForecastId(Long forecastID){
+        return session.createQuery("SELECT b FROM Bet b WHERE b.associatedForecast.id = :forecastID", Bet.class)
+                .setParameter("forecastID", forecastID)
+                .getResultList();
     }
 
     @Override
