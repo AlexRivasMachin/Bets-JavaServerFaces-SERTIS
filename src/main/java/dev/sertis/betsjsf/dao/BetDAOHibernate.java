@@ -55,9 +55,15 @@ public class BetDAOHibernate implements BetDAO{
 
     @Override
     public void delete(Bet bet) {
-        session.beginTransaction();
-        session.remove(bet);
-        session.getTransaction().commit();
+        try {
+            session.beginTransaction();
+            session.remove(bet);
+            session.getTransaction().commit();
+        }
+        catch (Exception e){
+            session.getTransaction().rollback();
+            e.printStackTrace();
+        }
     }
 
     @Override
