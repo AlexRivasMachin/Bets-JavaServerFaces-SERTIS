@@ -1,5 +1,7 @@
 package dev.sertis.betsjsf.bean;
 
+import dev.sertis.betsjsf.domain.Question;
+
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import java.io.IOException;
@@ -62,6 +64,10 @@ public class AdminBean implements Serializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void printQuestion(Question question) {
+        System.out.println("Question: " + question.getQuestionDescription());
     }
 
     private void setComponentPath(String path){

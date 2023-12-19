@@ -5,6 +5,7 @@ import dev.sertis.betsjsf.BLFacadeImplementation;
 import dev.sertis.betsjsf.domain.Event;
 import dev.sertis.betsjsf.domain.Forecast;
 import dev.sertis.betsjsf.domain.Question;
+import org.hibernate.query.sqm.internal.QuerySqmImpl;
 
 import java.io.Serializable;
 
@@ -54,6 +55,10 @@ public class CloseEventBean implements Serializable {
     public void setSelectedQuestion(Question selectedQuestion) {
         System.out.println("Selected question: " + selectedQuestion.getQuestionDescription());
         this.selectedQuestion = selectedQuestion;
+    }
+
+    public void printQuestion(Question question){
+        System.out.println("Selected question: " + question.getQuestionDescription());
     }
 
     public void closeEvent(Forecast forecast){

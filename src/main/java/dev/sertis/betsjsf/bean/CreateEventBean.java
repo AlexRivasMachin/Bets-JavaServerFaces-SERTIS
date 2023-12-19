@@ -6,6 +6,7 @@ import dev.sertis.betsjsf.domain.Event;
 import org.primefaces.event.SelectEvent;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 import java.io.File;
@@ -17,17 +18,16 @@ public class CreateEventBean {
     public CreateEventBean() {
         BLFacade = BLFacadeImplementation.getInstance();
         setTeamImagesAreRendered(false);
-        setMensajeEventoCreadoIsRendered(true);
     }
 
     private BLFacade BLFacade;
-    private String  descripcionEvento, imgLocal, imgVisitante, h3Eventos;
-    private boolean teamImagesAreRendered, mensajeEventoCreadoIsRendered;
+    private String  descripcionEvento, imgLocal, imgVisitante;
+    private boolean teamImagesAreRendered;
     private Date fecha;
 
     public void onDateSelect(SelectEvent event) {
         escribirMensajeDeFechaEscogida(event.getObject().toString());
-        setMensajeEventoCreadoIsRendered(false);
+        eliminarMensajeDeEventoGuardad();
     }
     private void escribirMensajeDeFechaEscogida(String fecha){
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fecha escogida: " + fecha));
@@ -63,17 +63,10 @@ public class CreateEventBean {
     public void setTeamImagesAreRendered(boolean teamImagesAreRendered){
         this.teamImagesAreRendered = teamImagesAreRendered;
     }
-    public boolean getMensajeEventoCreadoIsRendered(){
-        return mensajeEventoCreadoIsRendered;
-    }
-    public void setMensajeEventoCreadoIsRendered(boolean mensajeEventoCreadoIsRendered){
-        this.mensajeEventoCreadoIsRendered = mensajeEventoCreadoIsRendered;
-    }
 
     public void onCaracterDeEventoEscrito(AjaxBehaviorEvent event){
         actualizarImagenesDeEquipos();
-        setMensajeEventoCreadoIsRendered(false);
-        System.out.println("Mensaje rendered: " + getMensajeEventoCreadoIsRendered());
+        eliminarMensajeDeEventoGuardad();
     }
 
     private void actualizarImagenesDeEquipos(){
@@ -110,7 +103,6 @@ public class CreateEventBean {
 
     public void onBotonAceptarClicked(){
         guardarEventoEnBD();
-        setMensajeEventoCreadoIsRendered(true);
         escribirMensajeDeEventoGuardado();
     }
     private void guardarEventoEnBD(){
@@ -119,6 +111,9 @@ public class CreateEventBean {
     }
     private void escribirMensajeDeEventoGuardado(){
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Evento guardado correctamente"));
+    }
+    private void eliminarMensajeDeEventoGuardad(){
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(""));
     }
 
 }

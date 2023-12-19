@@ -19,7 +19,8 @@
                     <h3 class="h3CrearEvento">Event Date</h3>
                     <h5 class="h5CrearEvento">(Selecciona una fecha posterior a la de hoy)</h5>
                     <p:calendar widgetVar="calendario" id="fecha" value="#{createEvent.fecha}" navigator="true" mode="inline">
-                        <p:ajax event="dateSelect" listener="#{createEvent.onDateSelect}" update="formPreview:infoFecha" render="formBotonAceptar:mensajes" oncomplete="validarFecha()"></p:ajax>
+                        <p:ajax event="dateSelect" listener="#{createEvent.onDateSelect}" update="formPreview:infoFecha" oncomplete="validarFecha()"></p:ajax>
+                        <f:ajax event="dateSelect" render="formBotonAceptar:mensajes"/>
                     </p:calendar>
                 </div>
             </h:form>
@@ -46,7 +47,7 @@
                     <h:commandButton id="botonAceptar" value="Aceptar" styleClass="buttonDisabled" action="#{createEvent.onBotonAceptarClicked}">
                         <f:ajax event="click" render="mensajes"/>
                     </h:commandButton>
-                    <h:messages styleClass="mensaje" id="mensajes" rendered="#{createEvent.mensajeEventoCreadoIsRendered}"/>
+                    <h:messages styleClass="mensaje" id="mensajes"/>
                 </h:form>
 
                 <h:outputScript name="js/adminCreateEvent30.js"/>
