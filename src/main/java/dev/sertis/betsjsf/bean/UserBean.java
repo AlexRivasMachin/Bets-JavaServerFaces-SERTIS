@@ -31,6 +31,7 @@ public class UserBean {
         showEventos();
     }
     public String logout() {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "logout";
     }
 

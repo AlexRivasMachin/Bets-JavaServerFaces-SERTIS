@@ -1,18 +1,9 @@
 package dev.sertis.betsjsf.bean;
-import dev.sertis.betsjsf.BLFacade;
-import dev.sertis.betsjsf.BLFacadeImplementation;
-import dev.sertis.betsjsf.domain.Event;
-import org.primefaces.event.SelectEvent;
-import javax.faces.application.FacesMessage;
+
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.faces.event.AjaxBehaviorEvent;
-import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 
 public class AdminBean implements Serializable {
     public AdminBean() {
@@ -21,6 +12,7 @@ public class AdminBean implements Serializable {
     private String componentPath, destinoDesdeEventsView;
 
     public String logout(){
+        //FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "logout";
     }
     public String exit(){
