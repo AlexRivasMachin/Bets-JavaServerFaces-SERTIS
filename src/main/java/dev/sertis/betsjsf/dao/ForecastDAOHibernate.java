@@ -22,23 +22,38 @@ public class ForecastDAOHibernate implements ForecastDAO{
 
     @Override
     public void save(Forecast forecast) {
-        session.beginTransaction();
-        session.persist(forecast);
-        session.getTransaction().commit();
+        try {
+            session.beginTransaction();
+            session.persist(forecast);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void update(Forecast forecast) {
-        session.beginTransaction();
-        session.merge(forecast);
-        session.getTransaction().commit();
+        try{
+            session.beginTransaction();
+            session.merge(forecast);
+            session.getTransaction().commit();
+        }catch (Exception e){
+            session.getTransaction().rollback();
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void delete(Forecast forecast) {
-        session.beginTransaction();
-        session.remove(forecast);
-        session.getTransaction().commit();
+        try{
+            session.beginTransaction();
+            session.remove(forecast);
+            session.getTransaction().commit();
+        }catch (Exception e){
+            session.getTransaction().rollback();
+            e.printStackTrace();
+        }
     }
 
     @Override

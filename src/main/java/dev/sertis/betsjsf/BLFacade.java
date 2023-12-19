@@ -21,7 +21,11 @@ public interface BLFacade {
 
     void saveForecast(Forecast forecast);
 
+    void updateForecast(Forecast forecast);
+
     void saveBet(Bet bet);
+
+    void updateBet(Bet bet);
 
     Event getEventById(long id);
 

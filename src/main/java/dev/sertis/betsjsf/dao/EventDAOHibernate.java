@@ -38,22 +38,37 @@ public class EventDAOHibernate implements EventDAO, Serializable {
 
     @Override
     public void save(Event event) {
-        session.beginTransaction();
-        session.persist(event);
-        session.getTransaction().commit();
+        try{
+            session.beginTransaction();
+            session.persist(event);
+            session.getTransaction().commit();
+        }catch (Exception e){
+            session.getTransaction().rollback();
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void update(Event event) {
-        session.beginTransaction();
-        session.merge(event);
-        session.getTransaction().commit();
+        try {
+            session.beginTransaction();
+            session.merge(event);
+            session.getTransaction().commit();
+        }catch (Exception e){
+            session.getTransaction().rollback();
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void delete(Event event) {
-        session.beginTransaction();
-        session.remove(event);
-        session.getTransaction().commit();
+        try{
+            session.beginTransaction();
+            session.remove(event);
+            session.getTransaction().commit();
+        }catch (Exception e){
+            session.getTransaction().rollback();
+            e.printStackTrace();
+        }
     }
 }

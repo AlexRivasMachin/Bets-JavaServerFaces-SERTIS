@@ -13,13 +13,29 @@
 	cursor: pointer;
 }
 
+.componente{
+	align-content: center;
+	align-items: center;
+	display: flex;
+	width: 100%;
+	padding-left: 35%;
+}
 .componenteDatosPers{
+	padding: 15px;
 	display: flex;
 	flex-direction: column;
 	background-color: #ffffff;
 	color: black;
 	align-content: center;
 	align-items: center;
+	border: 3px solid transparent;
+	border-radius: 10px;
+	box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+	width: fit-content;
+}
+
+.componenteDatosPers h2{
+	color: #0a66c2;
 }
 
 .aSbutton{
@@ -31,6 +47,9 @@
 	border-radius: 5px;
 	margin-left: 5px;
 	margin-right: 10px;
+	width: 170px;
+	max-width: 170px;
+	min-width: 170px;
 }
 .grid{
 	display: flex;
@@ -40,7 +59,7 @@
 
 .row{
 	font-family: Montserrat, Geneva, Tahoma, sans-serif;
-	background: rgba(115, 109, 109, 0.36);
+	background: rgba(255, 255, 255, 0);
 	margin: 12px;
 	width: fit-content;
 	min-width: 425px;
@@ -56,10 +75,10 @@
 }
 
 .datosPersonales{
-	border: 1px solid #0073b1;
+	border: 1px solid transparent;
 	width: fit-content;
 	border-radius: 5px;
-	background: #d0d0d0;
+	background: rgba(255, 255, 255, 0);
 	align-content: center;
 	align-items: center;
 }

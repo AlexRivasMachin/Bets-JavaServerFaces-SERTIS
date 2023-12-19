@@ -47,6 +47,7 @@
 .imagenesEquipo{
     width: 100px;
     height: 100px;
+    border-style: none;
 }
 .infoEvento{
     margin: 10px;

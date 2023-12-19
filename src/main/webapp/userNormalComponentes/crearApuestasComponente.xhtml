@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition>
+    <f:view>
+        <h:head>
+            <h:outputStylesheet library="css" name="eventsTable.css"/>
+            <h:outputStylesheet library="css" name="addQuestionsAndForecasts.css"/>
+        </h:head>
+        <h:body styleClass="add-questions-and-forecasts-body">
+            <div class="preview">
+                <h:graphicImage styleClass="imagenesEquipo" value="#{eventsView.getEventLocalTeamLogo(createBet.selectedEvent.eventDescription)}"/>
+                <div class = "labelsPreview">
+                    <p:outputLabel styleClass="infoEvento" value="#{createBet.selectedEvent.eventDescription}"/>
+                    <p:outputLabel styleClass="infoEvento" value="#{createBet.selectedEvent.eventDate}"/>
+                </div>
+                <h:graphicImage styleClass="imagenesEquipo" value="#{eventsView.getEventVisitorTeamLogo(createBet.selectedEvent.eventDescription)}"/>
+            </div>
+            <div id="bottom-grid">
+                <h:form id="questions-form">
+                    <p:dataTable id="question-table" var="question" value="#{createBet.selectedEvent.questionsForThisEvent}">
+                        <p:column headerText="Pregunta">
+                            <p:outputLabel value="#{question.questionDescription}"/>
+                        </p:column>
+                        <p:column headerText="Apuesta minima">
+                            <p:outputLabel value="#{question.minimumBetAmount}"/>
+                        </p:column>
+                        <p:column>
+                            <p:commandButton value="Ver pronosticos" update=":forecast-form:forecast-table">
+                                <f:setPropertyActionListener value="#{question}" target="#{createBet.selectedQuestion}"/>
+                            </p:commandButton>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+                <h:form id="forecast-form">
+                    <p:dataTable id="forecast-table" var="forecast" value="#{createBet.selectedQuestion.forecastsForThisQuestion}">
+                        <p:column style="width: 50%" headerText="Pronosticos para la pregunta: #{createBet.selectedQuestion.questionDescription}">
+                            <p:outputLabel value="#{forecast.forecastDescription}"/>
+                        </p:column>
+                        <p:column style="width: 25%" headerText="Cuota">
+                            <p:outputLabel value="#{forecast.potentialGain}"/>
+                        </p:column>
+                        <p:column style="width: 25%">
+                            <p:commandButton value="Seleccionar pronostico">
+                                <f:setPropertyActionListener value="#{forecast}" target="#{createBet.selectedForecast}"/>
+                            </p:commandButton>
+                        </p:column>
+                    </p:dataTable>
+                    <h3 style="font-weight: bold; margin: 10px 0 0 0">Crea una apuesta:</h3>
+                    <div class="add-header-div">
+                        <h4 class="add-text-h4">Cantidad a apostar</h4>
+                    </div>
+                    <p:inputText style="width: 100px;" id="forecast-potentialGain-input" value="#{createBet.newBetAmountPlaced}"/>
+                    <p:commandButton value="Crear apuesta" action="#{createBet.createBet()}" update="forecast-table"/>
+                    <p:message for="forecast-potentialGain-input"/>
+                </h:form>
+            </div>
+        </h:body>
+    </f:view>
+</ui:composition>
+</html>

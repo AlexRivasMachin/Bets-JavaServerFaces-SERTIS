@@ -16,6 +16,7 @@ public class EventsViewBean implements Serializable {
     private List<Event> events;
     private Event selectedEvent;
     private AdminBean adminBean;
+    private UserBean userBean;
 
     private final EventDAO eventDAO;
 
@@ -51,6 +52,9 @@ public class EventsViewBean implements Serializable {
         if(loggedUser != null && loggedUser.isAdmin()) {
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("questionAndForecasts", null);
             adminBean.changeComponentFromEventList();
+        } else if (loggedUser != null && !loggedUser.isAdmin()) {
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("createBet", null);
+            userBean.showCrearApuesta();
         }
     }
 
@@ -65,6 +69,10 @@ public class EventsViewBean implements Serializable {
 
     public void setAdminBean(AdminBean adminBean) {
         this.adminBean = adminBean;
+    }
+
+    public void setUserBean(UserBean userBean) {
+        this.userBean = userBean;
     }
 
     public String getEventLocalTeamLogo(String description){
