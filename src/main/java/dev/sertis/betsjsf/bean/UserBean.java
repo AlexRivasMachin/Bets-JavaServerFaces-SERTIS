@@ -76,10 +76,12 @@ public class UserBean {
 
     public void añadirSaldo() {
         loggedUser.setCurrentBalance(loggedUser.getCurrentBalance() + cantidadDeposito);
+        reloadPage();
     }
     public void restarSaldo() {
         if(cantidadRetiro <= loggedUser.getCurrentBalance()) {
             loggedUser.setCurrentBalance(loggedUser.getCurrentBalance() - cantidadRetiro);
+            reloadPage();
         }
     }
     public void updateUserInfo() {

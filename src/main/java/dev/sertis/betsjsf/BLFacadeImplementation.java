@@ -4,6 +4,7 @@ import dev.sertis.betsjsf.dao.*;
 import dev.sertis.betsjsf.domain.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BLFacadeImplementation implements BLFacade{
@@ -119,7 +120,10 @@ public class BLFacadeImplementation implements BLFacade{
 
     @Override
     public void updateUsersBalanceIfWinners(long resultantForecastId) {
-
+        List<Bet> bets = betDAO.getBetsByForecastId(resultantForecastId);
+        for (Bet bet : bets) {
+            bet.getUserWhoPlacedBet().setCurrentBalance(bet.getUserWhoPlacedBet().getCurrentBalance() + bet.getAmountPlacedOnBet()*bet.getAssociatedForecast().getPotentialGain());
+        }
     }
 
     @Override

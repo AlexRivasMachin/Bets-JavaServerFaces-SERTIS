@@ -3,7 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:q="http://java.sun.com/jsp/jstl/core">
 <ui:composition>
     <f:view>
         <h:head>
@@ -13,31 +15,35 @@
         <h:body>
             <div class="grid">
 
-                <div class="row">
-                        <h3 id="saldo">Futuro Saldo: #{userBean.loggedUser.currentBalance}</h3>
-                </div>
-
                 <h:form id="saldoForm">
-
                     <div class="row">
-                            <h4>Dinero a añadir</h4>
-                            <h:inputText id="aSaldoInput" styleClass="aSinput" value="#{userBean.cantidadDeposito}">
+                        <div class="Salario">
+                            <h3 id="saldo">Saldo: #{userBean.loggedUser.currentBalance}</h3>
+                        </div>
+
+                        <div class="accion">
+                            <h4>Añadir Saldo</h4>
+                            <p:outputLabel id="aSaldoLabel" styleClass="aSaldoLabel" value="#{userBean.cantidadDeposito}"/>
+                            <p:inputText id="aSaldoInput"  styleClass="aSaldoinput" value="#{userBean.loggedUser.currentBalance}">
                                 <f:convertNumber pattern="#,##0.00" type="number" integerOnly="false" />
-                            </h:inputText>
-                            <h:commandButton styleClass="aSbutton" value="Añadir" action="#{userBean.añadirSaldo}">
-                                <f:ajax execute="aSaldoInput" render="saldoForm"/>
-                            </h:commandButton>
+                            </p:inputText>
+                            <p:commandButton styleClass="aSbutton" value="Añadir" action="#{userBean.añadirSaldo}">
+                                <f:ajax execute="aSaldoInput" render="saldoForm:aSaldoLabel"/>
+                            </p:commandButton>
+                        </div>
+
+                        <div class="accion">
+                            <h4>Retirar Dinero</h4>
+                            <p:outputLabel id="rSaldoLabel" styleClass="aSaldoLabel" value="#{userBean.cantidadRetiro}"/>
+                            <p:inputText id="rSaldoInput" styleClass="aSaldoinput" value="#{userBean.cantidadRetiro}">
+                                <f:convertNumber pattern="#,##0.00" type="number" integerOnly="false" />
+                            </p:inputText>
+                            <p:commandButton styleClass="aSbutton" value="Retirar" action="#{userBean.restarSaldo}">
+                                <f:ajax execute="rSaldoInput" render="saldoForm:rSaldoLabel" />
+                            </p:commandButton>
+                        </div>
                     </div>
 
-                    <div class="row">
-                            <h4>Retirar dinero</h4>
-                            <h:inputText id="rSaldoInput" styleClass="aSinput" value="#{userBean.cantidadRetiro}">
-                                <f:convertNumber pattern="#,##0.00" type="number" integerOnly="false" />
-                            </h:inputText>
-                            <h:commandButton styleClass="aSbutton" value="Retirar" action="#{userBean.restarSaldo}">
-                                <f:ajax execute="rSaldoInput" render="saldoForm" />
-                            </h:commandButton>
-                    </div>
                 </h:form>
 
 
@@ -47,3 +53,26 @@
     </f:view>
 </ui:composition>
 </html>
+
+<!--
+   <div class="row">
+                            <h4>Dinero a añadir</h4>
+                            <h:inputText id="aSaldoInput" styleClass="aSinput" value="#{userBean.cantidadDeposito}">
+                                <f:convertNumber pattern="#,##0.00" type="number" integerOnly="false" />
+                            </h:inputText>
+                            <h:commandButton styleClass="aSbutton" value="Añadir" action="#{userBean.añadirSaldo}">
+                                <f:ajax execute="aSaldoInput" render="saldoForm"/>
+                            </h:commandButton>
+                    </div>
+-->
+<!--
+   <div class="row">
+                            <h4>Retirar dinero</h4>
+                            <h:inputText id="rSaldoInput" styleClass="aSinput" value="#{userBean.cantidadRetiro}">
+                                <f:convertNumber pattern="#,##0.00" type="number" integerOnly="false" />
+                            </h:inputText>
+                            <h:commandButton styleClass="aSbutton" value="Retirar" action="#{userBean.restarSaldo}">
+                                <f:ajax execute="rSaldoInput" render="saldoForm" />
+                            </h:commandButton>
+                    </div>
+-->
