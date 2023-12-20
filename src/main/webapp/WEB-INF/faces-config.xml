@@ -81,10 +81,12 @@
         <navigation-case>
             <from-outcome>user</from-outcome>
             <to-view-id>/user.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>
         <navigation-case>
             <from-outcome>admin</from-outcome>
             <to-view-id>/admin.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
@@ -92,6 +94,7 @@
         <navigation-case>
             <from-outcome>success</from-outcome>
             <to-view-id>/login.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
@@ -99,6 +102,7 @@
         <navigation-case>
             <from-outcome>logout</from-outcome>
             <to-view-id>/login.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
@@ -106,6 +110,7 @@
         <navigation-case>
             <from-outcome>logout</from-outcome>
             <to-view-id>/login.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
@@ -113,6 +118,7 @@
         <navigation-case>
             <from-outcome>exit</from-outcome>
             <to-view-id>/login.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>
     </navigation-rule>
 </faces-config>
