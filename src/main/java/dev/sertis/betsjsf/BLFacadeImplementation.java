@@ -110,7 +110,11 @@ public class BLFacadeImplementation implements BLFacade, Serializable {
 
     @Override
     public void assignResultForecastToQuestion(long forecastId, long questionId) {
+        Question question = questionDAO.getQuestionById(questionId);
+        Forecast winningForecast = forecastDAO.getForecastById(forecastId);
 
+        question.setWinningForecast(winningForecast);
+        updateUsersBalanceIfWinners(forecastId);
     }
 
     @Override

@@ -61,3 +61,18 @@
     align-items: center;
     text-align: center;
 }
+
+.divAsignar{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.pronosticoElegido{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+}

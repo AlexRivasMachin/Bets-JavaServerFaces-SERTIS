@@ -65,7 +65,7 @@
     <managed-bean>
         <managed-bean-name>createBet</managed-bean-name>
         <managed-bean-class>dev.sertis.betsjsf.bean.CreateBetBean</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>request</managed-bean-scope>
         <managed-property>
             <property-name>eventsViewBean</property-name>
             <value>#{eventsView}</value>

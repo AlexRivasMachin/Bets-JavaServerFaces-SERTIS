@@ -116,4 +116,7 @@ public class CreateEventBean {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(""));
     }
 
+    public void pruebaPrint(){
+        System.out.println("prueba");
+    }
 }

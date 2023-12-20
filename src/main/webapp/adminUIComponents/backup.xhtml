@@ -12,6 +12,11 @@
             <h:outputStylesheet library="css" name="addQuestionsAndForecasts.css"/>
         </h:head>
         <h:body styleClass="add-questions-and-forecasts-body">
+            <h:form>
+                <p:commandButton value="prueba" action="#{createEvent.pruebaPrint}"></p:commandButton>
+            </h:form>
+            <p:commandButton value="Ver pronosticos" action="#{closeEvent.pruebaPrint}">
+            </p:commandButton>
             <div class="preview">
                 <h:graphicImage styleClass="imagenesEquipo" value="#{closeEvent.imgLocal}"/>
                 <div class = "labelsPreview">
@@ -30,36 +35,25 @@
                             <p:outputLabel value="#{question.minimumBetAmount}"/>
                         </p:column>
                         <p:column>
-                            <p:commandButton value="Ver pronosticos" update=":forecast-form:forecast-table">
-                                <f:setPropertyActionListener value="#{question}" target="#{closeEvent.selectedQuestion}"/>
-                            </p:commandButton>
                         </p:column>
                     </p:dataTable>
                 </h:form>
                 <h:form id="forecast-form">
                     <p:dataTable id="forecast-table" var="forecast" value="#{closeEvent.selectedQuestion.forecastsForThisQuestion}">
                         <p:column headerText="Pronosticos para la pregunta: #{closeEvent.selectedQuestion.questionDescription}">
-                           <p:outputLabel value="#{forecast.forecastDescription}"/>
+                            <p:outputLabel value="#{forecast.forecastDescription}"/>
                         </p:column>
                         <p:column headerText="Cuota">
                             <p:outputLabel value="#{forecast.potentialGain}"/>
                         </p:column>
-                        <p:column>
-                            <p:commandButton value="Seleccionar" update="forecast-form">
-                                <f:setPropertyActionListener value="#{forecast}" target="#{closeEvent.selectedForecast}"/>
-                            </p:commandButton>
-                        </p:column>
                     </p:dataTable>
-                    <div class="divAsignar" id="divAsignar">
-                        <h3 style="font-weight: bold; margin-bottom: 0">Asigna un pronóstico</h3>
-                        <h:outputLabel styleClass="pronosticoElegido" value="Pronóstico elegido: #{closeEvent.selectedForecast.forecastDescription}"/>
-                        <p:commandButton value="Asignar" action="#{closeEvent.onAsignarBotonSelected}">
-                            <f:ajax event="click" render="mensajes"></f:ajax>
-                        </p:commandButton>
-                        <h:messages id="mensajes"/>
-                    </div>
+                    <h3 style="font-weight: bold; margin-bottom: 0">Asigna un pronóstico</h3>
+                    <p:commandButton value="Asignar" action="#{closeEvent.closeEvent(forecast)}" update="forecast-table"/>
+                    <p:message for="forecast-description-input"/>
+                    <p:message for="forecast-potentialGain-input"/>
                 </h:form>
             </div>
+
         </h:body>
     </f:view>
 </ui:composition>

@@ -67,6 +67,7 @@ public class CreateBetBean {
         // We need to retrieve the selected event because it is in a detached state
         this.selectedEvent = eventsViewBean.getSelectedEvent();
         this.selectedEvent = blFacade.getEventById(this.selectedEvent.getEventId());
+        System.out.println("Selected event actualizado");
     }
 
     public Event getSelectedEvent() {

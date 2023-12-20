@@ -7,6 +7,9 @@ import dev.sertis.betsjsf.domain.Forecast;
 import dev.sertis.betsjsf.domain.Question;
 import org.hibernate.query.sqm.internal.QuerySqmImpl;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import java.awt.event.ActionEvent;
 import java.io.Serializable;
 
 public class CloseEventBean implements Serializable {
@@ -18,6 +21,7 @@ public class CloseEventBean implements Serializable {
     private Event selectedEvent;
     private String imgLocal, imgVisitante;
     private Question selectedQuestion;
+    private Forecast selectedForecast;
 
     public void setEventsViewBean(EventsViewBean eventsViewBean) {
         this.eventsViewBean = eventsViewBean;
@@ -29,41 +33,45 @@ public class CloseEventBean implements Serializable {
         imgVisitante = eventsViewBean.getEventVisitorTeamLogo(selectedEvent.getEventDescription());
     }
 
-    public Event getSelectedEvent() {
-        return selectedEvent;
-    }
-    public void setSelectedEvent(Event selectedEvent) {
-        this.selectedEvent = selectedEvent;
-    }
-    public String getSelectedEventDescription() {
-        return selectedEvent.getEventDescription();
-    }
-    public EventsViewBean getEventsViewBean() {
-        return eventsViewBean;
-    }
-
     public String getImgLocal() {
         return imgLocal;
     }
     public String getImgVisitante() {
         return imgVisitante;
     }
-
+    public Event getSelectedEvent() {
+        return selectedEvent;
+    }
+    public void setSelectedEvent(Event selectedEvent) {
+        this.selectedEvent = selectedEvent;
+    }
     public Question getSelectedQuestion() {
         return selectedQuestion;
     }
     public void setSelectedQuestion(Question selectedQuestion) {
-        System.out.println("Selected question: " + selectedQuestion.getQuestionDescription());
         this.selectedQuestion = selectedQuestion;
     }
-
-    public void printQuestion(Question question){
-        System.out.println("Selected question: " + question.getQuestionDescription());
+    public Forecast getSelectedForecast() {
+        return selectedForecast;
+    }
+    public void setSelectedForecast(Forecast selectedForecast) {
+        this.selectedForecast = selectedForecast;
     }
 
-    public void closeEvent(Forecast forecast){
-        System.out.println("Ha ganado: " + forecast.getForecastDescription() + "de la pregunta: " + selectedQuestion.getQuestionDescription());
+    public void onAsignarBotonSelected(){
+        setForecastWinner();
+        setMensajeForecastAsignado();
     }
+    public void setMensajeForecastAsignado(){
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Forecast asignado: " + selectedForecast.getForecastDescription()));
+    }
+
+    private void setForecastWinner(){
+        blFacade.assignResultForecastToQuestion(selectedForecast.getForecastId(), selectedQuestion.getQuestionId());
+    }
+
+
+
 
 
 
