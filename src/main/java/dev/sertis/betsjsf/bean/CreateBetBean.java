@@ -17,6 +17,7 @@ public class CreateBetBean {
 
     public CreateBetBean() {
         blFacade = BLFacadeImplementation.getInstance();
+
     }
 
     public void createBet() {
@@ -32,6 +33,12 @@ public class CreateBetBean {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Debes seleccionar un pronóstico"));
             return;
+            //el logged user no tiene tarjeta de crédito metida
+        }else if( LoginBean.getLoggedUser().getCreditCard() == null){
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Debes añadir una tarjeta de crédito"));
+            return;
+
         }
 
         Bet bet = new Bet(LoginBean.getLoggedUser(),

@@ -23,23 +23,21 @@
 
                         <div class="accion">
                             <h4>Añadir Saldo</h4>
-                            <p:outputLabel id="aSaldoLabel" styleClass="aSaldoLabel" value="#{userBean.cantidadDeposito}"/>
                             <p:inputText id="aSaldoInput"  styleClass="aSaldoinput" value="#{userBean.loggedUser.currentBalance}">
                                 <f:convertNumber pattern="#,##0.00" type="number" integerOnly="false" />
                             </p:inputText>
                             <p:commandButton styleClass="aSbutton" value="Añadir" action="#{userBean.añadirSaldo}">
-                                <f:ajax execute="aSaldoInput" render="saldoForm:aSaldoLabel"/>
+                                <f:ajax execute="aSaldoInput" render="saldoForm"/>
                             </p:commandButton>
                         </div>
 
                         <div class="accion">
                             <h4>Retirar Dinero</h4>
-                            <p:outputLabel id="rSaldoLabel" styleClass="aSaldoLabel" value="#{userBean.cantidadRetiro}"/>
                             <p:inputText id="rSaldoInput" styleClass="aSaldoinput" value="#{userBean.cantidadRetiro}">
                                 <f:convertNumber pattern="#,##0.00" type="number" integerOnly="false" />
                             </p:inputText>
                             <p:commandButton styleClass="aSbutton" value="Retirar" action="#{userBean.restarSaldo}">
-                                <f:ajax execute="rSaldoInput" render="saldoForm:rSaldoLabel" />
+                                <f:ajax execute="rSaldoInput" render="saldoForm" />
                             </p:commandButton>
                         </div>
                     </div>
