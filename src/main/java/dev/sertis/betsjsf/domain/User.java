@@ -2,10 +2,12 @@ package dev.sertis.betsjsf.domain;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
-public class User {
+public class User implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     private String dni;
     private String name;

@@ -2,12 +2,14 @@ package dev.sertis.betsjsf.domain;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class Question {
-
+public class Question implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long questionId;
@@ -71,6 +73,9 @@ public class Question {
     }
 
     public List<Forecast> getForecastsForThisQuestion() {
+        if (forecastsForThisQuestion == null) {
+            forecastsForThisQuestion = new ArrayList<>();
+        }
         return forecastsForThisQuestion;
     }
 

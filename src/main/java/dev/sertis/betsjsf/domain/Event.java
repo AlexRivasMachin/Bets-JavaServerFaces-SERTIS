@@ -4,12 +4,13 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
 public class Event implements Serializable {
-
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long eventId;
@@ -51,6 +52,9 @@ public class Event implements Serializable {
     }
 
     public List<Question> getQuestionsForThisEvent() {
+        if (questionsForThisEvent == null) {
+            questionsForThisEvent = new ArrayList<>();
+        }
         return questionsForThisEvent;
     }
 

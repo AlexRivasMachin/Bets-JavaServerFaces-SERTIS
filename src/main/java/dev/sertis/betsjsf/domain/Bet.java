@@ -2,18 +2,19 @@ package dev.sertis.betsjsf.domain;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class Bet {
-
+public class Bet implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long betId;
-    @OneToOne(cascade = {CascadeType.ALL}, targetEntity = User.class)
+    @OneToOne(cascade = {CascadeType.ALL})
     private User userWhoPlacedBet;
     private double amountPlacedOnBet;
-    @OneToOne(cascade = {CascadeType.ALL}, targetEntity = Forecast.class)
+    @OneToOne(cascade = {CascadeType.ALL})
     private Forecast associatedForecast;
 
     public Bet() {

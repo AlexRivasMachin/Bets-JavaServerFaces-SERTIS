@@ -2,11 +2,13 @@ package dev.sertis.betsjsf.domain;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class Forecast {
+public class Forecast implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long forecastId;
@@ -14,8 +16,6 @@ public class Forecast {
     private double potentialGain;
     @ManyToOne(targetEntity = Question.class, cascade = CascadeType.ALL)
     private Question associatedQuestion;
-    @OneToMany( targetEntity = Bet.class)
-    private List<Bet> betsForThisForecast;
 
     public Forecast() {
     }
@@ -56,14 +56,6 @@ public class Forecast {
 
     public void setAssociatedQuestion(Question associatedQuestion) {
         this.associatedQuestion = associatedQuestion;
-    }
-
-    public List<Bet> getBetsForThisForecast() {
-        return betsForThisForecast;
-    }
-
-    public void setBetsForThisForecast(List<Bet> betsForThisForecast) {
-        this.betsForThisForecast = betsForThisForecast;
     }
 
     @Override
