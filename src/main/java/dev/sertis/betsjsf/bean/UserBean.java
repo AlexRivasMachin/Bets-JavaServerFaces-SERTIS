@@ -8,11 +8,12 @@ import dev.sertis.betsjsf.domain.User;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserBean {
-
+public class UserBean implements Serializable {
+    private static final long serialVersionUID = 1L;
     private double cantidadRetiro;
     private double cantidadDeposito;
     private String componentContent;

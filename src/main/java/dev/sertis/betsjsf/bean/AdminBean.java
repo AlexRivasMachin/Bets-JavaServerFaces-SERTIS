@@ -14,7 +14,7 @@ public class AdminBean implements Serializable {
     private String componentPath, destinoDesdeEventsView;
 
     public String logout(){
-        //FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "logout";
     }
     public String exit(){

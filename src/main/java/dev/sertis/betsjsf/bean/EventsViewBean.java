@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class EventsViewBean implements Serializable {
+    private static final long serialVersionUID = 1L;
     private LocalDate eventDate;
     private List<Event> events;
     private Event selectedEvent;
@@ -50,10 +51,8 @@ public class EventsViewBean implements Serializable {
         this.selectedEvent = selectedEvent;
         User loggedUser = LoginBean.getLoggedUser();
         if(loggedUser != null && loggedUser.isAdmin()) {
-            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("questionAndForecasts", null);
             adminBean.changeComponentFromEventList();
         } else if (loggedUser != null && !loggedUser.isAdmin()) {
-            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("createBet", null);
             userBean.showCrearApuesta();
         }
     }

@@ -29,16 +29,17 @@ public class QuestionsAndForecastsBean implements Serializable {
         this.eventsViewBean = eventsViewBean;
 
         // We need to retrieve the selected event because it is in a detached state
-        this.selectedEvent = eventsViewBean.getSelectedEvent();
-        this.selectedEvent = blFacade.getEventById(this.selectedEvent.getEventId());
+        this.selectedEvent = blFacade.getEventById(eventsViewBean.getSelectedEvent().getEventId());
     }
 
     public Question getSelectedQuestion() {
+        if (selectedQuestion == null && !selectedEvent.getQuestionsForThisEvent().isEmpty()) {
+            selectedQuestion = selectedEvent.getQuestionsForThisEvent().get(0);
+        }
         return selectedQuestion;
     }
 
     public void setSelectedQuestion(Question selectedQuestion) {
-        System.out.println("Selected question: " + selectedQuestion.getQuestionDescription());
         this.selectedQuestion = selectedQuestion;
     }
 
@@ -99,11 +100,7 @@ public class QuestionsAndForecastsBean implements Serializable {
 
         // Because selectedEvent is in a detached state we have to use merge
         this.selectedEvent.getQuestionsForThisEvent().add(question);
-        blFacade.updateEvent(this.selectedEvent);
-
-        // Refresh the selected event
-        final long selectedEventId = this.selectedEvent.getEventId();
-        this.selectedEvent = blFacade.getEventById(selectedEventId);
+        this.selectedEvent = blFacade.updateEvent(this.selectedEvent);
 
         this.eventsViewBean.setSelectedEvent(this.selectedEvent);
     }
@@ -123,9 +120,11 @@ public class QuestionsAndForecastsBean implements Serializable {
                 this.newPotentialGain,
                 this.selectedQuestion);
 
+        //TODO cuando se crea el segundo forecast se añade a la pregunta per no se guarda en la base de datos
+
         // Because selectedQuestion is in a detached state we have to use merge
         this.selectedQuestion.getForecastsForThisQuestion().add(forecast);
-        blFacade.updateQuestion(this.selectedQuestion);
+        this.selectedQuestion = blFacade.updateQuestion(this.selectedQuestion);
 
         // Refresh the selected event
         final long selectedEventId = this.selectedEvent.getEventId();
