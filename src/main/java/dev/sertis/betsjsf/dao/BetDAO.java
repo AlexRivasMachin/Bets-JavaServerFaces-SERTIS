@@ -9,7 +9,7 @@ public interface BetDAO {
     List<Bet> getBetsByForecastId(Long forecastID);
     void save(Bet bet);
 
-    void update(Bet bet);
+    Bet update(Bet bet);
 
     void delete(Bet bet);
 

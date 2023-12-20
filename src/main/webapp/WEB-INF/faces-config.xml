@@ -47,7 +47,7 @@
     <managed-bean>
         <managed-bean-name>questionAndForecasts</managed-bean-name>
         <managed-bean-class>dev.sertis.betsjsf.bean.QuestionsAndForecastsBean</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>request</managed-bean-scope>
         <managed-property>
             <property-name>eventsViewBean</property-name>
             <value>#{eventsView}</value>
@@ -69,6 +69,10 @@
         <managed-property>
             <property-name>eventsViewBean</property-name>
             <value>#{eventsView}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>userBean</property-name>
+            <value>#{userBean}</value>
         </managed-property>
     </managed-bean>
 

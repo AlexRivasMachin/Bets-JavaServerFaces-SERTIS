@@ -3,7 +3,6 @@ package dev.sertis.betsjsf.domain;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -14,7 +13,7 @@ public class Forecast implements Serializable {
     private long forecastId;
     private String forecastDescription;
     private double potentialGain;
-    @ManyToOne(targetEntity = Question.class, cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Question associatedQuestion;
 
     public Forecast() {

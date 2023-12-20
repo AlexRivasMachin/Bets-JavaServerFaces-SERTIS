@@ -14,7 +14,7 @@ public interface EventDAO {
 
     void save(Event event);
 
-    void update(Event event);
+    Event update(Event event);
 
     void delete(Event event);
 }

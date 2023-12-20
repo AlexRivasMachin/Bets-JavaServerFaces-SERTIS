@@ -3,6 +3,7 @@ package dev.sertis.betsjsf.domain;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,7 +18,7 @@ public class User implements Serializable {
     private String username;
     private boolean isAdmin;
     private Long creditCard;
-    @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+    @OneToMany(mappedBy = "userWhoPlacedBet", cascade=CascadeType.ALL, orphanRemoval = true)
     private List<Bet> userPlacedBets;
 
     public User() {
@@ -103,6 +104,12 @@ public class User implements Serializable {
 
     public void setUserPlacedBets(List<Bet> userPlacedBets) {
         this.userPlacedBets = userPlacedBets;
+    }
+
+    public void addBet(Bet bet) {
+        if (this.userPlacedBets == null)
+            this.userPlacedBets = new ArrayList<>();
+        this.userPlacedBets.add(bet);
     }
 
 }

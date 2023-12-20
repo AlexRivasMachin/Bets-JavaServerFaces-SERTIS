@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class EventDAOHibernate implements EventDAO, Serializable {
-
+    private static final long serialVersionUID = 1L;
     private final Session session;
     private static EventDAOHibernate instance;
 
@@ -49,15 +49,17 @@ public class EventDAOHibernate implements EventDAO, Serializable {
     }
 
     @Override
-    public void update(Event event) {
+    public Event update(Event event) {
+        Event ev = null;
         try {
             session.beginTransaction();
-            session.merge(event);
+            ev = session.merge(event);
             session.getTransaction().commit();
         }catch (Exception e){
             session.getTransaction().rollback();
             e.printStackTrace();
         }
+        return ev;
     }
 
     @Override

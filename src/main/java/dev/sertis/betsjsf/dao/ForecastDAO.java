@@ -6,7 +6,7 @@ public interface ForecastDAO {
 
     void save(Forecast forecast);
 
-    void update(Forecast forecast);
+    Forecast update(Forecast forecast);
 
     void delete(Forecast forecast);
 

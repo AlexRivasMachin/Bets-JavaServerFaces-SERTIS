@@ -4,8 +4,10 @@ import dev.sertis.betsjsf.HibernateUtil;
 import dev.sertis.betsjsf.domain.Forecast;
 import org.hibernate.Session;
 
-public class ForecastDAOHibernate implements ForecastDAO{
+import java.io.Serializable;
 
+public class ForecastDAOHibernate implements ForecastDAO, Serializable {
+    private static final long serialVersionUID = 1L;
     private final Session session;
     private static ForecastDAOHibernate instance;
 
@@ -33,15 +35,17 @@ public class ForecastDAOHibernate implements ForecastDAO{
     }
 
     @Override
-    public void update(Forecast forecast) {
+    public Forecast update(Forecast forecast) {
+        Forecast f = null;
         try{
             session.beginTransaction();
-            session.merge(forecast);
+            f =  session.merge(forecast);
             session.getTransaction().commit();
         }catch (Exception e){
             session.getTransaction().rollback();
             e.printStackTrace();
         }
+        return f;
     }
 
     @Override

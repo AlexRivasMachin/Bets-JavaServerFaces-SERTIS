@@ -11,7 +11,7 @@ public class Bet implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long betId;
-    @OneToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(fetch = FetchType.EAGER)
     private User userWhoPlacedBet;
     private double amountPlacedOnBet;
     @OneToOne(cascade = {CascadeType.ALL})

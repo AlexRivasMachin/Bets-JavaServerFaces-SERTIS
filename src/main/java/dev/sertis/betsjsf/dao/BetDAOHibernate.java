@@ -2,12 +2,15 @@ package dev.sertis.betsjsf.dao;
 
 import dev.sertis.betsjsf.HibernateUtil;
 import dev.sertis.betsjsf.domain.Bet;
+import dev.sertis.betsjsf.domain.Forecast;
+import dev.sertis.betsjsf.domain.User;
 import org.hibernate.Session;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class BetDAOHibernate implements BetDAO{
-
+public class BetDAOHibernate implements BetDAO, Serializable {
+    private static final long serialVersionUID = 1L;
     private final Session session;
     private static BetDAOHibernate instance;
 
@@ -41,16 +44,17 @@ public class BetDAOHibernate implements BetDAO{
     }
 
     @Override
-    public void update(Bet bet) {
+    public Bet update(Bet bet) {
+        Bet b = null;
         try{
             session.beginTransaction();
-            session.merge(bet);
+            b = session.merge(bet);
             session.getTransaction().commit();
         }catch (Exception e){
             session.getTransaction().rollback();
             e.printStackTrace();
         }
-
+        return b;
     }
 
     @Override

@@ -10,7 +10,7 @@ public interface QuestionDAO {
 
     void save(Question question);
 
-    void update(Question question);
+    Question update(Question question);
 
     void delete(Question question);
 

@@ -31,7 +31,7 @@
                             <p:outputLabel value="#{question.minimumBetAmount}"/>
                         </p:column>
                         <p:column>
-                            <p:commandButton value="Ver pronosticos" update=":forecast-form:forecast-table">
+                            <p:commandButton id="table-button" value="Ver pronosticos" update=":forecast-form:forecast-table" >
                                 <f:setPropertyActionListener value="#{question}" target="#{createBet.selectedQuestion}"/>
                             </p:commandButton>
                         </p:column>
@@ -55,7 +55,7 @@
                     <div class="add-header-div">
                         <h4 class="add-text-h4">Cantidad a apostar</h4>
                     </div>
-                    <p:inputText style="width: 100px;" id="forecast-potentialGain-input" value="#{createBet.newBetAmountPlaced}"/>
+                    <p:inputText style="width: 100px;" id="forecast-potentialGain-input" value="#{createBet.newBetAmountPlaced}" required="true" requiredMessage="Escribe la cantidad de tu apuesta"/>
                     <p:commandButton value="Crear apuesta" action="#{createBet.createBet()}" update="forecast-table"/>
                     <p:message for="forecast-potentialGain-input"/>
                 </h:form>

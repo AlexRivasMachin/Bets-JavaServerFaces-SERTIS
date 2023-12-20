@@ -9,23 +9,23 @@ public interface BLFacade {
 
     void saveEvent(Event event);
 
-    void updateEvent(Event event);
+    Event updateEvent(Event event);
 
     void saveQuestion(Question question);
 
-    void updateQuestion(Question question);
+    Question updateQuestion(Question question);
 
     void saveUser(User user);
 
-    void updateUser(User user);
+    User updateUser(User user);
 
     void saveForecast(Forecast forecast);
 
-    void updateForecast(Forecast forecast);
+    Forecast updateForecast(Forecast forecast);
 
     void saveBet(Bet bet);
 
-    void updateBet(Bet bet);
+    Bet updateBet(Bet bet);
 
     Event getEventById(long id);
 

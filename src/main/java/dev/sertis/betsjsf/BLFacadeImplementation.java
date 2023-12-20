@@ -3,12 +3,13 @@ package dev.sertis.betsjsf;
 import dev.sertis.betsjsf.dao.*;
 import dev.sertis.betsjsf.domain.*;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BLFacadeImplementation implements BLFacade{
-
+public class BLFacadeImplementation implements BLFacade, Serializable {
+    private static final long serialVersionUID = 1L;
     private final UserDAO userDAO;
     private final EventDAO eventDAO;
     private final QuestionDAO questionDAO;
@@ -38,8 +39,8 @@ public class BLFacadeImplementation implements BLFacade{
     }
 
     @Override
-    public void updateEvent(Event event) {
-        eventDAO.update(event);
+    public Event updateEvent(Event event) {
+        return eventDAO.update(event);
     }
 
     @Override
@@ -48,8 +49,8 @@ public class BLFacadeImplementation implements BLFacade{
     }
 
     @Override
-    public void updateQuestion(Question question) {
-        questionDAO.update(question);
+    public Question updateQuestion(Question question) {
+        return questionDAO.update(question);
     }
 
     @Override
@@ -58,8 +59,8 @@ public class BLFacadeImplementation implements BLFacade{
     }
 
     @Override
-    public void updateUser(User user) {
-        userDAO.update(user);
+    public User updateUser(User user) {
+        return userDAO.update(user);
     }
 
     @Override
@@ -68,8 +69,8 @@ public class BLFacadeImplementation implements BLFacade{
     }
 
     @Override
-    public void updateForecast(Forecast forecast) {
-        forecastDAO.update(forecast);
+    public Forecast updateForecast(Forecast forecast) {
+        return forecastDAO.update(forecast);
     }
 
     @Override
@@ -78,8 +79,8 @@ public class BLFacadeImplementation implements BLFacade{
     }
 
     @Override
-    public void updateBet(Bet bet) {
-        betDAO.update(bet);
+    public Bet updateBet(Bet bet) {
+        return betDAO.update(bet);
     }
 
     @Override

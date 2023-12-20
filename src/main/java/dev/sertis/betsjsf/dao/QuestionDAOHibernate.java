@@ -4,8 +4,10 @@ import dev.sertis.betsjsf.HibernateUtil;
 import dev.sertis.betsjsf.domain.Question;
 import org.hibernate.Session;
 
-public class QuestionDAOHibernate implements QuestionDAO{
+import java.io.Serializable;
 
+public class QuestionDAOHibernate implements QuestionDAO, Serializable {
+    private static final long serialVersionUID = 1L;
     private final Session session;
     private static QuestionDAOHibernate instance;
 
@@ -34,15 +36,19 @@ public class QuestionDAOHibernate implements QuestionDAO{
     }
 
     @Override
-    public void update(Question question) {
+    public Question update(Question question) {
+        Question q = null;
         try {
             session.beginTransaction();
-            session.merge(question);
+            q = session.merge(question);
             session.getTransaction().commit();
         } catch (Exception e) {
             session.getTransaction().rollback();
             e.printStackTrace();
+        }finally {
+            session.close();
         }
+        return q;
     }
 
     @Override

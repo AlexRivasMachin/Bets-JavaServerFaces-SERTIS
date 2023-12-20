@@ -19,7 +19,7 @@ public class Question implements Serializable {
     private Forecast winningForecast;
     @ManyToOne(cascade = CascadeType.ALL)
     private Event associatedEvent;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "associatedQuestion",cascade = CascadeType.ALL)
     private List<Forecast> forecastsForThisQuestion;
 
     public Question(){

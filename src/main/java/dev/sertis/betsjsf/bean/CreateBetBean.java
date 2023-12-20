@@ -9,6 +9,7 @@ import javax.faces.context.FacesContext;
 
 public class CreateBetBean {
     private EventsViewBean eventsViewBean;
+    private UserBean userBean;
     private final BLFacade blFacade;
     private Event selectedEvent;
     private Question selectedQuestion;
@@ -41,22 +42,23 @@ public class CreateBetBean {
 
         }
 
-        Bet bet = new Bet(LoginBean.getLoggedUser(),
+        User managedUser = blFacade.updateUser(userBean.getLoggedUser());
+        // TODO ver porq dupilca tuplas de Forecast
+        Forecast managedForecast = blFacade.updateForecast(this.selectedForecast);
+
+        Bet bet = new Bet(managedUser,
                 this.newBetAmountPlaced,
-                this.selectedForecast);
+                managedForecast);
 
-        this.selectedForecast.getBetsForThisForecast().add(bet);
+        managedUser.addBet(bet);
 
-        blFacade.saveBet(bet);
-        blFacade.updateForecast(this.selectedForecast);
+        blFacade.updateBet(bet);
 
-        // Because loggedUser is in a detached state we have to use merge
-        LoginBean.getLoggedUser().getUserPlacedBets().add(bet);
-        blFacade.updateUser(LoginBean.getLoggedUser());
+        //managedUser = blFacade.updateUser(managedUser);
 
-        final User userWhoPlacedBet = blFacade.getUserByDni(LoginBean.getLoggedUser().getDni());
-        System.out.println(userWhoPlacedBet.getUserPlacedBets());
-        LoginBean.setLoggedUser(userWhoPlacedBet);
+        userBean.setLoggedUser(managedUser);
+
+        LoginBean.setLoggedUser(managedUser);
     }
 
     public void setEventsViewBean(EventsViewBean eventsViewBean) {
@@ -97,5 +99,9 @@ public class CreateBetBean {
 
     public void setNewBetAmountPlaced(double newBetAmountPlaced) {
         this.newBetAmountPlaced = newBetAmountPlaced;
+    }
+
+    public void setUserBean(UserBean userBean) {
+        this.userBean = userBean;
     }
 }
