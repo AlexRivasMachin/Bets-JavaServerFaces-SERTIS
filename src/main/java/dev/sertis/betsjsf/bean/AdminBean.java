@@ -53,6 +53,7 @@ public class AdminBean implements Serializable {
         reloadPage();
     }
     public void changeComponentToEventsList(){
+        //setComponentPath("adminUIComponents/adminCrearEvento.xhtml");
         setComponentPath("commonUIComponents/mostrarEventos.xhtml");
         reloadPage();
     }

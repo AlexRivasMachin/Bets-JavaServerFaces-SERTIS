@@ -29,7 +29,7 @@ public class UserBean implements Serializable {
         cantidadRetiro = 0.0;
         cantidadDeposito = 0.0;
         this.apuestasRealizadas = loggedUser.getUserPlacedBets();
-        showEventos();
+        componentContent = "commonUIComponents/mostrarEventos.xhtml";
     }
     public String logout() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
