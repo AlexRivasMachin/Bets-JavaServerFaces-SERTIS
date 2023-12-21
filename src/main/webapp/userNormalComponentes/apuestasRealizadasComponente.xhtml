@@ -16,7 +16,7 @@
             <div class="apuestas">
                 <div class="tablaPrimeFaces">
                     <h:form>
-                            <p:dataTable id="dt" value="#{userBean.loggedUser.userPlacedBets}" var="a" emptyMessage="No hay apuestas realizadas" paginator="true" rows="8" paginatorPosition="bottom">
+                            <p:dataTable id="dt" value="#{userBean.loggedUser.userPlacedBets}" var="a" emptyMessage="No hay apuestas realizadas" paginator="true" rows="10" paginatorPosition="bottom">
 
                                 <p:column headerText="Fecha" sortBy="#{a.associatedForecast.associatedQuestion.associatedEvent.eventDate}">
                                     <p:outputLabel value="#{a.associatedForecast.associatedQuestion.associatedEvent.eventDate}"/>
