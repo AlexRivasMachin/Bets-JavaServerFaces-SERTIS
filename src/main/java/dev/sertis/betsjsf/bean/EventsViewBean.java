@@ -1,5 +1,7 @@
 package dev.sertis.betsjsf.bean;
 
+import dev.sertis.betsjsf.BLFacade;
+import dev.sertis.betsjsf.BLFacadeImplementation;
 import dev.sertis.betsjsf.dao.EventDAO;
 import dev.sertis.betsjsf.dao.EventDAOHibernate;
 import dev.sertis.betsjsf.domain.Event;
@@ -19,10 +21,11 @@ public class EventsViewBean implements Serializable {
     private Event selectedEvent;
     private AdminBean adminBean;
     private UserBean userBean;
-
+    private final BLFacade blFacade;
     private final EventDAO eventDAO;
 
     public EventsViewBean() {
+        this.blFacade = BLFacadeImplementation.getInstance();
         eventDAO = EventDAOHibernate.getInstance();
         this.eventDate = LocalDate.now();
         getEventsByDate();
@@ -54,7 +57,7 @@ public class EventsViewBean implements Serializable {
                     new FacesMessage(FacesMessage.SEVERITY_ERROR,"Selecciona una fecha posterior a hoy.",null));
             return;
         }
-        this.selectedEvent = selectedEvent;
+        this.selectedEvent = blFacade.getEventById(selectedEvent.getEventId());
         User loggedUser = LoginBean.getLoggedUser();
         if(loggedUser != null && loggedUser.isAdmin()) {
             adminBean.changeComponentFromEventList();

@@ -95,7 +95,7 @@ public class QuestionsAndForecastsBean implements Serializable {
         this.eventsViewBean.setSelectedEvent(this.selectedEvent);
 
         FacesContext.getCurrentInstance().addMessage("question-description-input",
-                new FacesMessage("Pregunta creado correctamente"));
+                new FacesMessage(FacesMessage.SEVERITY_INFO,"Pregunta creado correctamente", null));
     }
 
     public void createForecast() {
@@ -103,11 +103,10 @@ public class QuestionsAndForecastsBean implements Serializable {
                 this.newPotentialGain,
                 this.selectedQuestion);
 
-        //TODO cuando se crea el segundo forecast se añade a la pregunta per no se guarda en la base de datos
-
         // Because selectedQuestion is in a detached state we have to use merge
         this.selectedQuestion.getForecastsForThisQuestion().add(forecast);
-        this.selectedQuestion = blFacade.updateQuestion(this.selectedQuestion);
+        blFacade.updateQuestion(this.selectedQuestion);
+        this.selectedQuestion = blFacade.getQuestionById(this.selectedQuestion.getQuestionId());
 
         // Refresh the selected event
         final long selectedEventId = this.selectedEvent.getEventId();
@@ -115,7 +114,7 @@ public class QuestionsAndForecastsBean implements Serializable {
 
         this.eventsViewBean.setSelectedEvent(this.selectedEvent);
 
-        FacesContext.getCurrentInstance().addMessage("forecast-potentialGain-input",
-                new FacesMessage("Pronostico creado correctamente"));
+        FacesContext.getCurrentInstance().addMessage("forecast-description-input",
+                new FacesMessage(FacesMessage.SEVERITY_INFO,"Pronostico creado correctamente", null));
     }
 }
