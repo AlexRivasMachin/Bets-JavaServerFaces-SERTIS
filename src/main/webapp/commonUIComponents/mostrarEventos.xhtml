@@ -14,7 +14,7 @@
          <h1>Eventos</h1>
          <h:form id="form-events">
             <p:calendar id="calendar" value="#{eventsView.eventDate}" navigator="true" mode="inline">
-               <p:ajax event="dateSelect" listener="#{eventsView.onDateSelect}" update="events-table"/>
+               <p:ajax event="dateSelect" listener="#{eventsView.onDateSelect}" update="events-table messages"/>
             </p:calendar>
             <p:dataTable id="events-table" styleClass="events-table-style" var="event" value="#{eventsView.events}">
                <p:column headerText="Eventos del dia #{eventsView.eventDate}" styleClass="column-event-table">
@@ -28,12 +28,13 @@
                   </div>
                </p:column>
                <p:column styleClass="colum-view-event-table">
-                  <p:commandButton value="Ver evento">
+                  <p:commandButton value="Ver evento" update="messages">
                      <f:setPropertyActionListener value="#{event}" target="#{eventsView.selectedEvent}" />
                   </p:commandButton>
                </p:column>
             </p:dataTable>
          </h:form>
+         <p:messages id="messages" for="calendar" autoUpdate="true"/>
       </h:body>
    </f:view>
 </ui:composition>

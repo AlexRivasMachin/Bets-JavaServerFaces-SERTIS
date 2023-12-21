@@ -6,6 +6,7 @@ import dev.sertis.betsjsf.domain.Event;
 import dev.sertis.betsjsf.domain.User;
 import org.primefaces.event.SelectEvent;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -48,6 +49,11 @@ public class EventsViewBean implements Serializable {
     }
 
     public void setSelectedEvent(Event selectedEvent) {
+        if (this.eventDate != null && this.eventDate.isBefore(LocalDate.now())){
+            FacesContext.getCurrentInstance().addMessage("calendar",
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR,"Selecciona una fecha posterior a hoy.",null));
+            return;
+        }
         this.selectedEvent = selectedEvent;
         User loggedUser = LoginBean.getLoggedUser();
         if(loggedUser != null && loggedUser.isAdmin()) {
@@ -62,6 +68,11 @@ public class EventsViewBean implements Serializable {
     }
 
     public void onDateSelect(SelectEvent<LocalDate> event) {
+        if (event.getObject() != null && event.getObject().isBefore(LocalDate.now())){
+            FacesContext.getCurrentInstance().addMessage("calendar",
+                    new FacesMessage(FacesMessage.SEVERITY_WARN,"Selecciona una fecha posterior a hoy.",null));
+        }
+
         this.eventDate = event.getObject();
         getEventsByDate();
     }
