@@ -24,7 +24,7 @@
             <div id="bottom-grid">
                 <div id="questions-form">
                     <h:form id="questions-table-form">
-                        <p:dataTable id="question-table" var="question" value="#{questionAndForecasts.selectedEvent.questionsForThisEvent}">
+                        <p:dataTable id="question-table" var="question" value="#{questionAndForecasts.selectedEvent.questionsForThisEvent}" paginator="true" rows="6" paginatorPosition="bottom">
                             <p:column headerText="Pregunta">
                                 <p:outputLabel value="#{question.questionDescription}"/>
                             </p:column>

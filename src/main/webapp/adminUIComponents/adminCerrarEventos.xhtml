@@ -22,7 +22,7 @@
             </div>
             <div id="bottom-grid">
                 <h:form id="questions-form">
-                    <p:dataTable id="question-table" var="question" value="#{closeEvent.selectedEvent.questionsForThisEvent}">
+                    <p:dataTable id="question-table" var="question" value="#{closeEvent.selectedEvent.questionsForThisEvent}" paginator="true" rows="6" paginatorPosition="bottom">
                         <p:column headerText="Pregunta">
                             <p:outputLabel value="#{question.questionDescription}"/>
                         </p:column>

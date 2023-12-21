@@ -27,7 +27,7 @@
             </div>
             <div id="bottom-grid">
                 <h:form id="questions-form">
-                    <p:dataTable id="question-table" var="question" value="#{closeEvent.selectedEvent.questionsForThisEvent}">
+                    <p:dataTable id="question-table" var="question" value="#{closeEvent.selectedEvent.questionsForThisEvent}" paginator="true" rows="8" paginatorPosition="bottom">
                         <p:column headerText="Pregunta">
                             <p:outputLabel value="#{question.questionDescription}"/>
                         </p:column>
@@ -39,7 +39,7 @@
                     </p:dataTable>
                 </h:form>
                 <h:form id="forecast-form">
-                    <p:dataTable id="forecast-table" var="forecast" value="#{closeEvent.selectedQuestion.forecastsForThisQuestion}">
+                    <p:dataTable id="forecast-table" var="forecast" value="#{closeEvent.selectedQuestion.forecastsForThisQuestion}" paginator="true" rows="6" paginatorPosition="bottom">
                         <p:column headerText="Pronosticos para la pregunta: #{closeEvent.selectedQuestion.questionDescription}">
                             <p:outputLabel value="#{forecast.forecastDescription}"/>
                         </p:column>

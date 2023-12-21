@@ -16,7 +16,7 @@
             <p:calendar id="calendar" value="#{eventsView.eventDate}" navigator="true" mode="inline">
                <p:ajax event="dateSelect" listener="#{eventsView.onDateSelect}" update="events-table messages"/>
             </p:calendar>
-            <p:dataTable id="events-table" styleClass="events-table-style" var="event" value="#{eventsView.events}">
+            <p:dataTable id="events-table" styleClass="events-table-style" var="event" value="#{eventsView.events}" paginator="true" rows="5" paginatorPosition="bottom">
                <p:column headerText="Eventos del dia #{eventsView.eventDate}" styleClass="column-event-table">
                   <div class="preview-event-table">
                      <h:graphicImage styleClass="team-img-event-table" value="#{eventsView.getEventLocalTeamLogo(event.eventDescription)}"/>
