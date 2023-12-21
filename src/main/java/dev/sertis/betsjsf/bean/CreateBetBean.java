@@ -53,6 +53,7 @@ public class CreateBetBean implements Serializable {
         blFacade.updateBet(bet);
 
         managedUser = blFacade.getUserByDni(managedUser.getDni());
+        blFacade.updateUserBal(managedUser,bet.getAmountPlacedOnBet());
 
         userBean.setLoggedUser(managedUser);
 

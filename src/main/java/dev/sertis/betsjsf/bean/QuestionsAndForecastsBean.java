@@ -98,6 +98,7 @@ public class QuestionsAndForecastsBean implements Serializable {
 
         FacesContext.getCurrentInstance().addMessage("question-description-input",
                 new FacesMessage(FacesMessage.SEVERITY_INFO,"Pregunta creado correctamente", null));
+
     }
 
     public void createForecast() {

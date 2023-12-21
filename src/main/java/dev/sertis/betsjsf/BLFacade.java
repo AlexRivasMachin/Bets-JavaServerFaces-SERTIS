@@ -64,4 +64,6 @@ public interface BLFacade {
     boolean isUserPassword(String dni, String password);
 
     List<Bet> getBetsByUserDni(String dni);
+
+    void updateUserBal(User managedUser, double amountPlacedOnBet);
 }
