@@ -218,4 +218,9 @@ public class BLFacadeImplementation implements BLFacade, Serializable {
         return user.getPasswd().equals(password);
     }
 
+    @Override
+    public List<Bet> getBetsByUserDni(String dni) {
+        return userDAO.getUserPlacedBetsByDNI(dni);
+    }
+
 }

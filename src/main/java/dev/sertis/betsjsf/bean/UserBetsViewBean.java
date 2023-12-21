@@ -15,11 +15,12 @@ public class UserBetsViewBean implements Serializable {
 
     public UserBetsViewBean() {
         this.blFacade = BLFacadeImplementation.getInstance();
+        final String dni = LoginBean.getLoggedUser().getDni();
+        this.betsFromLoggedUser = blFacade.getBetsByUserDni(dni);
     }
 
+
     public List<Bet> getBetsFromLoggedUser() {
-        final String dni = LoginBean.getLoggedUser().getDni();
-        this.betsFromLoggedUser = blFacade.getUserByDni(dni).getUserPlacedBets();
         return this.betsFromLoggedUser;
     }
 

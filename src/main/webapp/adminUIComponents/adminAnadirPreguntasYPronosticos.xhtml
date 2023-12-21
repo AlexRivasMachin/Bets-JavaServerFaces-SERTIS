@@ -48,7 +48,7 @@
                         <p:inputNumber id="question-minimumBet-input" value="#{questionAndForecasts.newQuestionMinimumBetAmount}" required="true" requiredMessage="Inserta un valor de apuesta mínima para la pregunta" validatorMessage="El valor de apuesta mínima debe ser mayor de 1.00">
                             <f:validateDoubleRange minimum="1.00" />
                         </p:inputNumber>
-                        <p:commandButton value="Crear pregunta" action="#{questionAndForecasts.createQuestion()}" update=":questions-table-form:question-table messages-for-create-question"/>
+                        <p:commandButton value="Crear pregunta" action="#{questionAndForecasts.createQuestion()}" update=":questions-table-form:question-table :forecast-table-form:forecast-table messages-for-create-question"/>
                         <p:messages id="messages-for-create-question" for="question-description-input question-minimumBet-input" autoUpdate="true" closable="true"/>
                     </h:form>
                 </div>
@@ -73,7 +73,7 @@
                         <p:inputNumber id="forecast-potentialGain-input" value="#{questionAndForecasts.newPotentialGain}" required="true" requiredMessage="Inserta un valor de ganancia potencial para el pronostico" validatorMessage="El potencial de ganancia debe ser mayor de 1.00">
                             <f:validateDoubleRange minimum="1.00" />
                         </p:inputNumber>
-                        <p:commandButton value="Crear pronostico" action="#{questionAndForecasts.createForecast()}" update=":forecast-table-form:forecast-table messages-for-create-forecast"/>
+                        <p:commandButton value="Crear pronostico" action="#{questionAndForecasts.createForecast}" update=":questions-table-form:question-table :forecast-table-form:forecast-table messages-for-create-forecast"/>
                         <p:messages id="messages-for-create-forecast" for="forecast-description-input forecast-potentialGain-input" autoUpdate="true" closable="true"/>
                     </h:form>
                 </div>

@@ -78,7 +78,7 @@
     <managed-bean>
         <managed-bean-name>userBets</managed-bean-name>
         <managed-bean-class>dev.sertis.betsjsf.bean.UserBetsViewBean</managed-bean-class>
-        <managed-bean-scope>view</managed-bean-scope>
+        <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
 
     <navigation-rule>

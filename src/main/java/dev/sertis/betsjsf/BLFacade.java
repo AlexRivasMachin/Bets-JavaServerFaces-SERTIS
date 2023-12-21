@@ -62,4 +62,6 @@ public interface BLFacade {
     User changeUserCreditCard(String dni, long newCard);
 
     boolean isUserPassword(String dni, String password);
+
+    List<Bet> getBetsByUserDni(String dni);
 }
