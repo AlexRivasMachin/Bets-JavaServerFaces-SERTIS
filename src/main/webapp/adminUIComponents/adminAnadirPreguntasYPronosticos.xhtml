@@ -22,51 +22,61 @@
                 <h:graphicImage styleClass="imagenesEquipo" value="#{eventsView.getEventVisitorTeamLogo(questionAndForecasts.selectedEvent.eventDescription)}"/>
             </div>
             <div id="bottom-grid">
-                <h:form id="questions-form">
-                    <p:dataTable id="question-table" var="question" value="#{questionAndForecasts.selectedEvent.questionsForThisEvent}">
-                        <p:column headerText="Pregunta">
-                            <p:outputLabel value="#{question.questionDescription}"/>
-                        </p:column>
-                        <p:column headerText="Apuesta minima">
-                            <p:outputLabel value="#{question.minimumBetAmount}"/>
-                        </p:column>
-                        <p:column>
-                            <p:commandButton value="Ver pronosticos" update=":forecast-form:forecast-table">
-                                <f:setPropertyActionListener value="#{question}" target="#{questionAndForecasts.selectedQuestion}"/>
-                            </p:commandButton>
-                        </p:column>
-                    </p:dataTable>
-                    <h3 style="font-weight: bold; margin-bottom: 0">Crea una pregunta:</h3>
-                    <div class="add-header-div">
-                        <h4 class="add-text-h4">Descripcion</h4>
-                        <h4 class="add-text-h4">Apuesta minima</h4>
-                    </div>
-                    <p:inputText id="question-description-input" value="#{questionAndForecasts.newQuestionDescription}"/>
-                    <p:inputNumber id="question-minimumBet-input" value="#{questionAndForecasts.newQuestionMinimumBetAmount}"/>
-                    <p:commandButton value="Crear pregunta" action="#{questionAndForecasts.createQuestion()}" update="question-table"/>
-                    <p:message for="question-description-input"/>
-                    <p:message for="question-minimumBet-input"/>
-                </h:form>
-                <h:form id="forecast-form">
-                    <p:dataTable id="forecast-table" var="forecast" value="#{questionAndForecasts.selectedQuestion.forecastsForThisQuestion}">
-                        <p:column headerText="Pronosticos para la pregunta: #{questionAndForecasts.selectedQuestion.questionDescription}">
-                            <p:outputLabel value="#{forecast.forecastDescription}"/>
-                        </p:column>
-                        <p:column headerText="Cuota">
-                            <p:outputLabel value="#{forecast.potentialGain}"/>
-                        </p:column>
-                    </p:dataTable>
-                    <h3 style="font-weight: bold; margin-bottom: 0">Crea un pronostico:</h3>
-                    <div class="add-header-div">
-                        <h4 class="add-text-h4">Descripcion</h4>
-                        <h4 class="add-text-h4">Ganancia potencial</h4>
-                    </div>
-                    <p:inputText id="forecast-description-input" value="#{questionAndForecasts.newForecastDescription}"/>
-                    <p:inputNumber id="forecast-potentialGain-input" value="#{questionAndForecasts.newPotentialGain}"/>
-                    <p:commandButton value="Crear pronostico" action="#{questionAndForecasts.createForecast()}" update="forecast-table"/>
-                    <p:message for="forecast-description-input"/>
-                    <p:message for="forecast-potentialGain-input"/>
-                </h:form>
+                <div id="questions-form">
+                    <h:form id="questions-table-form">
+                        <p:dataTable id="question-table" var="question" value="#{questionAndForecasts.selectedEvent.questionsForThisEvent}">
+                            <p:column headerText="Pregunta">
+                                <p:outputLabel value="#{question.questionDescription}"/>
+                            </p:column>
+                            <p:column headerText="Apuesta minima">
+                                <p:outputLabel value="#{question.minimumBetAmount}"/>
+                            </p:column>
+                            <p:column>
+                                <p:commandButton value="Ver pronosticos" update=":forecast-table-form:forecast-table">
+                                    <f:setPropertyActionListener value="#{question}" target="#{questionAndForecasts.selectedQuestion}"/>
+                                </p:commandButton>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                    <h:form id="question-create-form">
+                        <h3 style="font-weight: bold; margin-bottom: 0">Crea una pregunta:</h3>
+                        <div class="add-header-div">
+                            <h4 class="add-text-h4">Descripcion</h4>
+                            <h4 class="add-text-h4">Apuesta minima</h4>
+                        </div>
+                        <p:inputText id="question-description-input" value="#{questionAndForecasts.newQuestionDescription}" required="true" requiredMessage="La descripción de la apuesta es obligatoria"/>
+                        <p:inputNumber id="question-minimumBet-input" value="#{questionAndForecasts.newQuestionMinimumBetAmount}" required="true" requiredMessage="Inserta un valor de apuesta mínima para la pregunta" validatorMessage="El valor de apuesta mínima debe ser mayor de 1.00">
+                            <f:validateDoubleRange minimum="1.00" />
+                        </p:inputNumber>
+                        <p:commandButton value="Crear pregunta" action="#{questionAndForecasts.createQuestion()}" update=":questions-table-form:question-table messages-for-create-question"/>
+                        <p:messages id="messages-for-create-question" for="question-description-input question-minimumBet-input" autoUpdate="true" closable="true"/>
+                    </h:form>
+                </div>
+                <div id="forecast-form">
+                    <h:form id="forecast-table-form">
+                        <p:dataTable id="forecast-table" var="forecast" value="#{questionAndForecasts.selectedQuestion.forecastsForThisQuestion}">
+                            <p:column headerText="Pronosticos para la pregunta: #{questionAndForecasts.selectedQuestion.questionDescription}">
+                                <p:outputLabel value="#{forecast.forecastDescription}"/>
+                            </p:column>
+                            <p:column headerText="Cuota">
+                                <p:outputLabel value="#{forecast.potentialGain}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                    <h:form id="forecast-create-form">
+                        <h3 style="font-weight: bold; margin-bottom: 0">Crea un pronostico:</h3>
+                        <div class="add-header-div">
+                            <h4 class="add-text-h4">Descripcion</h4>
+                            <h4 class="add-text-h4">Ganancia potencial</h4>
+                        </div>
+                        <p:inputText id="forecast-description-input" value="#{questionAndForecasts.newForecastDescription}" required="true" requiredMessage="La descripción del pronostico es obligatoria"/>
+                        <p:inputNumber id="forecast-potentialGain-input" value="#{questionAndForecasts.newPotentialGain}" required="true" requiredMessage="Inserta un valor de ganancia potencial para el pronostico" validatorMessage="El potencial de ganancia debe ser mayor de 1.00">
+                            <f:validateDoubleRange minimum="1.00" />
+                        </p:inputNumber>
+                        <p:commandButton value="Crear pronostico" action="#{questionAndForecasts.createForecast()}" update=":forecast-table-form:forecast-table messages-for-create-forecast"/>
+                        <p:messages id="messages-for-create-forecast" for="forecast-description-input forecast-potentialGain-input" autoUpdate="true" closable="true"/>
+                    </h:form>
+                </div>
             </div>
         </h:body>
     </f:view>

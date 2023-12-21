@@ -84,16 +84,6 @@ public class QuestionsAndForecastsBean implements Serializable {
     }
 
     public void createQuestion() {
-        if (this.newQuestionDescription == null || this.newQuestionDescription.isEmpty()) {
-            FacesContext.getCurrentInstance().addMessage("question-description-input",
-                    new FacesMessage("La descripción de la pregunta es obligatoria"));
-            return;
-        }else if (this.newQuestionMinimumBetAmount < 1.00) {
-            FacesContext.getCurrentInstance().addMessage("question-minimumBet-input",
-                    new FacesMessage("La apuesta mínima debe ser mayor de 1.00"));
-            return;
-        }
-
         Question question = new Question(this.newQuestionDescription,
                 this.newQuestionMinimumBetAmount,
                 this.eventsViewBean.getSelectedEvent());
@@ -103,19 +93,12 @@ public class QuestionsAndForecastsBean implements Serializable {
         this.selectedEvent = blFacade.updateEvent(this.selectedEvent);
 
         this.eventsViewBean.setSelectedEvent(this.selectedEvent);
+
+        FacesContext.getCurrentInstance().addMessage("question-description-input",
+                new FacesMessage("Pregunta creado correctamente"));
     }
 
     public void createForecast() {
-        if (this.newForecastDescription == null || this.newForecastDescription.isEmpty()) {
-            FacesContext.getCurrentInstance().addMessage("forecast-description-input",
-                    new FacesMessage("La descripción de la apuesta es obligatoria"));
-            return;
-        }else if (this.newPotentialGain < 1.00) {
-            FacesContext.getCurrentInstance().addMessage("forecast-potentialGain-input",
-                    new FacesMessage("El potencial de ganancia debe ser mayor de 1.00"));
-            return;
-        }
-
         Forecast forecast = new Forecast(this.newForecastDescription,
                 this.newPotentialGain,
                 this.selectedQuestion);
@@ -131,5 +114,8 @@ public class QuestionsAndForecastsBean implements Serializable {
         this.selectedEvent = blFacade.getEventById(selectedEventId);
 
         this.eventsViewBean.setSelectedEvent(this.selectedEvent);
+
+        FacesContext.getCurrentInstance().addMessage("forecast-potentialGain-input",
+                new FacesMessage("Pronostico creado correctamente"));
     }
 }

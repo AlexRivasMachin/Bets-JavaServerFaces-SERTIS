@@ -3,7 +3,10 @@ package dev.sertis.betsjsf;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class HibernateUtil {
+import java.io.Serializable;
+
+public class HibernateUtil implements Serializable {
+    private static final long serialVersionUID = 1L;
     private static final SessionFactory sessionFactory = buildSessionFactory();
 
     private static SessionFactory buildSessionFactory() {
