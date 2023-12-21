@@ -75,6 +75,11 @@
             <value>#{userBean}</value>
         </managed-property>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>userBets</managed-bean-name>
+        <managed-bean-class>dev.sertis.betsjsf.bean.UserBetsViewBean</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
 
     <navigation-rule>
         <from-view-id>/login.xhtml</from-view-id>

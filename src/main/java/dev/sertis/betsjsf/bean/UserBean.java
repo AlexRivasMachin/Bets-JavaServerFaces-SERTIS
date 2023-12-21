@@ -17,7 +17,6 @@ public class UserBean implements Serializable {
     private double cantidadRetiro;
     private double cantidadDeposito;
     private String componentContent;
-    private List<Bet> apuestasRealizadas = new ArrayList();
     private User loggedUser;
     private final UserDAO userDAO;
     private final BLFacade blFacade;
@@ -28,7 +27,6 @@ public class UserBean implements Serializable {
         this.loggedUser = LoginBean.getLoggedUser();
         cantidadRetiro = 0.0;
         cantidadDeposito = 0.0;
-        this.apuestasRealizadas = loggedUser.getUserPlacedBets();
         componentContent = "commonUIComponents/mostrarEventos.xhtml";
     }
     public String logout() {
