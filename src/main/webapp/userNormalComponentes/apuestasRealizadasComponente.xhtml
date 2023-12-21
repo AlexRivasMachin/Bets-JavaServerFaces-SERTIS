@@ -16,9 +16,9 @@
             <div class="apuestas">
                 <div class="tablaPrimeFaces">
                     <h:form>
-                            <p:dataTable id="dt" value="#{userBean.loggedUser.userPlacedBets}" var="a" emptyMessage="No hay apuestas realizadas">
+                            <p:dataTable id="dt" value="#{userBean.loggedUser.userPlacedBets}" var="a" emptyMessage="No hay apuestas realizadas" paginator="true" rows="8" paginatorPosition="bottom">
 
-                                <p:column headerText="Fecha">
+                                <p:column headerText="Fecha" sortBy="#{a.associatedForecast.associatedQuestion.associatedEvent.eventDate}">
                                     <p:outputLabel value="#{a.associatedForecast.associatedQuestion.associatedEvent.eventDate}"/>
                                 </p:column>
 
@@ -34,11 +34,11 @@
                                     <p:outputLabel value="#{a.associatedForecast.forecastDescription}"/>
                                 </p:column>
 
-                                <p:column headerText="Ganancia">
+                                <p:column headerText="Ganancia" sortBy="#{a.associatedForecast.potentialGain}">
                                     <p:outputLabel value="#{a.associatedForecast.potentialGain}"/>
                                 </p:column>
 
-                                <p:column headerText="Apostado">
+                                <p:column headerText="Apostado" sortBy="#{a.amountPlacedOnBet}">
                                     <p:outputLabel value="#{a.amountPlacedOnBet}"/>
                                 </p:column>
 
@@ -49,10 +49,7 @@
                             </p:dataTable>
                     </h:form>
                 </div>
-                <h:form>
-                    <h:commandButton styleClass="estiloBoton" value="AnularApuesta" action=".xhtml" disabled="true"/>
-                    <h:commandButton styleClass="estiloBoton" value="AnularApuesta" action=".xhtml" disabled="true"/>
-                </h:form>
+
             </div>
         </h:body>
     </f:view>

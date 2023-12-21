@@ -35,7 +35,6 @@ public class CreateBetBean implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Debes seleccionar un pronóstico"));
             return;
-            //el logged user no tiene tarjeta de crédito metida
         }else if( LoginBean.getLoggedUser().getCreditCard() == null){
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Debes añadir una tarjeta de crédito"));
