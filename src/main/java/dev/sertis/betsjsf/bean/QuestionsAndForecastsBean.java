@@ -7,7 +7,9 @@ import dev.sertis.betsjsf.domain.Forecast;
 import dev.sertis.betsjsf.domain.Question;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import java.io.IOException;
 import java.io.Serializable;
 
 public class QuestionsAndForecastsBean implements Serializable {
@@ -116,5 +118,16 @@ public class QuestionsAndForecastsBean implements Serializable {
 
         FacesContext.getCurrentInstance().addMessage("forecast-description-input",
                 new FacesMessage(FacesMessage.SEVERITY_INFO,"Pronostico creado correctamente", null));
+
+        reloadPage();
+    }
+
+    public void reloadPage(){
+        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+        try {
+            externalContext.redirect(externalContext.getRequestContextPath() + "/user.xhtml");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

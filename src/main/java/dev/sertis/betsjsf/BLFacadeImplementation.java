@@ -137,7 +137,10 @@ public class BLFacadeImplementation implements BLFacade, Serializable {
     public void updateUsersBalanceIfWinners(long resultantForecastId) {
         List<Bet> bets = betDAO.getBetsByForecastId(resultantForecastId);
         for (Bet bet : bets) {
-            bet.getUserWhoPlacedBet().setCurrentBalance(bet.getUserWhoPlacedBet().getCurrentBalance() + bet.getAmountPlacedOnBet()*bet.getAssociatedForecast().getPotentialGain());
+            double balance =  bet.getUserWhoPlacedBet().getCurrentBalance() + bet.getAmountPlacedOnBet()*bet.getAssociatedForecast().getPotentialGain();
+            String dni = bet.getUserWhoPlacedBet().getDni();
+            userDAO.updateUserBalance(dni,balance);
+
         }
     }
 

@@ -40,6 +40,17 @@ public class UserDAOHibernate implements UserDAO, Serializable {
         return new ArrayList<>(userPlacedBets);
     }
 
+    public void updateUserBalance(String dni,Double newBalance){
+        try{
+            session.beginTransaction();
+            User user = session.find(User.class, dni);
+            user.setCurrentBalance(newBalance);
+            session.getTransaction().commit();
+        }catch (Exception e){
+            session.getTransaction().rollback();
+            e.printStackTrace();
+        }
+    }
     @Override
     public void save(User user) {
         try{

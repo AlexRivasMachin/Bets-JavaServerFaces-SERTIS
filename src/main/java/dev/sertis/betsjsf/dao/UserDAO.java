@@ -8,6 +8,7 @@ import java.util.Set;
 
 public interface UserDAO{
 
+    void updateUserBalance(String dni,Double newBalance);
     void save(User user);
 
     User update(User user);
