@@ -95,7 +95,7 @@ public class QuestionsAndForecastsBean implements Serializable {
         this.eventsViewBean.setSelectedEvent(this.selectedEvent);
 
         FacesContext.getCurrentInstance().addMessage("question-description-input",
-                new FacesMessage("Pronostico creado correctamente"));
+                new FacesMessage("Pregunta creado correctamente"));
     }
 
     public void createForecast() {
