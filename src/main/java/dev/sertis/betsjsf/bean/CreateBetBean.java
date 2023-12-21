@@ -42,8 +42,6 @@ public class CreateBetBean implements Serializable {
         }
 
         User managedUser = blFacade.updateUser(userBean.getLoggedUser());
-        // TODO ver porq dupilca tuplas de Forecast
-        //TODO si la apuesta ya existe que no intente introducirla y que muestre un mensaje
         Forecast managedForecast = blFacade.updateForecast(this.selectedForecast);
 
         Bet bet = new Bet(managedUser,
@@ -54,7 +52,7 @@ public class CreateBetBean implements Serializable {
 
         blFacade.updateBet(bet);
 
-        //managedUser = blFacade.updateUser(managedUser);
+        managedUser = blFacade.getUserByDni(managedUser.getDni());
 
         userBean.setLoggedUser(managedUser);
 

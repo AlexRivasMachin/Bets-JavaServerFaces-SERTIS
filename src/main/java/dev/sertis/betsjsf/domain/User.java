@@ -18,7 +18,7 @@ public class User implements Serializable {
     private String username;
     private boolean isAdmin;
     private Long creditCard;
-    @OneToMany(mappedBy = "userWhoPlacedBet", cascade=CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "userWhoPlacedBet", orphanRemoval = true)
     private List<Bet> userPlacedBets;
 
     public User() {
