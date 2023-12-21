@@ -14,39 +14,39 @@
         </h:head>
         <h:body>
             <div class="grid">
-
-                <h:form id="saldoForm">
                     <div class="row">
-                        <div class="Salario">
-                            <h3 id="saldo">Saldo: #{userBean.loggedUser.currentBalance}</h3>
-                        </div>
+                        <h:form id="saldoForm">
+                            <div class="Salario">
+                                <h3 id="saldo">Saldo: #{userBean.loggedUser.currentBalance}</h3>
+                            </div>
 
-                        <div class="accion">
-                            <h4>Añadir Saldo</h4>
-                            <p:inputText id="aSaldoInput"  styleClass="aSaldoinput" value="#{userBean.loggedUser.currentBalance}">
-                                <f:convertNumber pattern="#,##0.00" type="number" integerOnly="false" />
-                            </p:inputText>
-                            <p:commandButton styleClass="aSbutton" value="Añadir" action="#{userBean.añadirSaldo}">
-                                <f:ajax execute="aSaldoInput" render="saldoForm"/>
-                            </p:commandButton>
-                        </div>
-
-                        <div class="accion">
-                            <h4>Retirar Dinero</h4>
-                            <p:inputText id="rSaldoInput" styleClass="aSaldoinput" value="#{userBean.cantidadRetiro}">
-                                <f:convertNumber pattern="#,##0.00" type="number" integerOnly="false" />
-                            </p:inputText>
-                            <p:commandButton styleClass="aSbutton" value="Retirar" action="#{userBean.restarSaldo}">
-                                <f:ajax execute="rSaldoInput" render="saldoForm" />
-                            </p:commandButton>
-                        </div>
+                            <div class="accion">
+                                <h4>Añadir Saldo</h4>
+                                <p:inputText id="aSaldoInput"  styleClass="aSaldoinput" value="#{userBean.cantidadDeposito}" validatorMessage="Mínimo 0€">
+                                    <f:convertNumber pattern="#,##0.00" type="number" integerOnly="false" />
+                                    <f:validateDoubleRange minimum="0.00"/>
+                                </p:inputText>
+                                <p:commandButton styleClass="aSbutton" value="Añadir" action="#{userBean.añadirSaldo()}">
+                                    <f:ajax execute="aSaldoInput" render="saldoForm"/>
+                                </p:commandButton><br/>
+                                <p:message id="messages" showDetail="true" autoUpdate="true" closable="true" for="aSaldoInput"/>
+                            </div>
+                            </h:form>
+                             <h:form id="rSaldoForm">
+                            <div class="accion">
+                                <h4>Retirar Dinero</h4>
+                                <p:inputText id="rSaldoInput" styleClass="aSaldoinput" value="#{userBean.cantidadRetiro}" validatorMessage="No tienes tanto dinero o el mínimmo es demasiado bajo">
+                                    <f:convertNumber pattern="#,##0.00" type="number" integerOnly="false" />
+                                    <f:validateDoubleRange minimum="0.00" maximum="#{userBean.loggedUser.currentBalance}"/>
+                                </p:inputText>
+                                <p:commandButton styleClass="aSbutton" value="Retirar" action="#{userBean.restarSaldo}">
+                                    <f:ajax execute="rSaldoInput" render="rSaldoForm" />
+                                </p:commandButton><br/>
+                                <p:message id="message" showDetail="true" autoUpdate="true" closable="true" for="rSaldoInput"/>
+                            </div>
+                        </h:form>
                     </div>
-
-                </h:form>
-
-
             </div>
-
         </h:body>
     </f:view>
 </ui:composition>
