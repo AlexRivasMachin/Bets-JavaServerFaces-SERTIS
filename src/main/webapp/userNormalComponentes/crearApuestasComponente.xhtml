@@ -51,13 +51,15 @@
                             </p:commandButton>
                         </p:column>
                     </p:dataTable>
+                </h:form>
+                <h:form id="formAceptar">
                     <h3 style="font-weight: bold; margin: 10px 0 0 0">Crea una apuesta:</h3>
                     <div class="add-header-div">
                         <h4 class="add-text-h4">Cantidad a apostar</h4>
                     </div>
                     <p:inputText style="width: 100px;" id="forecast-potentialGain-input" value="#{createBet.newBetAmountPlaced}" required="true" requiredMessage="Escribe la cantidad de tu apuesta"/>
-                    <p:commandButton value="Crear apuesta" action="#{createBet.createBet()}" update="forecast-table"/>
-                    <p:message for="forecast-potentialGain-input"/>
+                    <p:commandButton value="Crear apuesta" action="#{createBet.createBet}" update=":formAceptar :formAceptar:mensajes"/>
+                    <p:messages id="mensajes"/>
                 </h:form>
             </div>
         </h:body>

@@ -39,11 +39,11 @@ public class CreateBetBean {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Debes añadir una tarjeta de crédito"));
             return;
-
         }
 
         User managedUser = blFacade.updateUser(userBean.getLoggedUser());
         // TODO ver porq dupilca tuplas de Forecast
+        //TODO si la apuesta ya existe que no intente introducirla y que muestre un mensaje
         Forecast managedForecast = blFacade.updateForecast(this.selectedForecast);
 
         Bet bet = new Bet(managedUser,
@@ -59,6 +59,8 @@ public class CreateBetBean {
         userBean.setLoggedUser(managedUser);
 
         LoginBean.setLoggedUser(managedUser);
+
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Apuesta realizada con éxito"));
     }
 
     public void setEventsViewBean(EventsViewBean eventsViewBean) {
