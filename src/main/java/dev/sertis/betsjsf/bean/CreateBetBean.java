@@ -6,8 +6,9 @@ import dev.sertis.betsjsf.domain.*;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import java.io.Serializable;
 
-public class CreateBetBean {
+public class CreateBetBean implements Serializable {
     private EventsViewBean eventsViewBean;
     private UserBean userBean;
     private final BLFacade blFacade;
