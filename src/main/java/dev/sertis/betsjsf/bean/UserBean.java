@@ -83,11 +83,14 @@ public class UserBean implements Serializable {
 
     public void añadirSaldo() {
         loggedUser.setCurrentBalance(loggedUser.getCurrentBalance() + cantidadDeposito);
+        updateUserInfo();
         reloadPage();
     }
     public void restarSaldo() {
         if(cantidadRetiro <= loggedUser.getCurrentBalance()) {
             loggedUser.setCurrentBalance(loggedUser.getCurrentBalance() - cantidadRetiro);
+
+            updateUserInfo();
             reloadPage();
         }
     }
